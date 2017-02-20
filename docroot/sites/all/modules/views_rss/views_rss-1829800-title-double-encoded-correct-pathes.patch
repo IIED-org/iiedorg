@@ -1,0 +1,49 @@
+diff --git a/modules/views_rss_core/views_rss_core.inc b/modules/views_rss_core/views_rss_core.inc
+index f53f1d9..fe01ccf 100644
+--- a/modules/views_rss_core/views_rss_core.inc
++++ b/modules/views_rss_core/views_rss_core.inc
+@@ -163,6 +163,18 @@ function views_rss_core_preprocess_channel_cloud(&$variables) {
+ }
+
+ /**
++ * Preprocess function for item <title> element.
++ */
++function views_rss_core_preprocess_item_title(&$variables) {
++  // No value = no preprocessing.
++  if (empty($variables['elements'][0]['value'])) {
++    return;
++  }
++  $variables['elements'][0]['value'] = htmlspecialchars_decode($variables['elements'][0]['value'], ENT_QUOTES);
++  $variables['item']['views_rss_core']['title'] = htmlspecialchars_decode($variables['item']['views_rss_core']['title'], ENT_QUOTES);
++}
++
++/**
+  * Preprocess function for item <guid> element.
+  */
+ function views_rss_core_preprocess_item_guid(&$variables) {
+@@ -194,4 +206,4 @@ function views_rss_core_preprocess_item_source(&$variables) {
+   $view_title = $variables['view']->get_title();
+   $variables['elements'][0]['value'] = (!empty($view_title)) ? $view_title : variable_get('site_name', t('Drupal'));
+   $variables['elements'][0]['attributes'] = array('url' => $url);
+-}
+\ No newline at end of file
++}
+diff --git a/modules/views_rss_core/views_rss_core.module b/modules/views_rss_core/views_rss_core.module
+index 1eb171f..2eb8fe8 100644
+--- a/modules/views_rss_core/views_rss_core.module
++++ b/modules/views_rss_core/views_rss_core.module
+@@ -133,6 +133,7 @@ function views_rss_core_views_rss_channel_elements() {
+ function views_rss_core_views_rss_item_elements() {
+   $elements['title'] = array(
+     'description' => t('The title of the item. Required by RSS specification.'),
++    'preprocess functions' => array('views_rss_core_preprocess_item_title'),
+     'help' => 'http://www.rssboard.org/rss-profile#element-channel-item-title',
+   );
+   $elements['link'] = array(
+@@ -281,4 +282,4 @@ function views_rss_core_views_rss_options_form_validate($form, &$form_state) {
+       form_set_error('style_options][channel][core][views_rss_core][docs', t("Not a valid URL."));
+     }
+   }
+-}
+\ No newline at end of file
++}

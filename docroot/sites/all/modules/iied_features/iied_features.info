@@ -1,0 +1,8 @@
+name = IIED features
+description = Moves pathauto editing field out of vertical tabs.
+package = User interface
+version = "7.x-1.0"
+dependencies[] = path
+dependencies[] = pathauto
+core = "7.x"
+project = "iied_features"

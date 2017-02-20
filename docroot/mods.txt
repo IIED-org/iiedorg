@@ -1,0 +1,395 @@
+ Package         Name                                Type    Status    Version  
+ Administration  Actions permissions                 Module  Not       6.x-1.12 
+                 (actions_permissions)                       installe           
+                                                             d                  
+ Administration  Administration menu (admin_menu)    Module  Enabled   6.x-1.8  
+ Caching         Block Cache Alter                   Module  Enabled   6.x-1.4  
+                 (blockcache_alter)                                             
+ CCK             CCK Fieldgroup Tabs                 Module  Enabled   6.x-1.2  
+                 (cck_fieldgroup_tabs)                                          
+ CCK             Content (content)                   Module  Enabled   6.x-2.9  
+ CCK             Content Copy (content_copy)         Module  Enabled   6.x-2.9  
+ CCK             Content Permissions                 Module  Disabled  6.x-2.9  
+                 (content_permissions)                                          
+ CCK             Content Templates (contemplate)     Module  Enabled   6.x-1.2  
+ CCK             Embedded Audio Field (emaudio)      Module  Not       6.x-1.26 
+                                                             installe           
+                                                             d                  
+ CCK             Embedded Image Field (emimage)      Module  Not       6.x-1.26 
+                                                             installe           
+                                                             d                  
+ CCK             Embedded Media Field (emfield)      Module  Enabled   6.x-1.26 
+ CCK             Embedded Media Thumbnail (emthumb)  Module  Enabled   6.x-1.26 
+ CCK             Embedded Video Field (emvideo)      Module  Enabled   6.x-1.26 
+ CCK             Embedded Wave Field (emwave)        Module  Not       6.x-1.26 
+                                                             installe           
+                                                             d                  
+ CCK             Field Permissions                   Module  Enabled   6.x-1.0  
+                 (field_permissions)                                            
+ CCK             Fieldgroup (fieldgroup)             Module  Enabled   6.x-2.9  
+ CCK             FileField (filefield)               Module  Enabled   6.x-3.10 
+ CCK             FileField Meta (filefield_meta)     Module  Not       6.x-3.10 
+                                                             installe           
+                                                             d                  
+ CCK             Flickrfield (flickrfield)           Module  Enabled   6.x-1.2  
+ CCK             ImageField (imagefield)             Module  Disabled  6.x-3.3  
+ CCK             Location CCK (location_cck)         Module  Enabled   6.x-3.1  
+ CCK             Node Reference (nodereference)      Module  Enabled   6.x-2.9  
+ CCK             Number (number)                     Module  Enabled   6.x-2.9  
+ CCK             Option Widgets (optionwidgets)      Module  Enabled   6.x-2.9  
+ CCK             Text (text)                         Module  Enabled   6.x-2.9  
+ CCK             User Reference (userreference)      Module  Enabled   6.x-2.9  
+ Chaos tool      Bulk Export (bulk_export)           Module  Enabled   6.x-1.8  
+ suite                                                                          
+ Chaos tool      Chaos tools (ctools)                Module  Enabled   6.x-1.8  
+ suite                                                                          
+ Chaos tool      Chaos Tools (CTools) AJAX Example   Module  Not       6.x-1.8  
+ suite           (ctools_ajax_sample)                        installe           
+                                                             d                  
+ Chaos tool      Chaos Tools (CTools) Plugin         Module  Not       6.x-1.8  
+ suite           Example (ctools_plugin_example)             installe           
+                                                             d                  
+ Chaos tool      Custom content panes                Module  Enabled   6.x-1.8  
+ suite           (ctools_custom_content)                                        
+ Chaos tool      Custom rulesets                     Module  Enabled   6.x-1.8  
+ suite           (ctools_access_ruleset)                                        
+ Chaos tool      Page manager (page_manager)         Module  Enabled   6.x-1.8  
+ suite                                                                          
+ Chaos tool      Stylizer (stylizer)                 Module  Enabled   6.x-1.8  
+ suite                                                                          
+ Chaos tool      Views content panes                 Module  Enabled   6.x-1.8  
+ suite           (views_content)                                                
+ Context         Context (context)                   Module  Enabled   6.x-3.0  
+ Context         Context layouts (context_layouts)   Module  Not       6.x-3.0  
+                                                             installe           
+                                                             d                  
+ Context         Context UI (context_ui)             Module  Enabled   6.x-3.0  
+ Core -          Aggregator (aggregator)             Module  Enabled   6.22     
+ optional                                                                       
+ Core -          Blog (blog)                         Module  Enabled   6.22     
+ optional                                                                       
+ Core -          Blog API (blogapi)                  Module  Enabled   6.22     
+ optional                                                                       
+ Core -          Book (book)                         Module  Enabled   6.22     
+ optional                                                                       
+ Core -          Color (color)                       Module  Enabled   6.22     
+ optional                                                                       
+ Core -          Comment (comment)                   Module  Enabled   6.22     
+ optional                                                                       
+ Core -          Contact (contact)                   Module  Enabled   6.22     
+ optional                                                                       
+ Core -          Content translation (translation)   Module  Not       6.22     
+ optional                                                    installe           
+                                                             d                  
+ Core -          Database logging (dblog)            Module  Enabled   6.22     
+ optional                                                                       
+ Core -          Forum (forum)                       Module  Disabled  6.22     
+ optional                                                                       
+ Core -          Help (help)                         Module  Enabled   6.22     
+ optional                                                                       
+ Core -          Locale (locale)                     Module  Enabled   6.22     
+ optional                                                                       
+ Core -          Menu (menu)                         Module  Enabled   6.22     
+ optional                                                                       
+ Core -          OpenID (openid)                     Module  Not       6.22     
+ optional                                                    installe           
+                                                             d                  
+ Core -          Path (path)                         Module  Enabled   6.22     
+ optional                                                                       
+ Core -          PHP filter (php)                    Module  Enabled   6.22     
+ optional                                                                       
+ Core -          Ping (ping)                         Module  Enabled   6.22     
+ optional                                                                       
+ Core -          Poll (poll)                         Module  Enabled   6.22     
+ optional                                                                       
+ Core -          Profile (profile)                   Module  Enabled   6.22     
+ optional                                                                       
+ Core -          Search (search)                     Module  Enabled   6.22     
+ optional                                                                       
+ Core -          Statistics (statistics)             Module  Enabled   6.22     
+ optional                                                                       
+ Core -          Syslog (syslog)                     Module  Not       6.22     
+ optional                                                    installe           
+                                                             d                  
+ Core -          Taxonomy (taxonomy)                 Module  Enabled   6.22     
+ optional                                                                       
+ Core -          Throttle (throttle)                 Module  Not       6.22     
+ optional                                                    installe           
+                                                             d                  
+ Core -          Tracker (tracker)                   Module  Not       6.22     
+ optional                                                    installe           
+                                                             d                  
+ Core -          Trigger (trigger)                   Module  Not       6.22     
+ optional                                                    installe           
+                                                             d                  
+ Core -          Update status (update)              Module  Enabled   6.22     
+ optional                                                                       
+ Core -          Upload (upload)                     Module  Enabled   6.22     
+ optional                                                                       
+ Core -          Block (block)                       Module  Enabled   6.22     
+ required                                                                       
+ Core -          Filter (filter)                     Module  Enabled   6.22     
+ required                                                                       
+ Core -          Node (node)                         Module  Enabled   6.22     
+ required                                                                       
+ Core -          System (system)                     Module  Enabled   6.22     
+ required                                                                       
+ Core -          User (user)                         Module  Enabled   6.22     
+ required                                                                       
+ Custom Search   Custom Search (custom_search)       Module  Enabled   6.x-1.9  
+ Custom Search   Custom Search Blocks                Module  Not       6.x-1.9  
+                 (custom_search_blocks)                      installe           
+                                                             d                  
+ Custom Search   Custom Search Internationalization  Module  Not       6.x-1.9  
+                 (custom_search_i18n)                        installe           
+                                                             d                  
+ Custom Search   Custom Search Taxonomy              Module  Not       6.x-1.9  
+                 (custom_search_taxonomy)                    installe           
+                                                             d                  
+ Date/Time       Calendar (calendar)                 Module  Enabled   6.x-2.4  
+ Date/Time       Calendar iCal (calendar_ical)       Module  Enabled   6.x-2.4  
+ Date/Time       Calendar Multiday                   Module  Not       6.x-2.4  
+                 (calendar_multiday)                         installe           
+                                                             d                  
+ Date/Time       Calendar Popup (jcalendar)          Module  Enabled   6.x-2.4  
+ Date/Time       Date (date)                         Module  Enabled   6.x-2.7  
+ Date/Time       Date API (date_api)                 Module  Enabled   6.x-2.7  
+ Date/Time       Date Locale (date_locale)           Module  Not       6.x-2.7  
+                                                             installe           
+                                                             d                  
+ Date/Time       Date PHP4 (date_php4)               Module  Not       6.x-2.7  
+                                                             installe           
+                                                             d                  
+ Date/Time       Date Popup (date_popup)             Module  Enabled   6.x-2.7  
+ Date/Time       Date Repeat API (date_repeat)       Module  Enabled   6.x-2.7  
+ Date/Time       Date Timezone (date_timezone)       Module  Enabled   6.x-2.7  
+ Date/Time       Date Tools (date_tools)             Module  Not       6.x-2.7  
+                                                             installe           
+                                                             d                  
+ Development     Location Generate                   Module  Not       6.x-3.1  
+                 (location_generate)                         installe           
+                                                             d                  
+ Development     Nodequeue generate                  Module  Enabled   6.x-2.11 
+                 (nodequeue_generate)                                           
+ Development     Path redirect generate              Module  Not       6.x-1.0- 
+                 (path_redirect_generate)                    installe  rc2      
+                                                             d                  
+ Development     Zenophile (zenophile)               Module  Enabled   6.x-2.0  
+ Development     Zenophile Midnight                  Module  Enabled   6.x-2.0  
+                 (zenophile_midnight)                                           
+ Development     Zenophile Sidebars                  Module  Enabled   6.x-2.0  
+                 (zenophile_sidebars)                                           
+ Features        Content audit (content_audit)       Module  Enabled   6.x-1.0- 
+                                                                       alpha1   
+ Features        Features (features)                 Module  Enabled   6.x-1.2  
+ Flickr          Flickr (flickr)                     Module  Enabled   6.x-2.0b 
+ Flickr          Flickr Block (flickr_block)         Module  Enabled   6.x-1.2  
+ Flickr          Flickr Filter (flickr_filter)       Module  Enabled   6.x-2.0b 
+ Flickr          Flickr Sets (flickr_sets)           Module  Enabled   6.x-1.2  
+ Flickr          Flickr Tags (flickr_tags)           Module  Enabled   6.x-1.2  
+ Image           Image (image)                       Module  Enabled   6.x-1.1  
+ Image           Image assist (img_assist)           Module  Enabled   6.x-2.0- 
+                                                                       alpha4   
+ Image           Image Attach (image_attach)         Module  Enabled   6.x-1.1  
+ Image           Image Gallery (image_gallery)       Module  Enabled   6.x-1.1  
+ Image           Image Import (image_import)         Module  Enabled   6.x-1.1  
+ Image           ImageMagick Advanced Options        Module  Enabled   6.x-1.1  
+                 (image_im_advanced)                                            
+ ImageCache      ImageAPI (imageapi)                 Module  Enabled   6.x-1.10 
+ ImageCache      ImageAPI GD2 (imageapi_gd)          Module  Enabled   6.x-1.10 
+ ImageCache      ImageAPI ImageMagick                Module  Enabled   6.x-1.10 
+                 (imageapi_imagemagick)                                         
+ ImageCache      ImageCache (imagecache)             Module  Enabled   6.x-2.0- 
+                                                                       beta12   
+ ImageCache      Imagecache Profile Pictures         Module  Enabled   6.x-1.3  
+                 (imagecache_profiles)                                          
+ ImageCache      ImageCache UI (imagecache_ui)       Module  Enabled   6.x-2.0- 
+                                                                       beta12   
+ Location        Location (location)                 Module  Enabled   6.x-3.1  
+ Location        Location Add Another                Module  Not       6.x-3.1  
+                 (location_addanother)                       installe           
+                                                             d                  
+ Location        Location Fax (location_fax)         Module  Not       6.x-3.1  
+                                                             installe           
+                                                             d                  
+ Location        Location Phone (location_phone)     Module  Not       6.x-3.1  
+                                                             installe           
+                                                             d                  
+ Location        Location Search (location_search)   Module  Not       6.x-3.1  
+                                                             installe           
+                                                             d                  
+ Location        Location Taxonomy                   Module  Not       6.x-3.1  
+                 (location_taxonomy)                         installe           
+                                                             d                  
+ Location        Node Locations (location_node)      Module  Not       6.x-3.1  
+                                                             installe           
+                                                             d                  
+ Location        User Locations (location_user)      Module  Not       6.x-3.1  
+                                                             installe           
+                                                             d                  
+ Mail            Mime Mail (mimemail)                Module  Enabled   6.x-1.0- 
+                                                                       beta2    
+ Mail            Mime Mail Action (mimemail_action)  Module  Not       6.x-1.0- 
+                                                             installe  beta2    
+                                                             d                  
+ Mail            Mime Mail CSS Compressor            Module  Disabled  6.x-1.0- 
+                 (mimemail_compress)                                   beta2    
+ Mail            PHPlist (phplist)                   Module  Enabled   6.x-1.6  
+ Nodequeue       Nodequeue (nodequeue)               Module  Enabled   6.x-2.11 
+ Nodequeue       Nodequeue Service                   Module  Not       6.x-2.11 
+                 (nodequeue_service)                         installe           
+                                                             d                  
+ Nodequeue       Smartqueue taxonomy (smartqueue)    Module  Not       6.x-2.11 
+                                                             installe           
+                                                             d                  
+ Other           AddThis (addthis)                   Module  Enabled   6.x-3.0- 
+                                                                       beta2    
+ Other           Advanced help (advanced_help)       Module  Enabled   6.x-1.2  
+ Other           Advanced help example               Module  Not       6.x-1.2  
+                 (help_example)                              installe           
+                                                             d                  
+ Other           Automated Logout (autologout)       Module  Enabled   6.x-2.5  
+ Other           Backup and Migrate                  Module  Enabled   6.x-2.4  
+                 (backup_migrate)                                               
+ Other           Better Formats (better_formats)     Module  Enabled   6.x-1.2  
+ Other           Better Permissions (better_perms)   Module  Enabled   6.x-1.0- 
+                                                                       beta1    
+ Other           Clone module (clone)                Module  Enabled   6.x-1.3  
+ Other           Comment automatic title             Module  Enabled   6.x-1.1  
+                 (comment_auto_title)                                           
+ Other           Comment Notify (comment_notify)     Module  Enabled   6.x-1.6  
+ Other           Disqus (disqus)                     Module  Enabled   6.x-1.9  
+ Other           Disqus Migrate (disqus_migrate)     Module  Enabled   6.x-1.9  
+ Other           Embedded Inline Media (eminline)    Module  Enabled   6.x-1.26 
+ Other           Global Redirect (globalredirect)    Module  Enabled   6.x-1.2  
+ Other           iied (iied)                         Module  Enabled            
+ Other           IMCE (imce)                         Module  Enabled   6.x-2.2  
+ Other           Lightbox2 (lightbox2)               Module  Enabled   6.x-1.11 
+ Other           Link checker (linkchecker)          Module  Enabled   6.x-2.4  
+ Other           Litecal (litecal)                   Module  Enabled   6.x-1.0- 
+                                                                       alpha3   
+ Other           LoginToboggan (logintoboggan)       Module  Enabled   6.x-1.9  
+ Other           LoginToboggan Rules Integration     Module  Not       6.x-1.9  
+                 (logintoboggan_rules)                       installe           
+                                                             d                  
+ Other           Masquerade (masquerade)             Module  Enabled   6.x-1.6  
+ Other           Mass Change (mass_change)           Module  Enabled   6.x-1.0- 
+                                                                       rc       
+ Other           Menu Trails (menutrails)            Module  Disabled  6.x-1.0  
+ Other           Nice Menus (nice_menus)             Module  Enabled   6.x-2.1  
+ Other           Node Export (node_export)           Module  Enabled   6.x-2.24 
+ Other           Node Export Files                   Module  Enabled   6.x-2.24 
+                 (node_export_file)                                             
+ Other           Override node options               Module  Enabled   6.x-1.12 
+                 (override_node_options)                                        
+ Other           Path redirect (path_redirect)       Module  Enabled   6.x-1.0- 
+                                                                       rc2      
+ Other           Pathauto (pathauto)                 Module  Enabled   6.x-1.5  
+ Other           Quick Tabs (quicktabs)              Module  Enabled   6.x-2.0  
+ Other           Search 404 (search404)              Module  Enabled   6.x-1.11 
+ Other           Search config (search_config)       Module  Enabled   6.x-1.6  
+ Other           Seed (seed)                         Module  Disabled  6.x-4.1  
+ Other           Site map (site_map)                 Module  Enabled   6.x-2.2  
+ Other           Site Verification (site_verify)     Module  Enabled   6.x-1.0  
+ Other           Submitted By (submitted_by)         Module  Enabled   6.x-1.4  
+ Other           Suggested Terms (suggestedterms)    Module  Enabled   6.x-1.3  
+ Other           Syndication (syndication)           Module  Enabled   6.x-1.7  
+ Other           Tabs (tabs)                         Module  Enabled   6.x-1.3  
+ Other           Taxonomy Manager                    Module  Enabled   6.x-2.2  
+                 (taxonomy_manager)                                             
+ Other           Taxonomy Role (taxonomy_role)       Module  Enabled   6.x-1.0  
+ Other           Taxonomy Super Select               Module  Enabled   6.x-1.4  
+                 (taxonomy_super_select)                                        
+ Other           Token (token)                       Module  Enabled   6.x-1.16 
+ Other           Token actions (token_actions)       Module  Enabled   6.x-1.16 
+ Other           TokenSTARTER (tokenSTARTER)         Module  Not       6.x-1.16 
+                                                             installe           
+                                                             d                  
+ Other           Transliteration (transliteration)   Module  Enabled   6.x-3.0  
+ Other           TVI: Taxonomy View Integrator       Module  Enabled   6.x-1.3  
+                 (tvi)                                                          
+ Permissions     View Unpublished Content            Module  Enabled   6.x-1.2  
+                 (view_unpublished)                                             
+ phpList         phpList backend (phplistbackend)    Module  Not       6.x-1.6  
+                                                             installe           
+                                                             d                  
+ Printer,        PDF version (print_pdf)             Module  Not       6.x-1.14 
+ e-mail and PDF                                              installe           
+ versions                                                    d                  
+ Printer,        Printer-friendly pages (print)      Module  Enabled   6.x-1.14 
+ e-mail and PDF                                                                 
+ versions                                                                       
+ Printer,        Send by e-mail (print_mail)         Module  Not       6.x-1.14 
+ e-mail and PDF                                              installe           
+ versions                                                    d                  
+ Spam control    CAPTCHA (captcha)                   Module  Enabled   6.x-2.4  
+ Spam control    Image CAPTCHA (image_captcha)       Module  Disabled  6.x-2.4  
+ Spam control    reCAPTCHA (recaptcha)               Module  Enabled   6.x-1.7  
+ Spam control    reCAPTCHA Mailhide                  Module  Not       6.x-1.7  
+                 (recaptcha_mailhide)                        installe           
+                                                             d                  
+ Statistics      Google Analytics (googleanalytics)  Module  Enabled   6.x-3.3  
+ Taxonomy        Tagadelic (tagadelic)               Module  Enabled   6.x-1.3  
+ Testing         Features Tests (features_test)      Module  Not       6.x-1.2  
+                                                             installe           
+                                                             d                  
+ ThemeKey        ThemeKey (themekey)                 Module  Enabled   6.x-3.6  
+ ThemeKey        ThemeKey Debug (themekey_debug)     Module  Not       6.x-3.6  
+                                                             installe           
+                                                             d                  
+ ThemeKey        ThemeKey Features (Experimental!)   Module  Not       6.x-3.6  
+                 (themekey_features)                         installe           
+                                                             d                  
+ ThemeKey        ThemeKey UI (themekey_ui)           Module  Enabled   6.x-3.6  
+ User Interface  Activemenu (activemenu)             Module  Enabled   6.x-1.x- 
+                                                                       dev      
+ User interface  CKEditor (ckeditor)                 Module  Enabled   6.x-1.6  
+ User interface  CKEditor Link (ckeditor_link)       Module  Enabled   6.x-2.1  
+ User interface  External Links (extlink)            Module  Not       6.x-1.11 
+                                                             installe           
+                                                             d                  
+ User Interface  Javascript tools (jstools)          Module  Enabled   6.x-1.0  
+ User interface  jCarousel (jcarousel)               Module  Enabled   6.x-2.6  
+ User interface  jQuery UI (jquery_ui)               Module  Enabled   6.x-1.5  
+ User interface  jQuery Update (jquery_update)       Module  Enabled   6.x-2.0- 
+                                                                       alpha1   
+ User interface  Vertical Tabs (vertical_tabs)       Module  Enabled   6.x-1.0- 
+                                                                       rc2      
+ Util            Filter Permissions (filter_perms)   Module  Enabled   6.x-1.1  
+ Views           Similar By Terms (similarterms)     Module  Enabled   6.x-2.2  
+ Views           Timeline (timeline)                 Module  Enabled   6.x-2.1  
+ Views           Views (views)                       Module  Enabled   6.x-2.16 
+ Views           Views Bulk Operations               Module  Enabled   6.x-1.12 
+                 (views_bulk_operations)                                        
+ Views           Views exporter (views_export)       Module  Enabled   6.x-2.16 
+ Views           Views UI (views_ui)                 Module  Enabled   6.x-2.16 
+ Webform         Webform (webform)                   Module  Enabled   6.x-3.14 
+ XML sitemap     XML sitemap (xmlsitemap)            Module  Enabled   6.x-1.2  
+ XML sitemap     XML sitemap engines                 Module  Enabled   6.x-1.2  
+                 (xmlsitemap_engines)                                           
+ XML sitemap     XML sitemap node (xmlsitemap_node)  Module  Enabled   6.x-1.2  
+ XML sitemap     XML sitemap taxonomy                Module  Not       6.x-1.2  
+                 (xmlsitemap_taxonomy)                       installe           
+                                                             d                  
+ XML sitemap     XML sitemap user (xmlsitemap_user)  Module  Not       6.x-1.2  
+                                                             installe           
+                                                             d                  
+ Other           Blogs (blogs)                       Theme   Enabled            
+ Other           Bluemarine (bluemarine)             Theme   Disabled  6.22     
+ Other           Chameleon (chameleon)               Theme   Disabled  6.22     
+ Other           Excluded Voices theme (voices)      Theme   Enabled   6.x-1.0  
+ Other           Garland (garland)                   Theme   Enabled   6.22     
+ Other           IIED General Theme                  Theme   Enabled   6.x-1.0  
+                 (zen_iied_general)                                             
+ Other           IIED Research Theme                 Theme   Enabled   6.x-1.0  
+                 (zen_iied_research)                                            
+ Other           Legaltools theme (legaltools)       Theme   Enabled   6.x-1.0  
+ Other           Marvin (marvin)                     Theme   Disabled  6.22     
+ Other           Minnelli (minnelli)                 Theme   Disabled  6.22     
+ Other           Pushbutton (pushbutton)             Theme   Disabled  6.22     
+ Other           urban density (urban_density)       Theme   Enabled            
+ Other           Zen (zen)                           Theme   Disabled  6.x-1.1  
+ Other           Zen Classic (zen_classic)           Theme   Disabled  6.x-1.0  
+ Other           Zen Themer’s Starter Kit            Theme   Disabled  6.x-1.0  
+                 (STARTERKIT)                                                   
+

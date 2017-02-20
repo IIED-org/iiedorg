@@ -1,0 +1,53 @@
+<?php
+
+/**
+ * @file
+ * Remove path element from vertical tabs.
+ */
+
+/*
+function iied_features_form_alter(&$form, &$form_state, $form_id) {
+  if (isset($form['#node_edit_form']) && $form['#node_edit_form']) {
+	if ($form_id == 'blog_node_form' || $form_id == 'project_node_form' || $form_id == 'article_node_form' || $form_id == 'press_release_node_form') {
+		$form['field_display_date']['#group'] = 'author';
+		$form['path']['#group'] = '';
+		$form['path']['#title'] = '';
+		$form['path']['#collapsible'] = FALSE;
+		$form['path']['#collapsed'] = FALSE;
+		$protocol = isset($_SERVER['HTTPS']) ? 'https://' : 'http://';
+		$hostname = $_SERVER['SERVER_NAME'];
+		$form['path']['alias']['#title'] = t('Link: @baseurl/', array('@baseurl' => $protocol . $hostname));
+	}	
+  }
+}
+*/
+
+/* 
+ *Temp solution to allow anonymous users to search site users 
+ 
+
+function iied_features_apachesolr_query_alter(DrupalSolrQueryInterface $query) {
+  $query->removeFilterSubQueries();
+  $subquery = apachesolr_drupal_subquery();
+  $subquery->addFilter('hash', apachesolr_site_hash());
+  $query->addFilterSubQuery($subquery);
+}
+
+*/
+
+
+/**
+ * Implements hook_wysiwyg_editor_settings_alter()
+ */
+function iied_features_wysiwyg_editor_settings_alter(&$settings, $context) {
+ 
+  // The $context variable contains information about the wysiwyg profile we're using
+  // In this case we just need to check that the editor being used is ckeditor
+ 
+  if ($context['profile']->editor == 'ckeditor') {
+ 
+    $settings['removeFormatAttributes'] = 'class,style,lang,width,height,align,hspace,valign,target';
+    $settings['pasteFromWordPromptCleanup'] = true;
+ 	$settings['allowedContent'] = true;
+  }
+}

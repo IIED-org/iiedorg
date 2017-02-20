@@ -1,0 +1,44 @@
+From 5414776a6261377fb0bcd67c65a83f0015120cad Mon Sep 17 00:00:00 2001
+From: kolen <kolen@260090.no-reply.drupal.org>
+Date: Sun, 11 Mar 2012 15:49:50 +0400
+Subject: [PATCH] Fixes for export form handler functions renamed; include
+ locale.inc (not includes by itself if locale builtin module
+ not enabled)
+
+---
+ .../stringoverrides_migrate.admin.inc              |    6 ++++--
+ 1 files changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/stringoverrides_migrate.admin.inc b/stringoverrides_migrate.admin.inc
+index fbfc11a..d2e49c5 100644
+--- a/modules/stringoverrides/stringoverrides_migrate.admin.inc
++++ b/modules/stringoverrides/stringoverrides_migrate.admin.inc
+@@ -73,7 +73,7 @@ function stringoverrides_migrate_admin_export() {
+     '#value' => t('Export'),
+     '#weight' => 3,
+   );
+-  $form['#submit'][] = 'stringoverrides_admin_export_submit';
++  $form['#submit'][] = 'stringoverrides_migrate_admin_export_submit';
+   return $form;
+ }
+ 
+@@ -82,7 +82,7 @@ function stringoverrides_migrate_admin_export() {
+  */
+ function stringoverrides_migrate_admin_export_submit($form, &$form_state) {
+   $lang = $form_state['values']['lang'];
+-  $export = stringoverrides_admin_export_text($lang);
++  $export = stringoverrides_migrate_admin_export_text($lang);
+   $filename = "my-string-overrides.$lang.po";
+   $headers = array(
+     'Content-Type' => 'text/plain; charset=UTF-8',
+@@ -114,5 +114,7 @@ function stringoverrides_migrate_admin_export_text($lang = 'en') {
+       );
+     }
+   }
++  // If locale module not enabled, import file with its helper functions
++  require_once(DRUPAL_ROOT."/includes/locale.inc");
+   return _locale_export_po_generate($languages[$lang], $strings);
+ }
+-- 
+1.7.6.msysgit.0
+

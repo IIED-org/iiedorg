@@ -1,0 +1,23 @@
+diff --git a/apachesolr_term.module b/apachesolr_term.module
+index 83eb29f..2c613d4 100644
+--- a/apachesolr_term.module
++++ b/apachesolr_term.module
+@@ -140,3 +140,18 @@ function apachesolr_term_solr_taxonomy_ancestors($term) {
+ function apachesolr_term_status_callback($term, $type) {
+   return TRUE;
+ }
++
++/**
++ * Allows for alterations to the facet definitions.
++ *
++ * @param array &$facet_info
++ *   The return values of hook_facetapi_facet_info() implementations.
++ * @param array $searcher_info
++ *   The definition of the searcher that facets are being collected for.
++ *
++ * @see hook_facetapi_facet_info()
++ */
++function apachesolr_term_facetapi_facet_info_alter(array &$facet_info, array $searcher_info) {
++  // entities are hardcoded in facetapi_map_bundle() to only node unless we provide a list in 'map options'.
++  $facet_info['bundle']['map options'] = array('entities' => array('node','taxonomy_term'));
++}

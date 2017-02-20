@@ -1,0 +1,15 @@
+<?php
+/**
+ * @file
+ * Code for the Paragraphs Accordion feature.
+ */
+
+include_once 'paragraphs_accordion.features.inc';
+
+function paragraphs_accordion_preprocess_paragraphs_items(&$variables, $hook) {
+
+    if ($variables['field_name'] == 'field_accordion_items') {
+        drupal_add_library('system', 'ui.accordion');
+        drupal_add_js(drupal_get_path('module', 'paragraphs_accordion') . '/js/paragraph-accordions.js');
+    }
+}

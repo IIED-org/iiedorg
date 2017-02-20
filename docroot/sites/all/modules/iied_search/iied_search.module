@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the IIED Search feature.
+ */
+
+include_once 'iied_search.features.inc';

@@ -1,0 +1,263 @@
+#ATTENTION!
+#
+#DO NOT MODIFY THIS FILE BECAUSE IT WAS GENERATED AUTOMATICALLY,
+#SO ALL YOUR CHANGES WILL BE LOST THE NEXT TIME THE FILE IS GENERATED.
+#IF YOU REQUIRE TO APPLY CUSTOM MODIFICATIONS, PERFORM THEM IN THE FOLLOWING FILES:
+#/var/www/vhosts/system/iied.org/conf/vhost.conf
+#/var/www/vhosts/system/iied.org/conf/vhost_ssl.conf
+<IfModule mod_ssl.c>
+
+<VirtualHost 172.28.140.41:443 >
+    ServerName "iied.org:443"
+        ServerAlias  "www.iied.org"
+        ServerAlias  "ipv4.iied.org"
+        	UseCanonicalName Off
+
+    
+    ServerAlias  "iiedlist.cbrody.com"
+    ServerAlias  "www.iiedlist.cbrody.com"
+        ServerAlias  "ipv4.iiedlist.cbrody.com"
+        ServerAlias  "fairideas.org"
+    ServerAlias  "www.fairideas.org"
+        ServerAlias  "ipv4.fairideas.org"
+        ServerAlias  "regoverningmarkets.org"
+    ServerAlias  "www.regoverningmarkets.org"
+        ServerAlias  "ipv4.regoverningmarkets.org"
+        ServerAlias  "dcdays.org"
+    ServerAlias  "www.dcdays.org"
+        ServerAlias  "ipv4.dcdays.org"
+        ServerAlias  "legal-tools.info"
+    ServerAlias  "www.legal-tools.info"
+        ServerAlias  "ipv4.legal-tools.info"
+        ServerAlias  "solutionsforsustainableplanet.org"
+    ServerAlias  "www.solutionsforsustainableplanet.org"
+        ServerAlias  "ipv4.solutionsforsustainableplanet.org"
+        ServerAlias  "new.iiedlist.org"
+    ServerAlias  "www.new.iiedlist.org"
+        ServerAlias  "ipv4.new.iiedlist.org"
+        ServerAlias  "iied.iiedlist.org"
+    ServerAlias  "www.iied.iiedlist.org"
+        ServerAlias  "ipv4.iied.iiedlist.org"
+    
+
+<IfModule mod_suexec.c>
+    SuexecUserGroup "stonehenge" "psacln"
+</IfModule>
+
+    ServerAdmin  "david.sankar@iied.org"
+
+	DocumentRoot "/var/www/vhosts/iied.org/httpsdocs"
+    CustomLog /var/www/vhosts/system/iied.org/logs/access_ssl_log plesklog
+    ErrorLog  "/var/www/vhosts/system/iied.org/logs/error_log"
+
+
+<IfModule mod_userdir.c>
+    UserDir "/var/www/vhosts/iied.org/web_users"
+</IfModule>
+
+
+    ScriptAlias  "/cgi-bin/" "/var/www/vhosts/iied.org/cgi-bin/"
+
+
+
+    Alias  "/plesk-stat" "/var/www/vhosts/system/iied.org/statistics"
+    <Location  /plesk-stat/>
+        Options +Indexes
+    </Location>
+    <Location  /plesk-stat/logs/>
+        Require valid-user
+    </Location>
+    Alias  /webstat /var/www/vhosts/system/iied.org/statistics/webstat
+    Alias  /webstat-ssl /var/www/vhosts/system/iied.org/statistics/webstat-ssl
+    Alias  /ftpstat /var/www/vhosts/system/iied.org/statistics/ftpstat
+    Alias  /anon_ftpstat /var/www/vhosts/system/iied.org/statistics/anon_ftpstat
+    Alias  /awstats-icon /var/www/html/awstats/icon
+
+
+    SSLEngine on
+    SSLVerifyClient none
+    SSLCertificateFile /usr/local/psa/var/certificates/certqcEapUI
+
+SetEnv PP_CUSTOM_PHP_INI /var/www/vhosts/system/iied.org/etc/php.ini
+SetEnv PP_CUSTOM_PHP_CGI_INDEX module
+
+<IfModule mod_fcgid.c>
+    FcgidInitialEnv PP_CUSTOM_PHP_INI /var/www/vhosts/system/iied.org/etc/php.ini
+    FcgidInitialEnv PP_CUSTOM_PHP_CGI_INDEX module
+    FcgidMaxRequestLen 134217728
+
+</IfModule>
+
+
+    <Directory /var/www/vhosts/iied.org/httpsdocs>
+
+<IfModule sapi_apache2.c>
+php_admin_flag engine on
+
+# General settings
+php_admin_flag safe_mode off
+php_admin_value open_basedir "/var/www/vhosts/iied.org/:/tmp/"
+# Performance settings
+# Additional directives
+
+</IfModule>
+
+<IfModule mod_php5.c>
+php_admin_flag engine on
+
+# General settings
+php_admin_flag safe_mode off
+php_admin_value open_basedir "/var/www/vhosts/iied.org/:/tmp/"
+# Performance settings
+# Additional directives
+
+</IfModule>
+
+        SSLRequireSSL
+
+        Options +Includes +ExecCGI
+
+    </Directory>
+
+
+
+
+
+
+
+    <IfModule mod_rewrite.c>
+        RewriteEngine On
+                                    RewriteCond %{HTTP_HOST} ^iiedlist.cbrody.com$ [NC,OR]
+                RewriteCond %{HTTP_HOST} ^www.iiedlist.cbrody.com$ [NC]
+                RewriteRule ^(.*)$ https://iied.org$1 [L,R=301]
+                                                                                                                                                                    </IfModule>
+
+
+
+</VirtualHost>
+
+</IfModule>
+
+<VirtualHost 172.28.140.41:80 >
+    ServerName "iied.org:80"
+        ServerAlias  "www.iied.org"
+        ServerAlias  "ipv4.iied.org"
+        	UseCanonicalName Off
+
+    
+    ServerAlias  "iiedlist.cbrody.com"
+    ServerAlias  "www.iiedlist.cbrody.com"
+        ServerAlias  "ipv4.iiedlist.cbrody.com"
+        ServerAlias  "fairideas.org"
+    ServerAlias  "www.fairideas.org"
+        ServerAlias  "ipv4.fairideas.org"
+        ServerAlias  "regoverningmarkets.org"
+    ServerAlias  "www.regoverningmarkets.org"
+        ServerAlias  "ipv4.regoverningmarkets.org"
+        ServerAlias  "dcdays.org"
+    ServerAlias  "www.dcdays.org"
+        ServerAlias  "ipv4.dcdays.org"
+        ServerAlias  "legal-tools.info"
+    ServerAlias  "www.legal-tools.info"
+        ServerAlias  "ipv4.legal-tools.info"
+        ServerAlias  "solutionsforsustainableplanet.org"
+    ServerAlias  "www.solutionsforsustainableplanet.org"
+        ServerAlias  "ipv4.solutionsforsustainableplanet.org"
+        ServerAlias  "new.iiedlist.org"
+    ServerAlias  "www.new.iiedlist.org"
+        ServerAlias  "ipv4.new.iiedlist.org"
+        ServerAlias  "iied.iiedlist.org"
+    ServerAlias  "www.iied.iiedlist.org"
+        ServerAlias  "ipv4.iied.iiedlist.org"
+    
+
+<IfModule mod_suexec.c>
+    SuexecUserGroup "stonehenge" "psacln"
+</IfModule>
+
+    ServerAdmin  "david.sankar@iied.org"
+
+	DocumentRoot "/var/www/vhosts/iied.org/httpdocs"
+    CustomLog /var/www/vhosts/system/iied.org/logs/access_log plesklog
+    ErrorLog  "/var/www/vhosts/system/iied.org/logs/error_log"
+
+
+<IfModule mod_userdir.c>
+    UserDir "/var/www/vhosts/iied.org/web_users"
+</IfModule>
+
+
+    ScriptAlias  "/cgi-bin/" "/var/www/vhosts/iied.org/cgi-bin/"
+
+
+
+    Redirect permanent /plesk-stat https://iied.org/plesk-stat
+    Redirect permanent /webstat https://iied.org/webstat
+    Redirect permanent /webstat-ssl https://iied.org/webstat-ssl
+    Redirect permanent /ftpstat https://iied.org/ftpstat
+    Redirect permanent /anon_ftpstat https://iied.org/anon_ftpstat
+    Redirect permanent /awstats-icon https://iied.org/awstats-icon
+
+
+    <IfModule mod_ssl.c>
+        SSLEngine off
+    </IfModule>
+
+SetEnv PP_CUSTOM_PHP_INI /var/www/vhosts/system/iied.org/etc/php.ini
+SetEnv PP_CUSTOM_PHP_CGI_INDEX module
+
+<IfModule mod_fcgid.c>
+    FcgidInitialEnv PP_CUSTOM_PHP_INI /var/www/vhosts/system/iied.org/etc/php.ini
+    FcgidInitialEnv PP_CUSTOM_PHP_CGI_INDEX module
+    FcgidMaxRequestLen 134217728
+
+</IfModule>
+
+
+    <Directory /var/www/vhosts/iied.org/httpdocs>
+
+<IfModule sapi_apache2.c>
+php_admin_flag engine on
+
+# General settings
+php_admin_flag safe_mode off
+php_admin_value open_basedir "/var/www/vhosts/iied.org/:/tmp/"
+# Performance settings
+# Additional directives
+
+</IfModule>
+
+<IfModule mod_php5.c>
+php_admin_flag engine on
+
+# General settings
+php_admin_flag safe_mode off
+php_admin_value open_basedir "/var/www/vhosts/iied.org/:/tmp/"
+# Performance settings
+# Additional directives
+
+</IfModule>
+
+
+        Options +Includes +ExecCGI
+
+    </Directory>
+
+
+
+
+
+
+
+    <IfModule mod_rewrite.c>
+        RewriteEngine On
+                                    RewriteCond %{HTTP_HOST} ^iiedlist.cbrody.com$ [NC,OR]
+                RewriteCond %{HTTP_HOST} ^www.iiedlist.cbrody.com$ [NC]
+                RewriteRule ^(.*)$ http://iied.org$1 [L,R=301]
+                                                                                                                                                                    </IfModule>
+
+
+    Include "/var/www/vhosts/system/iied.org/conf/vhost.conf"
+
+</VirtualHost>
+

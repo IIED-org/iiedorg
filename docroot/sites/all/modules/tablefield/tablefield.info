@@ -1,0 +1,12 @@
+name = TableField
+description = Defines a tabular data field.
+core = 7.x
+package = Fields
+dependencies[] = field
+
+; Information added by Drupal.org packaging script on 2017-01-06
+version = "7.x-2.5+13-dev"
+core = "7.x"
+project = "tablefield"
+datestamp = "1483710546"
+

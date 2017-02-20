@@ -1,0 +1,311 @@
+<?php
+
+/**
+ * @file
+ * Webform countdown code module.
+ */
+
+/**
+ *  Define component and its basic capabilities.
+ */
+function webform_countdown_webform_component_info() {
+  $components = array();
+  $components['countdown'] = array(
+    'label' => t('Countdown'),
+    'description' => t('Create a textarea with a dynamic character count that updates as users type.'),
+    'features' => array(
+      'csv' => TRUE,
+      'email' => TRUE,
+      'email_address' => FALSE,
+      'email_name' => FALSE,
+      'required' => TRUE,
+      'title_display' => TRUE,
+      'title_inline' => TRUE,
+      'conditional' => TRUE,
+      'group' => FALSE,
+      'spam_analysis' => FALSE,
+      'attachment' => FALSE,
+    ),
+  );
+  return $components;
+}
+
+/**
+ * Implements _webform_defaults_component().
+ */
+function _webform_defaults_countdown() {
+  return array(
+    'name' => '',
+    'form_key' => NULL,
+    'pid' => 0,
+    'weight' => 0,
+    'value' => '',
+    'mandatory' => 0,
+    'extra' => array(
+      'type' => 'char',
+      'max' => '140',
+      'message' => 'characters remaining',
+      'cols' => '',
+      'rows' => '',
+      'title_display' => 0,
+      'resizable' => 1,
+      'disabled' => 0,
+      'description' => '',
+      'attributes' => array(),
+      'private' => FALSE,
+    ),
+  );
+}
+
+/**
+ * Implements _webform_theme_component().
+ */
+function _webform_theme_countdown() {
+  return array(
+    'webform_display_countdown' => array(
+      'render element' => 'element',
+    ),
+  );
+}
+
+/**
+ * Implements _webform_edit_component().
+ */
+function _webform_edit_countdown($component) {
+  $form = array();
+  $form['value'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Default value'),
+    '#default_value' => $component['value'],
+    '#description' => t('The default value of the field.') . theme('webform_token_help'),
+    '#cols' => 60,
+    '#rows' => 5,
+    '#weight' => 0,
+  );
+  $form['validation']['type'] = array(
+    '#type' => 'select',
+    '#title' => t('Type'),
+    '#description' => t('Determines whether the counter counts chracters or words.'),
+    '#default_value' => $component['extra']['type'],
+    '#options' => array(
+      'char' => t('Character'),
+      'word' => t('Word'),
+    ),
+    '#multiple' => FALSE,
+    '#weight' => 4,
+    '#parents' => array('extra', 'type'),
+    '#weight' => 1,
+  );
+  $form['validation']['max'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Maximum'),
+    '#default_value' => $component['extra']['max'],
+    '#description' => t('Maximum number of characters the field will accept.'),
+    '#size' => 5,
+    '#maxlength' => 10,
+    '#parents' => array('extra', 'max'),
+    '#weight' => 2,
+  );
+  $form['validation']['message'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Message'),
+    '#default_value' => $component['extra']['message'],
+    '#description' => t('Message that gets displayed alongside counter.'),
+    '#parents' => array('extra', 'message'),
+    '#weight' => 3,
+  );
+  $form['display']['cols'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Width'),
+    '#default_value' => $component['extra']['cols'],
+    '#description' => t('Width of the textarea in columns. This property might not have a visual impact depending on the CSS of your site.') . ' ' . t('Leaving blank will use the default size.'),
+    '#size' => 5,
+    '#maxlength' => 10,
+    '#parents' => array('extra', 'cols'),
+  );
+  $form['display']['rows'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Height'),
+    '#default_value' => $component['extra']['rows'],
+    '#description' => t('Height of the textarea in rows.') . ' ' . t('Leaving blank will use the default size.'),
+    '#size' => 5,
+    '#maxlength' => 10,
+    '#parents' => array('extra', 'rows'),
+  );
+  $form['display']['resizable'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Resizable'),
+    '#description' => t('Make this field resizable by the user.'),
+    '#weight' => 2,
+    '#default_value' => $component['extra']['resizable'],
+    '#parents' => array('extra', 'resizable'),
+  );
+  $form['display']['disabled'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Disabled'),
+    '#return_value' => 1,
+    '#description' => t('Make this field non-editable. Useful for setting an unchangeable default value.'),
+    '#weight' => 11,
+    '#default_value' => $component['extra']['disabled'],
+    '#parents' => array('extra', 'disabled'),
+  );
+  return $form;;
+}
+
+/**
+ * Implements _webform_render_component().
+ */
+function _webform_render_countdown($component, $value = NULL, $filter = TRUE) {
+  $node = isset($component['nid']) ? node_load($component['nid']) : NULL;
+
+  // Add JS for counter.
+  _webform_countdown_add_counter($component['form_key'], $component['extra']['max'], $component['extra']['type'], $component['extra']['message']);
+
+  $element = array(
+    '#type' => 'textarea',
+    '#title' => $filter ? _webform_filter_xss($component['name']) : $component['name'],
+    '#title_display' => $component['extra']['title_display'] ? $component['extra']['title_display'] : 'before',
+    '#default_value' => $filter ? _webform_filter_values($component['value'], $node) : $component['value'],
+    '#required' => $component['mandatory'],
+    '#weight' => $component['weight'],
+    '#description' => $filter ? _webform_filter_descriptions($component['extra']['description'], $node) : $component['extra']['description'],
+    '#rows' => !empty($component['extra']['rows']) ? $component['extra']['rows'] : 5,
+    '#cols' => !empty($component['extra']['cols']) ? $component['extra']['cols'] : 60,
+    '#attributes' => $component['extra']['attributes'],
+    '#resizable' => (bool) $component['extra']['resizable'], // MUST be FALSE to disable.
+    '#theme_wrappers' => array('webform_element'),
+    '#translatable' => array('title', 'description'),
+    '#element_validate' => array('webform_countdown_validate'),
+  );
+
+  // Handle disabling.
+  if ($component['extra']['disabled']) {
+    if ($filter) {
+      $element['#attributes']['readonly'] = 'readonly';
+    }
+    else {
+      $element['#disabled'] = TRUE;
+    }
+  }
+
+  if (isset($value)) {
+    $element['#default_value'] = $value[0];
+  }
+  return $element;
+}
+
+/**
+ * Implements _webform_display_component().
+ */
+function _webform_display_countdown($component, $value, $format = 'html') {
+  return array(
+    '#title' => $component['name'],
+    '#weight' => $component['weight'],
+    '#theme' => 'webform_display_countdown',
+    '#theme_wrappers' => $format == 'html' ? array('webform_element') : array('webform_element_text'),
+    '#format' => $format,
+    '#value' => $value[0],
+    '#translatable' => array('title'),
+  );
+}
+
+/**
+ * Custom Theme function for collected countdown data.
+ */
+function theme_webform_display_countdown($variables) {
+  $element = $variables['element'];
+  $output = $element['#format'] == 'html' ? nl2br(check_plain($element['#value'])) : $element['#value'];
+  if (drupal_strlen($output) > 80) {
+    $output = ($element['#format'] == 'html') ? '<div class="webform-long-answer">' . $output . '</div>' : $output;
+  }
+  return $output !== '' ? $output : ' ';
+}
+
+/**
+ * Implements _webform_analysis_component().
+ */
+function _webform_analysis_countdown($component, $sids = array()) {
+  $query = db_select('webform_submitted_data', 'wsd', array('fetch' => PDO::FETCH_ASSOC))
+    ->fields('wsd', array('data'))
+    ->condition('nid', $component['nid'])
+    ->condition('cid', $component['cid']);
+
+  if (count($sids)) {
+    $query->condition('sid', $sids, 'IN');
+  }
+
+  $nonblanks = 0;
+  $submissions = 0;
+
+  $result = $query->execute();
+  foreach ($result as $data) {
+    if (drupal_strlen(trim($data['data'])) > 0) {
+      $nonblanks++;
+    }
+    $submissions++;
+  }
+
+  $rows[0] = array(t('Left Blank'), ($submissions - $nonblanks));
+  $rows[1] = array(t('User entered value'), $nonblanks);
+  return $rows;
+}
+
+/**
+ * Implements _webform_table_component().
+ */
+function _webform_table_countdown($component, $value) {
+  return check_plain(empty($value[0]) ? '' : $value[0]);
+}
+
+/**
+ * Implements _webform_csv_headers_component().
+ */
+function _webform_csv_headers_countdown($component, $export_options) {
+  $header = array();
+  $header[0] = $component['name'];
+  return $header;
+}
+
+/**
+ * Implements _webform_csv_data_component().
+ */
+function _webform_csv_data_countdown($component, $export_options, $value) {
+  return !isset($value[0]) ? '' : $value[0];
+}
+
+/**
+ * Validate input against maximum characters.
+ */
+function webform_countdown_validate($element, $form_state, $form) {
+  // Check to ensure value has been entered and that we're counting characters rather than words.
+  if (!empty($element['#value']) && $element['#webform_component']['extra']['type'] == 'char') {
+    // Check to ensure character count is less than or equal to max.
+    if (strlen($element['#value']) > $element['#webform_component']['extra']['max']) {
+      form_error($element, t('The @title field should contain a maximum of @max characters.', array('@title' => $element['#title'], '@max' => $element['#webform_component']['extra']['max'])));
+    }
+  }
+
+  // Add JS for counter.
+  _webform_countdown_add_counter($element['#webform_component']['form_key'], $element['#webform_component']['extra']['max'], $element['#webform_component']['extra']['type'], $element['#webform_component']['extra']['message']);
+}
+
+/**
+ * Add JS to implement counter.
+ */
+function _webform_countdown_add_counter($form_key, $max = 140, $type = 'char', $message = 'characters remaining') {
+  // Ensure libraries module is in place.
+  if (module_exists('libraries')) {
+    if ($path = libraries_get_path('word-and-character-counter')) {
+      // Add simply countable jQuery plugin if it exists.
+      drupal_add_js($path . '/word-and-character-counter.js');
+
+      // Add inline JS to handle counter.  
+      // Replace _ with - in component keys to match dom IDs.
+      drupal_add_js('jQuery(document).ready(function () { jQuery("#edit-submitted-' . str_replace('_', '-', $form_key) . '").counter({ type: "' . $type . '", goal: ' . $max . ', msg: "' . t($message) . '", append: false }); });', 'inline');
+    }
+    else {
+      // Display warning if plugin file not found.
+      drupal_set_message(t('Word and Character Counter plugin not found in libraries directory. Please download word-and-character-counter.js from http://qwertypants.github.com/jQuery-Word-and-Character-Counter-Plugin/ and add it to sites/all/libraries/word-and-character-counter/word-and-character-counter.js or sites/SITENAME/libraries/word-and-character-counter/word-and-character-counter.js'), 'warning');
+    }
+  }
+}

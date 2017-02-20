@@ -1,0 +1,261 @@
+/* This file will hold styles that are loaded using the same media query as the narrow grid. */
+
+/* Panels pages CB added 20120421 */
+.panels-flexible-region, .panels-flexible-column {
+	clear:left;
+}
+
+.panels-flexible-column-3-2, .panels-flexible-column-3-1 {
+	width: 100%;
+}
+
+.page-our-work .page_title img, .page-about-us .page_title img {
+	display: none;
+}
+
+.page-our-work td.views-field-body, td.views-field-title {
+	width: 100%;
+}
+
+.page-our-work td.views-field-field-main-image {
+	width: 0;
+}
+
+/* NT added */
+/* removed updated june 
+#block-system-main .field-content img, .view-latest-nodes .field-content img, .pane-content .highlights img, .view-Highlights .field-content img {
+	max-width: 220px;
+	max-height: 115px;
+} */
+
+.followicons {
+	margin-top: 0em;
+	float: none;
+    text-align: left;
+}
+
+/* images styles updated below 
+#region-content .node-blog img, #region-content .node-article img, #region-content .node-project img, #region-content .node-media-release img {
+	max-width: 400px;
+	max-height: 193px;
+}
+
+.image-caption {
+    max-width: 400px;
+}
+*/
+
+#footertext div.col1 p{
+    width: 160px;
+}
+
+/* about and our work */
+
+.aow0 {
+	max-width: 620px;		
+}
+
+/*.mission {
+	clear:both;
+    padding: 0 20%;
+}*/
+
+/* Publications menu float for mobile */
+
+li.menu-52767 {
+	clear: left;
+	float: left;
+}
+
+.block-tb-megamenu-menu-explore-themes  {
+	margin-top: 0;
+}
+
+#main-menu li a {
+	text-transform:uppercase;
+	text-align:center;
+	font-weight:bold;
+	color: black;
+	padding: 10px 0;
+	border-bottom: solid 4px #E6E6E6;
+	display:block;
+	float:left;
+	width: 140px;
+	margin-right: 20px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+}
+
+/* fixes */
+/*
+.front #zone-menu {
+    margin-bottom: 0px;
+}
+*/
+/* fixes */
+
+#zone-menu {
+	height: 60px;
+}
+
+/* Themes dropdown */
+
+#block-superfish-1 li ul {
+	width: 680px;
+	margin-left: -305px; /* -250px; if first */
+}
+
+/* Logo image, site slogan */
+
+/*.site-name-slogan {
+	display:block;
+	float: right;
+    clear: right;
+    margin-top: -4.667em;
+}*/
+
+div.logo-img {
+	width: auto;
+	overflow:visible;
+}
+
+div.logo-img img {
+	width: auto;
+}
+
+/*#block-search-form { no longer needed
+	margin-top: 3.5em;
+}*/ 
+
+#edit-search-block-form--2 {
+	width: 186px;
+}
+
+/* Individual theme pages */
+/*.rss-icons {
+	float: right;
+	margin-top: -52px;
+}*/
+
+.theme-caption {
+	float: right;
+	margin-top: -1.5em;
+}
+
+/* add this 
+.view-mode-full .field-name-field-addthis {
+	border-top: 6px solid gray; 
+	margin: 1em 0 0.5em;
+    padding-top: 10px;
+}*/
+
+/* images styles updated */
+#region-content .node-blog img, #region-content .node-article img, #region-content .node-project img, #region-content .node-media-release img {
+	max-width: 400px;
+}
+
+.image-caption {
+    max-width: 400px;
+}
+/*
+#region-content img.image-main-image {
+	max-height: 193px;
+}*/
+
+/*#region-content img.image-main-image-16-9 {
+	max-height: 225px;
+}*/
+
+/* Target Firefox only */
+@-moz-document url-prefix() { 
+  #region-content img.image-main-image {
+        min-height: 224px;
+  }
+    
+  #region-content img.image-main-image {
+         min-height: 192px;
+  }
+}
+
+.image-caption-container.image-caption-container-right, .image-float_right, .image-float-right, .image-caption-container.image-caption-container-left, .image-float_left, image-float-left {
+    float: none;
+}
+
+.image-caption-container {
+    display: block !important;  
+}
+
+/* footer */
+
+.social-icons i {
+  font-size: 2em;
+}
+
+.ftr-menu {
+	-moz-column-count: 4;
+	-moz-column-gap: 0px;
+	-webkit-column-count: 4;
+	-webkit-column-gap: 0px;
+	column-count: 4;
+}
+
+/* IE<10 modernizr fallback */
+
+.no-csscolumns .ftr-menu li {
+    width: 23%;
+    float: left;
+    padding: 0 1%;
+    margin: 0;
+} 
+
+/* header */
+
+div#block-superfish-1 {
+margin: 11px 0 0 55px;
+}
+
+#block-superfish-1 li a.sf-depth-1 {
+  margin-right: 22px;
+}
+
+/* long read typography */
+
+.lf-type h1 {
+    font-size: 32px;
+    line-height: 1.2em;
+    margin-top: 0.67em;
+}
+
+.lf-type h2 {
+    font-size: 24px;
+}
+
+.lf-type h3 {
+    font-size: 22px;
+}
+
+.paragraphs-item-timeline {
+    margin: 0px -160px 0 -160px;
+}
+
+/* Search box */
+
+#zone-content #edit-search-block-form--2, #zone-preface #edit-search-block-form--4 {
+    width: 90%;
+}
+
+/* containers */
+.related-content-grid img {
+    width: 100%;
+}
+
+.block-block-410 { /* footer social */
+    text-align: left;
+}
+
+ /* for the responsive dropdown menu */
+
+.responsive-menu li {
+    display: inline;
+    margin: 1em 1.64em 0 0;
+}

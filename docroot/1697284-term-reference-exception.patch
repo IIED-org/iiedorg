@@ -1,0 +1,22 @@
+diff --git a/modules/taxonomy/taxonomy.module b/modules/taxonomy/taxonomy.module
+index 3271bf1..e6b9a2f 100644
+--- a/modules/taxonomy/taxonomy.module
++++ b/modules/taxonomy/taxonomy.module
+@@ -1601,7 +1601,16 @@ function taxonomy_field_formatter_view($entity_type, $entity, $field, $instance,
+           );
+         }
+         else {
+-          $term = $item['taxonomy_term'];
++          if (isset($item['taxonomy_term'])) {
++            $term = $item['taxonomy_term'];
++          }
++          elseif (isset($item['tid']) && is_numeric($item['tid'])) {
++            $term = taxonomy_term_load($item['tid']);
++          }
++          else {
++            watchdog('taxonomy', 'Could not format term reference: %item', array('%item' => print_r($item, TRUE)), WATCHDOG_ERROR);
++            return array();
++          }
+           $uri = entity_uri('taxonomy_term', $term);
+           $element[$delta] = array(
+             '#type' => 'link',
