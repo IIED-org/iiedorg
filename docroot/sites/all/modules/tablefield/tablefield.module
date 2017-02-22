@@ -15,7 +15,7 @@ function tablefield_menu() {
     'tablefield/export/%/%/%/%/%' => array(
       'page callback' => 'tablefield_export_csv',
       'page arguments' => array(2, 3, 4, 5, 6),
-      'title' => 'Export Table Data',
+      'title' => 'Export table data (CSV)',
       'access arguments' => array('export tablefield'),
     ),
     'admin/config/content/tablefield' => array(
@@ -192,6 +192,11 @@ function tablefield_field_settings_form($field, $instance, $has_data) {
     '#type' => 'checkbox',
     '#title' => t('Sticky header.'),
     '#default_value' => isset($field['settings']['sticky']) ? $field['settings']['sticky'] : TRUE,
+  );
+  $form['sort'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Add tablesort to header row.'),
+    '#default_value' => isset($field['settings']['sort']) ? $field['settings']['sort'] : FALSE,
   );
   $form['cell_processing'] = array(
     '#type' => 'radios',
@@ -485,7 +490,7 @@ function tablefield_field_formatter_view($entity_type, $entity, $field, $instanc
         '#theme' => 'tablefield_view',
         '#attributes' => array(
           'id' => drupal_html_id('tablefield-' . $delta),
-          'class' => array('tablefield'),
+          'class' => array('tablefield', ($field['settings']['sort'] ? 'tablesorter' : NULL))
         ),
         '#caption' => $caption,
         '#sticky' => isset($field['settings']['sticky']) ? $field['settings']['sticky'] : NULL,
