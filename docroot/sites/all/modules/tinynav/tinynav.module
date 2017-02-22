@@ -1,8 +1,16 @@
 <?php
+/**
+ * @file
+ * Integrate tinynav.js with drupal.
+ */
+
 // tiny nav global variables
 define('TINYNAV_URL', 'http://tinynav.viljamis.com/');
+// default css selector, matches omega default.
 define('TINYNAV_CSS_SELECTOR', '#zone-menu .region-menu ul.menu');
+// default media query to match which omega considers mobile.
 define('TINYNAV_MEDIA_QUERY', 'all and (max-width:780px)');
+// class to look for for the active item.
 define('TINYNAV_ACTIVE_CLASS', 'active-trail');
 define('TINYNAV_HEADER', FALSE);
 /**
@@ -14,17 +22,17 @@ function tinynav_init() {
     // add library
     drupal_add_js($lib);
     // add module script
-    drupal_add_js(drupal_get_path('module', 'tinynav').'/tinynav-drupal.js');
+    drupal_add_js(drupal_get_path('module', 'tinynav') . '/tinynav-drupal.js');
     // add css media query
     $css_selector = variable_get('tinynav_css_selector', TINYNAV_CSS_SELECTOR);
     // add default state
     $css = ".tinynav { display: none; }
-      ". $css_selector ." { display: block; }";
+      " . $css_selector . " { display: block; }";
     drupal_add_css($css, array('type' => 'inline'));
     $media_query = variable_get('tinynav_media_query',  TINYNAV_MEDIA_QUERY);
     // add media query
     $css = ".tinynav { display: block; }
-      ". $css_selector ." { display: none; }";
+      " . $css_selector . " { display: none; }";
     drupal_add_css($css, array('type' => 'inline', 'media' => $media_query));
     // Add drupal settings
     $header = variable_get('tinynav_header', TINYNAV_HEADER);
@@ -48,7 +56,7 @@ function tinynav_get_library() {
   if (function_exists('libraries_get_libraries')) {
     $libraries = libraries_get_libraries();
     if (isset($libraries['tinynav'])) {
-      return $libraries['tinynav'] .'/tinynav.js';
+      return $libraries['tinynav'] . '/tinynav.js';
     }
   }
   else {
@@ -73,7 +81,7 @@ function tinynav_get_library() {
     }
   }
   // if library not in use, use the authorized fork
-  return drupal_get_path('module', 'tinynav') .'/tinynav-fork.js';
+  return drupal_get_path('module', 'tinynav') . '/tinynav-fork.js';
 }
 
 /**
@@ -83,6 +91,7 @@ function tinynav_menu() {
   $items = array();
   $items['admin/config/user-interface/tinynav'] = array(
     'title' => 'tinynav.js',
+    'description' => 'Change tinynav selector and when to activate.',
     'type' => MENU_NORMAL_ITEM,
     'page callback' => 'drupal_get_form',
     'page arguments' => array('tinynav_form'),
@@ -128,7 +137,7 @@ function tinynav_form($form, $form_state) {
     '#description' => t('Supply a media query for the criteria when it should switch between the normal menu and tiny nav.'),
     '#weight' => 0,
     '#type' => 'textfield',
-    '#title' => t('Media Query'),
+    '#title' => t('Media query'),
   );
   return system_settings_form($form);
 }
@@ -181,7 +190,7 @@ function tinynav_variable_group_info() {
 
   $groups['tinynav'] = array(
     'title' => 'tinynav',
-    'description' => 'This project provides an way of implementing tinynav.js ('. l(TINYNAV_URL, TINYNAV_URL) .') as a library for use with any theme.',
+    'description' => 'This project provides an way of implementing tinynav.js (' . l(TINYNAV_URL, TINYNAV_URL) . ') as a library for use with any theme.',
     'path' => 'admin/user-interface/tinynav',
     'access' => 'administer site configuration',
   );
