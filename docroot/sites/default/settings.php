@@ -122,7 +122,8 @@ $update_free_access = FALSE;
 * It is not allowed to have a trailing slash; Drupal will add it
 * for you.
 */
-# $base_url = 'http://www.example.com';  // NO trailing slash!
+
+# $base_url = 'https://www.iied.org';  // NO trailing slash!
 
 /**
 * PHP settings:
@@ -238,21 +239,6 @@ $conf['locale_custom_strings_en'] = array(
    'users'      => 'People',
 );
 
-$databases = array (
-  'default' => 
-  array (
-    'default' => 
-    array (
-      'driver' => 'mysql',
-      'database' => 'iied_drupal-yin',
-      'username' => 'iied_drupal_user',
-      'password' => 'mZiu550$',
-      'host' => 'localhost',
-      'port' => '',
-      'prefix' => '',
-    ),
-  ),
-);
 $drupal_hash_salt = '0_nxhVMhvmb0DE4CDklegK2_R9IoCGAMZD_IaaJRIbw';
 
 
