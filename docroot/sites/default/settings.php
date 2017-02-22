@@ -255,16 +255,6 @@ $databases = array (
 );
 $drupal_hash_salt = '0_nxhVMhvmb0DE4CDklegK2_R9IoCGAMZD_IaaJRIbw';
 
-/*
-$conf['cache_backends'][] = 
-'sites/all/modules/memcache_storage/memcache_storage.inc';
-$conf['cache_default_class'] = 'MemcacheStorage';
-$conf['cache_class_cache_form'] = 'DrupalDatabaseCache';
-*/
-
-/* Acquia search */
-$conf['acquia_search_disable_auto_read_only'] = TRUE;
-
 
 // On Acquia Cloud, this include file configures Drupal to use the correct
 // database in each site environment (Dev, Stage, or Prod). To use this
@@ -272,6 +262,16 @@ $conf['acquia_search_disable_auto_read_only'] = TRUE;
 // (Drupal 5 or 6) or $databases (Drupal 7 or 8) as described in comments above.
 if (file_exists('/var/www/site-php')) {
   require('/var/www/site-php/iiedorg/iiedorg-settings.inc');
+}
+
+/* Acquia search */
+$conf['acquia_search_disable_auto_read_only'] = TRUE;
+
+/* Memcache */
+if (isset($conf['memcache_servers'])) {
+  $conf['cache_backends'][] = './sites/all/modules/memcache/memcache.inc';
+  $conf['cache_default_class'] = 'MemCacheDrupal';
+  $conf['cache_class_cache_form'] = 'DrupalDatabaseCache';
 }
 
 // <DDSETTINGS>
