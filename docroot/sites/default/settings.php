@@ -260,8 +260,10 @@ $conf['cache_backends'][] =
 'sites/all/modules/memcache_storage/memcache_storage.inc';
 $conf['cache_default_class'] = 'MemcacheStorage';
 $conf['cache_class_cache_form'] = 'DrupalDatabaseCache';
-$conf['memcache_storage_key_prefix'] = 'iied-yin';
 */
+
+/* Acquia search */
+$conf['acquia_search_disable_auto_read_only'] = TRUE;
 
 
 // On Acquia Cloud, this include file configures Drupal to use the correct
