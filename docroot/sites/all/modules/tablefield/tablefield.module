@@ -170,27 +170,27 @@ function tablefield_field_settings_form($field, $instance, $has_data) {
   $form = array();
   $form['export'] = array(
     '#type' => 'checkbox',
-    '#title' => 'Allow users to export table data as CSV',
+    '#title' => t('Allow users to export table data as CSV'),
     '#default_value' => isset($field['settings']['export']) ? $field['settings']['export'] : FALSE,
   );
   $form['restrict_rebuild'] = array(
     '#type' => 'checkbox',
-    '#title' => 'Restrict rebuilding to users with the permission "rebuild tablefield"',
+    '#title' => t('Restrict rebuilding to users with the permission "rebuild tablefield"'),
     '#default_value' => isset($field['settings']['restrict_rebuild']) ? $field['settings']['restrict_rebuild'] : FALSE,
   );
   $form['lock_values'] = array(
     '#type' => 'checkbox',
-    '#title' => 'Lock table header so default values cannot be changed.',
+    '#title' => t('Lock table header so default values cannot be changed.'),
     '#default_value' => isset($field['settings']['lock_values']) ? $field['settings']['lock_values'] : FALSE,
   );
   $form['hide_headers'] = array(
     '#type' => 'checkbox',
-    '#title' => 'Hide table header row.',
+    '#title' => t('Hide table header row.'),
     '#default_value' => isset($field['settings']['hide_headers']) ? $field['settings']['hide_headers'] : FALSE,
   );
   $form['sticky'] = array(
     '#type' => 'checkbox',
-    '#title' => 'Sticky header.',
+    '#title' => t('Sticky header.'),
     '#default_value' => isset($field['settings']['sticky']) ? $field['settings']['sticky'] : TRUE,
   );
   $form['cell_processing'] = array(
@@ -349,6 +349,7 @@ function tablefield_field_formatter_info() {
       'settings' => array(
         'trim_trailing_rows' => FALSE,
         'trim_trailing_cols' => FALSE,
+        'hide_cols_skip_head' => FALSE,
       ),
     ),
   );
@@ -363,7 +364,11 @@ function tablefield_field_formatter_settings_summary($field, $instance, $view_mo
   if ($display['type'] === 'tablefield_default') {
     $trim_trailing_rows = empty($settings['trim_trailing_rows']) ? t('No') : t('Yes');
     $trim_trailing_cols = empty($settings['trim_trailing_cols']) ? t('No') : t('Yes');
-    return t('Trim empty trailing rows: %tr', array('%tr' => $trim_trailing_rows)) . '<br>' . t('Trim empty trailing columns: %tr', array('%tr' => $trim_trailing_cols));
+    $hide_cols_skip_head = empty($settings['hide_cols_skip_head']) ? t('No') : t('Yes');
+    return t('Trim empty trailing rows: %tr',
+      array('%tr' => $trim_trailing_rows)) . '<br>' . t('Trim empty trailing columns: %tr',
+      array('%tr' => $trim_trailing_cols)) . '<br>' . t('Hide empty columns ignoring column header: %tr',
+      array('%tr' => $hide_cols_skip_head));
   }
   return '';
 }
@@ -385,6 +390,11 @@ function tablefield_field_formatter_settings_form($field, $instance, $view_mode,
       '#title' => t('Trim empty trailing columns'),
       '#type' => 'checkbox',
       '#default_value' => $settings['trim_trailing_cols'],
+    );
+    $element['hide_cols_skip_head'] = array(
+      '#title' => t('Hide empty columns ignoring column header:'),
+      '#type' => 'checkbox',
+      '#default_value' => $settings['hide_cols_skip_head'],
     );
   }
   return $element;
@@ -421,6 +431,10 @@ function tablefield_field_formatter_view($entity_type, $entity, $field, $instanc
 
         if (!empty($settings['trim_trailing_cols'])) {
           $tabledata['tabledata'] = tablefield_rtrim_cols($tabledata['tabledata']);
+        }
+
+        if (!empty($settings['hide_cols_skip_head'])) {
+          $tabledata['tabledata'] = tablefield_rtrim_cols($tabledata['tabledata'], TRUE);
         }
 
         foreach ($tabledata['tabledata'] as $row_key => $row) {
@@ -471,7 +485,7 @@ function tablefield_field_formatter_view($entity_type, $entity, $field, $instanc
         '#theme' => 'tablefield_view',
         '#attributes' => array(
           'id' => drupal_html_id('tablefield-' . $delta),
-          'class' => array('tablefield', 'tablesorter', 'tablesaw'),
+          'class' => array('tablefield'),
         ),
         '#caption' => $caption,
         '#sticky' => isset($field['settings']['sticky']) ? $field['settings']['sticky'] : NULL,
@@ -829,12 +843,12 @@ function tablefield_field_widget_form(&$form, &$form_state, $field, $instance, $
     '#collapsed' => TRUE,
   );
   $delimiters = array(
-    'TAB' => 'TAB',
-    ',' => 'Comma ,',
-    ';' => 'Semicolon ;',
-    '|' => 'Pipe |',
-    '+' => 'Plus +',
-    ':' => 'Colon :',
+    'TAB' => t('TAB'),
+    ',' => t('Comma ,'),
+    ';' => t('Semicolon ;'),
+    '|' => t('Pipe |'),
+    '+' => t('Plus +'),
+    ':' => t('Colon :'),
   );
   $element['tablefield']['paste']['paste_delimiter'] = array(
     '#type' => 'select',
@@ -1189,16 +1203,19 @@ function tablefield_fill_locked_values($tablefield, $instance_default) {
  * @param array $tabledata
  *   The rationalized tablefield.
  */
-function tablefield_rtrim_rows($tabledata) {
+function tablefield_rtrim_rows($tabledata, $ignore_head = FALSE) {
   foreach ($tabledata as $key => $value) {
-    array_pop($value);
+    // Removes the weight key.
+    unset($value['weight']);
     $empty = TRUE;
-    if (is_array($value)) {
 
-      foreach ($value as $v2) {
+    if (is_array($value)) {
+      foreach ($value as $k2 => $v2) {
         if (!empty($v2)) {
           // Stop traversing at the first non empty value.
-          $empty = FALSE;
+          if (!$ignore_head || ($ignore_head && $k2 !== 'row_0')) {
+            $empty = FALSE;
+          }
         }
       }
     }
@@ -1208,6 +1225,7 @@ function tablefield_rtrim_rows($tabledata) {
         $empty = FALSE;
       }
     }
+
     if ($empty) {
       unset($tabledata[$key]);
     }
@@ -1221,8 +1239,10 @@ function tablefield_rtrim_rows($tabledata) {
  *
  * @param array $tabledata
  *   The rationalized tablefield.
+ * @param bool $ignore_head
+ *   Whether ignoring header or not.
  */
-function tablefield_rtrim_cols($tabledata) {
+function tablefield_rtrim_cols($tabledata, $ignore_head = FALSE) {
   $row_num = count($tabledata);
 
   if (!$row_num) {
@@ -1233,7 +1253,7 @@ function tablefield_rtrim_cols($tabledata) {
   $tabledata = tablefield_transpose($tabledata);
 
   // Trim trailing empty rows.
-  $tabledata = tablefield_rtrim_rows($tabledata);
+  $tabledata = tablefield_rtrim_rows($tabledata, $ignore_head);
 
   // Transpose back.
   $tabledata = tablefield_transpose($tabledata);

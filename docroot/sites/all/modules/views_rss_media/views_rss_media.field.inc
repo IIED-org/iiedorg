@@ -7,7 +7,7 @@ function views_rss_media_field_formatter_info() {
   $formatters = array(
     'media_content' => array(
       'label' => t('RSS <media:content> element'),
-      'field types' => array('image', 'file', 'video'),
+      'field types' => array('image', 'file', 'video', 'video_embed_field'),
       'settings' => array(
         'image_style' => '',
         'group_multiple_values' => 0,
@@ -38,7 +38,9 @@ function views_rss_media_field_formatter_settings_form($field, $instance, $view_
   $display = $instance['display'][$view_mode];
   $settings = $display['settings'];
 
-  if ($field['type'] == 'image') {
+  $element = array();
+
+  if ($field['type'] == 'image' || $field['type'] == 'file') {
     $image_styles = image_style_options(FALSE);
     $element['image_style'] = array(
       '#title' => t('Image style'),
@@ -85,7 +87,9 @@ function views_rss_media_field_formatter_settings_form($field, $instance, $view_
     // hash_file() function used to generate file hashes
     // is available only in PHP versions >= 5.1.2.
     // @see http://www.php.net/manual/en/function.hash-file.php
-    if (version_compare(phpversion(), '5.1.2') >= 0) {
+    // Also, no hash support for Video Embed fields, as these are not
+    // stored locally, not possible then to calculate hashes for them.
+    if ($field['type'] != 'video_embed_field' && version_compare(phpversion(), '5.1.2') >= 0) {
 
       $element['generate_hash'] = array(
         '#title' => t('Generate hash values for files'),
@@ -126,7 +130,7 @@ function views_rss_media_field_formatter_settings_summary($field, $instance, $vi
 
   $summary = array();
 
-  if ($field['type'] == 'image') {
+  if ($field['type'] == 'image' || $field['type'] == 'file') {
     $image_styles = image_style_options(FALSE);
     // Unset possible 'No defined styles' option.
     unset($image_styles['']);
@@ -169,13 +173,18 @@ function views_rss_media_field_formatter_view($entity_type, $entity, $field, $in
 
   foreach ($items as $delta => $item) {
 
+    if ($field['type'] == 'video_embed_field') {
+      $url = $item['video_url'];
+      $item['video_data'] = unserialize($item['video_data']);
+    }
+
     // When generating a thumbnail for a video file,
     // let's process only thumbnail image details.
     if ($item['type'] == 'video' && $display['type'] == 'media_thumbnail') {
       $item = (array) $item['thumbnailfile'];
     }
 
-    if ($display['type'] == 'media_content' || $display['type'] == 'media_thumbnail') {
+    if (($display['type'] == 'media_content' || $display['type'] == 'media_thumbnail') && $field['type'] != 'video_embed_field') {
 
       // Inside a view item may contain NULL data. In that case, just return.
       if (empty($item['fid'])) {
@@ -207,10 +216,14 @@ function views_rss_media_field_formatter_view($entity_type, $entity, $field, $in
         'key' => 'media:content',
         'attributes' => array(
           'url' => $url,
-          'fileSize' => $item['filesize'],
-          'type' => $item['filemime'],
         ),
       );
+      if (!empty($item['filesize'])) {
+        $rss_element['attributes']['fileSize'] = $item['filesize'];
+      }
+      if (!empty($item['filemime'])) {
+        $rss_element['attributes']['type'] = $item['filemime'];
+      }
       if (!empty($display['settings']['medium'])) {
         $rss_element['attributes']['medium'] = $display['settings']['medium'];
       }
@@ -253,6 +266,45 @@ function views_rss_media_field_formatter_view($entity_type, $entity, $field, $in
           $rss_element['attributes']['duration'] = round($media_info['playtime_seconds']);
           $rss_element['attributes']['width'] = $media_info['video']['resolution_x'];
           $rss_element['attributes']['height'] = $media_info['video']['resolution_y'];
+        }
+      }
+
+      // Additional properties for Video Embed fields.
+      if ($field['type'] == 'video_embed_field') {
+        if (!empty($item['video_data']['media$group']['media$content'][0])) {
+          $rss_element['attributes'] += $item['video_data']['media$group']['media$content'][0];
+        }
+        if (!empty($item['video_data']['media$group']['media$title'])) {
+          $rss_element['value'][] = array(
+            'key' => 'media:title',
+            'value' => $item['video_data']['media$group']['media$title'],
+          );
+        }
+        if (!empty($item['video_data']['media$group']['media$description'])) {
+          $rss_element['value'][] = array(
+            'key' => 'media:description',
+            'value' => $item['video_data']['media$group']['media$description'],
+          );
+        }
+        if (!empty($item['video_data']['media$group']['media$thumbnail'][0])) {
+          $rss_element['value'][] = array(
+            'key' => 'media:thumbnail',
+            'attributes' => $item['video_data']['media$group']['media$thumbnail'][0],
+          );
+        }
+        if (!empty($item['video_data']['media$group']['media$category'])) {
+          foreach ($item['video_data']['media$group']['media$category'] as $category) {
+            $rss_element['value'][] = array(
+              'key' => 'media:category',
+              'value' => $category,
+            );
+          }
+        }
+        if (!empty($item['video_data']['media$group']['media$keywords'])) {
+          $rss_element['value'][] = array(
+            'key' => 'media:keywords',
+            'value' => implode(', ', $item['video_data']['media$group']['media$keywords']),
+          );
         }
       }
 
