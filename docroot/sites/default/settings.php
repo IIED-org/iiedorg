@@ -125,10 +125,10 @@ $update_free_access = FALSE;
 
 # $base_url = 'https://www.iied.org';  // NO trailing slash!
 
-/* Uncomment next section after DNS update */
-# if (isset($_ENV['AH_SITE_ENVIRONMENT']) && $_ENV['AH_SITE_ENVIRONMENT'] === 'prod') { 
-#  $base_url = 'https://www.iied.org';
-# }
+/* Uncomment next three lines to add base_url after DNS update */
+if (isset($_ENV['AH_SITE_ENVIRONMENT']) && $_ENV['AH_SITE_ENVIRONMENT'] === 'prod') { 
+  $base_url = 'https://www.iied.org';
+}
 
 /**
 * PHP settings:
@@ -255,8 +255,8 @@ if (file_exists('/var/www/site-php')) {
   require('/var/www/site-php/iiedorg/iiedorg-settings.inc');
 }
 
-/* Acquia search */
-$conf['acquia_search_disable_auto_read_only'] = TRUE;
+/* Set Acquia search to read-write on dev & stage */
+# $conf['acquia_search_disable_auto_read_only'] = TRUE;
 
 /* Memcache */
 if (isset($conf['memcache_servers'])) {
