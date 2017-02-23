@@ -125,6 +125,11 @@ $update_free_access = FALSE;
 
 # $base_url = 'https://www.iied.org';  // NO trailing slash!
 
+/* Uncomment next section after DNS update */
+# if (isset($_ENV['AH_SITE_ENVIRONMENT']) && $_ENV['AH_SITE_ENVIRONMENT'] === 'prod') { 
+#  $base_url = 'https://www.iied.org';
+# }
+
 /**
 * PHP settings:
 *
