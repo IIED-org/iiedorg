@@ -317,6 +317,11 @@ div#block-superfish-1 {
     border-bottom: 0;
 }
 
+/* Themes dropdown adjustments for wider name */
+#block-superfish-1 li li a {
+    width: 226px;
+}
+
 /* Individual theme pages */
 /*.rss-icons {
 	float: right;
