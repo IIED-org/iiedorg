@@ -15,11 +15,11 @@
 			  var entry = result.feed.entries[i];
 			  var div = document.createElement("div");
 			  var a = document.createElement("a");
-			  var img = document.createElement("img");
+			 // var img = document.createElement("img");
 			  var span = document.createElement("span");
 			 // img.setAttribute("src", entry.mediaGroups[0].contents[0].url);
 			 // a.appendChild(img);
-			  a.appendChild(document.createTextNode(entry.title));
+			  a.appendChild(document.createTextNode(htmlDecode(htmlDecode(entry.title))));
 			  span.appendChild(document.createTextNode(entry.contentSnippet));
 			  a.appendChild(span);
 			  a.setAttribute("href",entry.link);
@@ -44,3 +44,10 @@
     }
     
     google.setOnLoadCallback(OnLoad);
+    
+    
+    function htmlDecode(input){
+      var e = document.createElement('div');
+      e.innerHTML = input;
+      return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+    }
