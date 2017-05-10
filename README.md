@@ -1,4 +1,4 @@
-# [International Insititute for Environment and Development](https://www.iied.org) 
+# [International Institute for Environment and Development](https://www.iied.org) 
 
 This is the repository for the organisational website at https://www.iied.org
 
