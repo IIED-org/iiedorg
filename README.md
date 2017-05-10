@@ -3,4 +3,4 @@
 This is the repository for the organisational website at https://www.iied.org
 
 ### Thanks
-![Browserstack](https://wwww.iied.org/sites/default/files/images/broswerstack.png) Thanks to [BrowserStack](https://browserstack.com/) for their support of this open-source project.
+![Browserstack](https://wwww.iied.org/sites/default/files/images/browserstack.png) Thanks to [BrowserStack](https://browserstack.com/) for their support of this open-source project.
