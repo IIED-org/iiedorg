@@ -125,9 +125,11 @@ $update_free_access = FALSE;
 
 # $base_url = 'https://www.iied.org';  // NO trailing slash!
 
-/* Uncomment next three lines to add base_url after DNS update */
+/* Uncomment next lines to add base_url after DNS update, cache purging */
 if (isset($_ENV['AH_SITE_ENVIRONMENT']) && $_ENV['AH_SITE_ENVIRONMENT'] === 'prod') { 
   $base_url = 'https://www.iied.org';
+  $conf['acquia_purge_https'] = TRUE;
+  $conf['acquia_purge_http'] = FALSE;
 }
 
 /**
