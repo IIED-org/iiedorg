@@ -4198,6 +4198,11 @@ a.overlay-link {
 
 @media only screen and (max-width: 480px) {	
 /* Mobile portrait mode */
+  
+/* Header searchbox and menu margin */
+  #region-search, #region-menu {
+    margin-left: 110px;
+  } 
 
 /* Panels pages CB added 20120421 
 
