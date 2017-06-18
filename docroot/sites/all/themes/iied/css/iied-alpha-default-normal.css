@@ -55,9 +55,10 @@
     width: 220px;
 }
 
+/*
 .node-type-blog .view-mode-full .field-name-field-addthis, .node-type-media-release .view-mode-full .field-name-field-addthis, .node-type-article .view-mode-full .field-name-field-addthis, .node-type-book .view-mode-full .field-name-field-addthis, .node-type-project .view-mode-full .field-name-field-addthis, .node-type-job .view-mode-full .field-name-field-addthis, .node-type-press .view-mode-full .field-name-field-addthis, .node-type-change-initiative .view-mode-full .field-name-field-addthis {
 	margin: 0 -80px 20px 0;
-}
+}*/
 
 /* pull-quotes and call-outs */
 
@@ -337,7 +338,7 @@ div#block-superfish-1 {
     margin: 1em 3em 2em 0em; 
 }
 
-/* add this */
+/* add this 
 .field-type-addthis .addthis_toolbox {
 	float:right;
 	margin: 0px 10px;
@@ -346,14 +347,14 @@ div#block-superfish-1 {
 
 .view-mode-full .field-type-addthis .addthis_toolbox a {
 	margin: 3px 0;
-}
+}*/
 
 /* .view-mode-full .field-name-field-addthis { removed
 	border-bottom: 6px solid gray; 
 	border-top: none; 
 	margin: 0.5em 0 1em;
     padding-bottom: 10px;
-}*/
+}
 
 .node-type-feature .field-type-addthis .addthis_toolbox {
     float: none;
@@ -364,7 +365,7 @@ div#block-superfish-1 {
 	float: right;
     margin: -30px 0px;
     width: 180px;
-}
+}*/
 
 /* Flexslider */
 
@@ -508,15 +509,15 @@ div#block-ds-extras-project-attribution {
 }
 
 .social-icons i {
-  font-size: 2.5em;
+  font-size: 2.3em;
 }
 
-.node-type-blog .region-content {
+/*.node-type-blog .region-content {
   margin-top: -4em;
-}
+}*/
 
 .node-type-blog h1#page-title {
-padding-bottom: 1em;
+padding-bottom: 0.3em;
 }
 
 .grey-fill img, .box-fill-light img {
@@ -850,4 +851,23 @@ aside.float-right {
 
 .block-block-410 { /* footer social */
     text-align: left;
+}
+
+/*long read/one page updates */
+
+.lf-type figure.paragraphs-item-colorbox-gallery-thumbnails { 
+    margin: 30px -160px 30px -160px;
+}
+
+.lf-type figure.paragraphs-item-image-wide { 
+        margin: 30px -160px 30px -160px;
+}
+
+.w-2col aside {
+    max-width: 48%;
+    float: left;
+    overflow: hidden;
+}
+.w-2col > aside:nth-of-type(1) {
+margin-right: 36px;
 }

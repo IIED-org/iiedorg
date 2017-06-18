@@ -354,7 +354,7 @@ li.dhtml-folder.collapsed {
   background: #AAC02C; /* green */
 }
 
-.sectioned .zone-header-wrapper {
+.sectioned .zone-header-wrapper, .bgnd-colour {
     background-color: #AAC02C;
 }
 
@@ -367,6 +367,22 @@ blockquote:after, blockquote:before, .quotes-open, .quotes-close {
     border-color: #AAC02C; /* green */
 }
 
-.lf-type q {
+.lf-type q, .txt-colour-d {
 	color: #6A7F36; /* dark green */
+}
+
+.view-Blogger .views-field-picture-1 a {
+    border-color: #AAC02C; /* green */
+}
+
+.bdr-colour, span.bdr-colour:before {
+    border-color: #AAC02C; /* green */
+}
+
+.txt-colour {
+    color: #AAC02C; /* green */
+}
+
+h2.block-title {
+    color: #3e3e3e !important;
 }
