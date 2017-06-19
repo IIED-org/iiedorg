@@ -461,8 +461,9 @@ hr.clear-left {
 }
 
 .node-type-blog .field-name-body h4, .node-type-blog .field-name-body h5, .node-type-article .field-name-body h4, .node-type-article .field-name-body h5 {
-     font-size:16px;
-	 font-weight: 900;
+    font-family: 'lato', Helvetica, Arial, sans-serif;
+    font-size:16px;
+    font-weight: 900;
 }
 
 /*sidebar top margin fix no longer needed
@@ -822,9 +823,9 @@ blockquote:after, blockquote:before {
 	line-height: 3.5em;
 	}
 
-.node-type-blog .region-sidebar-second-inner {
+/*.node-type-blog .region-sidebar-second-inner {
   margin-top: 1em;
-}
+}*/
 
 .field-name-field-standfirst {
     font-size: 18px;
@@ -1493,7 +1494,7 @@ td.views-field-field-main-image {
 }
 
 /* Hide pubs div for specific users */
-.page-user-83 div#pubs, .page-user-178 div#pubs, .page-user-87 div#pubs, .page-user-24 div#pubs, .page-user-16 div#pubs, .page-user-14 div#pubs, .page-user-891 div#pubs, .page-user-2554 div#pubs {
+.page-user-83 div#pubs, .page-user-178 div#pubs, .page-user-87 div#pubs, .page-user-24 div#pubs, .page-user-16 div#pubs, .page-user-14 div#pubs, .page-user-891 div#pubs, .page-user-2554 div#pubs, .page-user-1039 div#pubs {
 	display:none;
 } 
 
@@ -1910,10 +1911,64 @@ ul.objectives li {
 }
 
 .ctext {
-	font-size: 15px;
+	font-size: 16px;
 	color: #6D6D6D;
 }
 
+/* project page updates and related-link display */
+
+.responsive-layout-mobile .set-label, .responsive-layout-mobile .theme-label {
+    display: inline;
+}
+
+.responsive-layout-mobile .set-label {
+    margin: 0.5em 0 1em 1em;
+}
+
+.responsive-layout-mobile .set-label:before {
+    content: "> ";
+}
+
+.responsive-layout-mobile .region-header-first {
+    margin-bottom: 2em;
+}
+
+.tags-wrapper {
+    border-top: 1px solid #E6E6E6;
+    margin: 1em 0;
+    padding: 1em 0;
+}
+
+.node-type-project h3.label-above {
+    border-top: 1px solid #E6E6E6;
+    padding-top: 10px;
+    margin-bottom: 15px;
+}
+
+.node-type-project .region-postscript2-first {
+    border-top: 1px solid #E6E6E6;
+    padding-top: 0.5em;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+.grid-container-col-md img {
+  float: left;
+  margin: 0 10px 30px 0;
+}
+
+.grid-container-col-md .atitle {
+    font-size: 16px;
+}
+
+.grid-container-col-md .views-column {
+    margin-top: 30px;
+}
+
+.grid-container-col-md .views-row {
+    margin: 0;
+}
+   
 /*finance page*/
 
 div.arbox {
@@ -1980,6 +2035,12 @@ div.arbox {
     margin-right:10px;
 }
 
+.view-id-Blogger .missing-avatar {
+    width: 60px;
+    height: 60px;
+    background-size: contain;
+}
+
 .view-people-pages .views-exposed-form {
     margin-bottom: 2em;
 }
@@ -2009,7 +2070,6 @@ h1#section-title {
 .block-responsive-dropdown-menus li a.active {
     color: #a5a5a5;
 }
-
 
 .people-detail {
     margin-left: 110px;
@@ -3885,7 +3945,7 @@ a.dsq-widget-user {
 
 .grid-container-large .item-title, .views-field-field-focus-areas h3 {
     font-size: 16px;
-    margin: 0.3em 0 1.6em 0;
+    margin: 0.3em 0 2em 0;
 }
 
 .grid-container-small .item-title, .related-content-grid .item-title {
