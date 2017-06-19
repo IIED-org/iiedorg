@@ -354,7 +354,7 @@ li.dhtml-folder.collapsed {
   background: #CE539E; /* pink */
 }
 
-.sectioned .zone-header-wrapper {
+.sectioned .zone-header-wrapper, .bgnd-colour {
     background-color: #CE539E;
 }
 
@@ -367,6 +367,22 @@ blockquote:after, blockquote:before, .quotes-open, .quotes-close {
     border-color: #CE539E; /* pink */
 }
 
-.lf-type q {
+.lf-type q, .txt-colour-d {
 	color: #9D3D78; /* dark pink */
+}
+
+.view-Blogger .views-field-picture-1 a {
+    border-color: #CE539E; /* pink */
+}
+
+.bdr-colour, span.bdr-colour:before {
+    border-color: #CE539E; /* pink */
+}
+
+.txt-colour {
+    color: #CE539E; /* pink */
+}
+
+h2.block-title {
+    color: #3e3e3e !important;
 }
