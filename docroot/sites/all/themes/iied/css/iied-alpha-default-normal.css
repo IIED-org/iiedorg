@@ -227,7 +227,7 @@
 
 .large-intro {
     font-family: Georgia,"Times New Roman",Times,serif;
-    font-size: 1.4em;
+    font-size: 1.2em;
     line-height: 1.6em;
     margin-top: 2em;
 }
@@ -508,9 +508,9 @@ div#block-ds-extras-project-attribution {
    margin: 0 -1em 2em 0;
 }
 
-.social-icons i {
+/*.social-icons i {
   font-size: 2.3em;
-}
+}*/
 
 /*.node-type-blog .region-content {
   margin-top: -4em;
