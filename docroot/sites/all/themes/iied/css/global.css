@@ -2632,17 +2632,12 @@ ul.primary li a {
 	font-family:Georgia, "Times New Roman", Times, serif;
     text-align: center;
     font-size: 1.35em;
-    line-height: 1.55em;
+    line-height: 1.67em;
     color: #ffffff;
 }
 
 .mission {
     background: #78787B none repeat scroll 0 0; 
-    color: #ffffff;
-    font-family:Georgia, "Times New Roman", Times, serif;
-    font-size: 1.6em;
-    line-height: 1.5em;
-    text-align: center;
 }
 
 .mission h1 {
@@ -4369,6 +4364,10 @@ aside.project-link {
 
 aside.project-link h3 {
     margin: 20px 0 10px 0px;
+}
+
+aside.project-link p {
+    overflow: auto;
 }
 
 /************************SMALL SCREEN SECTION********************/
