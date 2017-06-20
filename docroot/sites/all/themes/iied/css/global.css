@@ -4386,74 +4386,17 @@ aside.project-link p {
 }
 
 @media only screen and (max-width: 480px) {	
-/* Mobile portrait mode */
+/******************* Mobile portrait mode ***********************/
   
 /* Header searchbox and menu margin */
   #region-search, #region-menu {
     margin-left: 110px;
   } 
 
-/* Panels pages CB added 20120421 
-
-.panels-flexible-region, .panels-flexible-column {
-	clear:left;
-}
-
-.panels-flexible-column-3-2, .panels-flexible-column-3-1 {
-	width: 100%;
-}
-
-.page-our-work p.caption span {
-	display: block;
-}
-
-.page-our-work p.caption {
-	margin-top: auto;
-}
-*/
 .col { 
 	margin: 1% 0 1% 0%;
 }
-/*
-.span_4_of_4, .span_3_of_4, .span_2_of_4, .span_1_of_4, .span_2_of_2, .span_1_of_2  {
-    width: 100%;
-}*/
-    
-  /* images styles  
-#region-content .node-blog img, #region-content .node-article img, #region-content .node-project img, #region-content .node-media-release img {
-	max-width: 302px;
-}
-    
-#region-content img.image-main-image {
-	max-height: 146px;
-}*/ 
 
-/*#region-content img.image-main-image-16-9 {
-	max-height: 169px;
-}*/
-
-/* end images styles */
-/*
-.breadcrumb .depth-2, .breadcrumb .depth-3 {
-	background: none repeat scroll 0 0 rgba(0, 0, 0, 0) !important;
-}
-
-.breadcrumb .depth-2:after, .breadcrumb .depth-3:after
-{
-	content: " › ";
-}
-
-.breadcrumb li {
-    margin: 0;
-    padding: 0;
-} */
-
-/* add this 
-.view-mode-full .field-name-field-addthis {
-	border-top: 6px solid gray; 
-	margin: 1em 0 0.5em;
-    padding-top: 10px;
-}*/
     
 /* Twitter people views */
 .view-twitter-people .field-content {
@@ -4481,10 +4424,12 @@ ul.view-blog-list li p {
 #region-search {
     margin-top: -70px;
 }
+
 }
 
 @media only screen and (min-width: 480px) and (max-width: 739px) {
-    /* mobile landscape styles go here */
+/******************** mobile landscape styles *******************/
+  
 	div.logo-img {
 		width: auto;
 	}
