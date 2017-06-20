@@ -2847,6 +2847,7 @@ table.context-admin td.tag {
 div.logo-img {
 	width: 90px;
 	overflow: hidden;
+  float: none;
 }
 
 div.logo-img img {
@@ -4480,7 +4481,6 @@ ul.view-blog-list li p {
 #region-search {
     margin-top: -70px;
 }
-    
 }
 
 @media only screen and (min-width: 480px) and (max-width: 739px) {
