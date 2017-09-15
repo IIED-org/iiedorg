@@ -4274,14 +4274,23 @@ a.overlay-link {
     border-radius: 4px;
 }
 
-#clickdimform #btnSubmit
-{
+#clickdimform #btnSubmit {
     margin: 15px 0 20px 0;
     background-color: #999;
     border: 1px solid transparent;
     border-radius: 4px;
     padding: .5em 1em;
     text-shadow: none;
+}
+
+.buttons {
+    margin: 15px 0 20px 0;
+    background-color: #999;
+    border-radius: 4px;
+    padding: .5em 1em;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 900;
 }
 
 /* Long read updates */
@@ -4370,6 +4379,58 @@ aside.project-link h3 {
 aside.project-link p {
     overflow: auto;
 }
+
+/* node forms */ 
+#field-tagline-add-more-wrapper input#edit-field-tagline-und-0-value {
+    width: 100%;
+}
+
+.node-form .field-group-fieldset, .node-form .form-type-textfield, .node-form .form-type-textarea, .node-form .field-type-datetime, .node-form .field-type-image, .node-form .form-type-select, .node-form .field-widget-paragraphs-embed {
+    background: #eee;
+    padding: 1em;
+}
+
+.node-form .text-format-wrapper .filter-wrapper legend {
+    position: absolute;
+    right: 10px;
+    top: -10px;
+}
+
+.node-form .text-format-wrapper {
+    background: #eee;
+}
+
+.node-form .field-name-field-standfirst {
+    font-size: 16px;
+    line-height: 27px;
+}
+
+.node-form .filter-wrapper {
+    padding: 0;
+}
+
+.text-format-wrapper .description {
+    margin: 0.5em;
+}
+
+/* previous next */
+.entity_pager_prev .inactive {
+    display: none;
+}
+
+.entity_pager_prev {
+    float: left;
+}
+
+.entity_pager_next {
+    float: right;
+}
+
+.block-views-previous-next-entities-block {
+    border-top: solid 1px #E0E0E0;
+}
+
+
 
 /************************SMALL SCREEN SECTION********************/
 
