@@ -321,11 +321,11 @@ li.dhtml-folder.collapsed {
     border-bottom: 4px solid #00B3DF;
 }
 
-.pager-load-more .pager-next.first.last > a, .btn input[type="submit"], .load-more, .node-type-webform input.webform-submit, #clickdimform #btnSubmit {
+.pager-load-more .pager-next.first.last > a, .btn input[type="submit"], .load-more, .node-type-webform input.webform-submit, #clickdimform #btnSubmit, .buttons {
 	background: #00B3DF; 
 }
 
-.pager-load-more .pager-next.first.last > a:hover, .btn input[type="submit"]:hover, .load-more:hover, .node-type-webform input.webform-submit:hover, #clickdimform #btnSubmit:hover {
+.pager-load-more .pager-next.first.last > a:hover, .btn input[type="submit"]:hover, .load-more:hover, .node-type-webform input.webform-submit:hover, #clickdimform #btnSubmit:hover, .buttons {
 	background: #41B8E0;
 }
 
