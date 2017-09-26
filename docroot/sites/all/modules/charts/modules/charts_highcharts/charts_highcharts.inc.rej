@@ -1,0 +1,80 @@
+***************
+*** 115,120 ****
+    $chart_definition['chart']['height'] = $chart['#height'] ? $chart['#height'] : NULL;
+    $chart_definition['credits']['enabled'] = FALSE;
+  
+    return $chart_definition;
+  }
+  
+--- 115,125 ----
+    $chart_definition['chart']['height'] = $chart['#height'] ? $chart['#height'] : NULL;
+    $chart_definition['credits']['enabled'] = FALSE;
+  
++   // Merge in chart raw options.
++   if (isset($chart['#raw_options'])) {
++     $chart_definition = drupal_array_merge_deep($chart_definition, $chart['#raw_options']);
++   }
++ 
+    return $chart_definition;
+  }
+  
+***************
+*** 169,174 ****
+          }
+        }
+  
+        $chart_definition[$axisType][] = $axis;
+      }
+    }
+--- 174,184 ----
+          }
+        }
+  
++       // Merge in axis raw options.
++       if (isset($chart[$key]['#raw_options'])) {
++         $axis = drupal_array_merge_deep($axis, $chart[$key]['#raw_options']);
++       }
++ 
+        $chart_definition[$axisType][] = $axis;
+      }
+    }
+***************
+*** 247,252 ****
+        charts_trim_array($series);
+        $series['data'] = $series_data;
+  
+        // Add the series to the main chart definition.
+        $chart_definition['series'][$key] = $series;
+  
+--- 257,267 ----
+        charts_trim_array($series);
+        $series['data'] = $series_data;
+  
++       // Merge in series raw options.
++       if (isset($chart[$key]['#raw_options'])) {
++         $series = drupal_array_merge_deep($series, $chart[$key]['#raw_options']);
++       }
++ 
+        // Add the series to the main chart definition.
+        $chart_definition['series'][$key] = $series;
+  
+***************
+*** 293,298 ****
+            $series_point['states']['hover']['fillColor'] = $data_item['#color'];
+            $series_point['states']['select']['fillColor'] = $data_item['#color'];
+            charts_trim_array($series_point);
+          }
+        }
+  
+--- 308,318 ----
+            $series_point['states']['hover']['fillColor'] = $data_item['#color'];
+            $series_point['states']['select']['fillColor'] = $data_item['#color'];
+            charts_trim_array($series_point);
++ 
++           // Merge in point raw options.
++           if (isset($data_item['#raw_options'])) {
++             $series_point = drupal_array_merge_deep($series_point, $data_item['#raw_options']);
++           }
+          }
+        }
+  
