@@ -71,27 +71,3 @@ function iied_features_language_switch_links_alter(array &$links, $type, $path) 
   }
 }
 
-/**
- * Implements hook_node_view
- *
- * Redirect to language-neutral page when translation doesn't exist
- *
- * @param $node
- * @param $view_mode
- * @param $langcode
- */
-function iied_features_node_view($node, $view_mode, $langcode) {
-  // IF viewing full node
-  if ($view_mode === 'full') {
-    // AND IF not default language
-    $default_languages = array('und', language_default('language'));
-    if (!in_array($langcode, $default_languages)) {
-      $node_languages = array_keys($node->translations->data);
-      // AND IF not has translation in language
-      if (!in_array($langcode, $node_languages)) {
-        // THEN goto default language
-        drupal_goto('node/'.$node->nid, array('language' => 'und'));
-      }
-    }
-  }
-}
