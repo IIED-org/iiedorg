@@ -1,0 +1,31 @@
+diff --git a/globalredirect.module b/globalredirect.module
+index 5447cb9..f342e10 100644
+--- a/globalredirect.module
++++ b/globalredirect.module
+@@ -154,6 +154,11 @@ function globalredirect_init() {
+         // If there is no translation, change the language to fit the content
+         else {
+           $node = node_load($matches[1]);
++          // Check if this node is using entity_translation. Code after this part will detect correct language.
++          // Otherwise next lines of code will break functionality and always load the default language (e.g. en)
++          if (_globalredirect_type_has_entity_translation($node->type)) {
++            break;
++          }
+           // Check the node has a language set, that it isn't "NONE" (und) and that it dosn't match the site's current language
+           if (isset($node->language) && $node->language != LANGUAGE_NONE && $node->language != $language->language) {
+             $all_languages = language_list();
+@@ -437,3 +442,14 @@ function globalredirect_request_path() {
+ 
+   return $path;
+ }
++
++/**
++ * Returns whether the given content type is configured to use entity_translation.
++ *
++ * @return TRUE if entity_translation is in use, and FALSE if not.
++ */
++function _globalredirect_type_has_entity_translation($type) {
++  if (module_exists('entity_translation') && function_exists('entity_translation_node_supported_type')) {
++    return entity_translation_node_supported_type($type);
++  }
++}

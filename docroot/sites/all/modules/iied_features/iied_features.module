@@ -51,3 +51,23 @@ function iied_features_wysiwyg_editor_settings_alter(&$settings, $context) {
  	$settings['allowedContent'] = true;
   }
 }
+
+
+/**
+ * Implements hook_language_switch_links_alter
+ *
+ * Unset lang-switcher links for non-existent translations.
+ */
+function iied_features_language_switch_links_alter(array &$links, $type, $path) {
+  $node = menu_get_object();
+  if ($node) {
+    // Unset lang-switcher links for non-existent translations
+    foreach ($links as $langcode => &$link) {
+      if (!isset($node->translations->data[$langcode])) {
+        unset($links[$langcode]);
+      }
+      $link['attributes']['hreflang'] = $langcode;
+    }
+  }
+}
+
