@@ -58,7 +58,7 @@ DirectoryIndex index.php index.html index.htm
 
   # Redirect old pubs links before setting https
   RewriteCond %{QUERY_STRING} ^o=(.*)$
-  RewriteRule ^pubs/display\.php$ http://pubs.iied.org/$1 [R=302, L]
+  RewriteRule ^pubs/display\.php$ http://pubs.iied.org/%1 [R=302,L]
 
   RewriteCond %{HTTPS} off
   RewriteCond %{HTTP:X-Forwarded-Proto} !https
@@ -105,8 +105,8 @@ DirectoryIndex index.php index.html index.htm
    RewriteRule ^ http%{ENV:protossl}://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
   
   # Additional rewrite rules
-  # "In our world" blogs to single tag page
-   RewriteRule ^our-world-.*$ tag/in-our-world  [R=301, L]
+  # In our world blogs to single tag page
+   RewriteRule ^our-world-.*$ /tag/in-our-world [R=301,L]
   
   #
   # To redirect all users to access the site WITHOUT the 'www.' prefix,
