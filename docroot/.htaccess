@@ -58,7 +58,7 @@ DirectoryIndex index.php index.html index.htm
 
   # Redirect old pubs links before setting https
   RewriteCond %{QUERY_STRING} ^o=(.*)$
-  RewriteRule ^pubs/display\.php$ http://pubs.iied.org/%1/ [L,R=302]
+  RewriteRule ^/pubs/display\.php$ http://pubs.iied.org/$1 [L,R=302]
 
   RewriteCond %{HTTPS} off
   RewriteCond %{HTTP:X-Forwarded-Proto} !https
