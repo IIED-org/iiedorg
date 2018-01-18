@@ -49,7 +49,6 @@ Allow: /themes/*.jpg
 Allow: /themes/*.jpeg
 Allow: /themes/*.png
 # Directories
-Disallow: /tag/
 Disallow: /includes/
 Disallow: /misc/
 Disallow: /modules/
