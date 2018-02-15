@@ -1968,6 +1968,40 @@ ul.objectives li {
 .grid-container-col-md .views-row {
     margin: 0;
 }
+
+/**** Mods for GWI project pages, language switcher ****/
+
+.field-name-field-project-dates {
+    margin-bottom: 2em;
+}
+
+.sidebox {
+    border: 1px solid #E0E0E0;
+    margin: 1.67em 0;
+    padding: 1em;
+}
+
+.node-type-project .container-wrapper-fill {
+    margin: 1em 0;
+    padding-top: 2em;
+}
+
+.language-switcher-locale-url li {
+    display: inline-block;
+    list-style-type: none;
+}
+
+.language-switcher-locale-url li .active {
+    display: none;
+}
+
+ul.language-switcher-locale-url .fr a.language-link::before {
+    content: "Voir cette page en ";
+}
+
+ul.language-switcher-locale-url .en a.language-link::before {
+    content: "View this page in ";
+}
    
 /*finance page*/
 
