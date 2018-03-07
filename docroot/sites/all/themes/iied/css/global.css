@@ -1994,14 +1994,6 @@ ul.objectives li {
 .language-switcher-locale-url li .active {
     display: none;
 }
-
-ul.language-switcher-locale-url .fr a.language-link::before {
-    content: "Voir cette page en ";
-}
-
-ul.language-switcher-locale-url .en a.language-link::before {
-    content: "View this page in ";
-}
    
 /*finance page*/
 
