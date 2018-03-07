@@ -1,40 +1,5 @@
 <?php
 
-/**
- * @file
- * Remove path element from vertical tabs.
- */
-
-/*
-function iied_features_form_alter(&$form, &$form_state, $form_id) {
-  if (isset($form['#node_edit_form']) && $form['#node_edit_form']) {
-	if ($form_id == 'blog_node_form' || $form_id == 'project_node_form' || $form_id == 'article_node_form' || $form_id == 'press_release_node_form') {
-		$form['field_display_date']['#group'] = 'author';
-		$form['path']['#group'] = '';
-		$form['path']['#title'] = '';
-		$form['path']['#collapsible'] = FALSE;
-		$form['path']['#collapsed'] = FALSE;
-		$protocol = isset($_SERVER['HTTPS']) ? 'https://' : 'http://';
-		$hostname = $_SERVER['SERVER_NAME'];
-		$form['path']['alias']['#title'] = t('Link: @baseurl/', array('@baseurl' => $protocol . $hostname));
-	}	
-  }
-}
-*/
-
-/* 
- *Temp solution to allow anonymous users to search site users 
- 
-
-function iied_features_apachesolr_query_alter(DrupalSolrQueryInterface $query) {
-  $query->removeFilterSubQueries();
-  $subquery = apachesolr_drupal_subquery();
-  $subquery->addFilter('hash', apachesolr_site_hash());
-  $query->addFilterSubQuery($subquery);
-}
-
-*/
-
 
 /**
  * Implements hook_wysiwyg_editor_settings_alter()
@@ -69,5 +34,20 @@ function iied_features_language_switch_links_alter(array &$links, $type, $path) 
       $link['attributes']['hreflang'] = $langcode;
     }
   }
+  foreach ($links as $langcode => &$link) {
+    switch ($langcode) {
+      case 'en':
+        $links[$langcode]['title'] = t('View this page in English');
+        break;
+      case 'fr':
+        $links[$langcode]['title'] = t('Voir cette page en français');
+        break;
+      case 'es':
+        $links[$langcode]['title'] = t('Ver esta página en español');
+        break;
+      case 'pt':
+        $links[$langcode]['title'] = t('Veja esta página em Português');
+        break;
+    }
+  }
 }
-
