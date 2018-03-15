@@ -60,6 +60,10 @@ DirectoryIndex index.php index.html index.htm
   RewriteCond %{QUERY_STRING} ^o=(.*)$
   RewriteRule ^pubs/display\.php$ http://pubs.iied.org/%1/ [QSD,L,R=302]
 
+  # planotes.org
+  RewriteCond %{HTTP_HOST} ^(www\.)?planotes.org$
+  RewriteRule ^(.*) https://www.iied.org/participatory-learning-action-pla [R=301,L]
+  
   RewriteCond %{HTTPS} off
   RewriteCond %{HTTP:X-Forwarded-Proto} !https
   RewriteCond %{ENV:AH_SITE_ENVIRONMENT} prod
@@ -107,10 +111,6 @@ DirectoryIndex index.php index.html index.htm
   # Additional rewrite rules
   # In our world blogs to single tag page
    RewriteRule ^our-world-.*$ /tag/in-our-world [R=301,L]
-  
-  # planotes.org
-  RewriteCond %{HTTP_HOST} ^(www\.)?planotes.org$
-  RewriteRule ^(.*) https://www.iied.org/participatory-learning-action-pla [R=301,L]
   
   #
   # To redirect all users to access the site WITHOUT the 'www.' prefix,
