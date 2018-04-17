@@ -1,13 +1,13 @@
 /* This file will hold styles that are loaded using the same media query as the narrow grid. */
 
-/* Panels pages CB added 20120421 */
+/* Panels pages CB added 20120421 
 .panels-flexible-region, .panels-flexible-column {
 	clear:left;
 }
 
 .panels-flexible-column-3-2, .panels-flexible-column-3-1 {
 	width: 100%;
-}
+}*/
 
 .page-our-work .page_title img, .page-about-us .page_title img {
 	display: none;
@@ -149,14 +149,15 @@ div.logo-img img {
     padding-top: 10px;
 }*/
 
-/* images styles updated */
+/* images styles updated (don't think we need this)
 #region-content .node-blog img, #region-content .node-article img, #region-content .node-project img, #region-content .node-media-release img {
 	max-width: 400px;
-}
+}*/
 
-.image-caption {
+/* .image-caption { 
     max-width: 400px;
-}
+}*/
+
 /*
 #region-content img.image-main-image {
 	max-height: 193px;
@@ -258,4 +259,13 @@ margin: 11px 0 0 55px;
 .responsive-menu li {
     display: inline;
     margin: 1em 1.64em 0 0;
+}
+
+.field.field-name-field-blogger-info {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.related-content-grid .item-information {
+    overflow: visible;
 }

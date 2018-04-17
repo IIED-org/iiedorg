@@ -20,19 +20,6 @@
     max-width: 100%;
 }
 
-/* Panels pages CB added 21/4 */
-.panels-flexible-region, .panels-flexible-column {
-	clear:none;
-}
-
-.panels-flexible-column-3-2 {
-	width: 66.7%;
-}
-
-.panels-flexible-column-3-1 {
-	width: 33.3%;
-}
-
 .page-our-work .page_title p {
 	font-size: 16px;
 }
@@ -51,7 +38,7 @@
 
 /* NT */
 
-#footertext div.col1 p{
+#footertext div.col1 p {
     width: 220px;
 }
 
@@ -452,7 +439,7 @@ div#block-superfish-1 {
 
 /* badges, tags pages, legal tools */
 
-.ltbadge {   
+/*.ltbadge {   
     background: url("/files/lt-badge-background.png") no-repeat 0 0;
     height: 170px;
     padding: 20px 20px 30px 40px;
@@ -461,7 +448,7 @@ div#block-superfish-1 {
 
 .ltbadge h3 {
     font-size: 24px;
-}
+} */
 
 .region-sidebar-second-inner .block-menu ul li.leaf.active-trail {
      border-left: 4px solid #e4e4e4;
@@ -517,7 +504,8 @@ div#block-superfish-1 {
 }*/
 
 .node-type-blog h1#page-title {
-padding-bottom: 0.3em;
+    padding-bottom: 0.3em;
+    margin-right: -30px;
 }
 
 .grey-fill img, .box-fill-light img {
@@ -608,7 +596,7 @@ input#mce-EMAIL {
     float:left;
 }
 
-/* change initiatives */
+/* change initiatives 
 
 .ci-titles {
     float:left;
@@ -617,7 +605,7 @@ input#mce-EMAIL {
 
 .block-ci-preface-1 img {
     float: right;
-}
+}*/
 
 /* Section sub menu */
 
@@ -894,8 +882,7 @@ margin-right: 36px;
     top: 44px;
 }
 
-.sidebox:before 
-{
+.sidebox:before {
     content: '';
     position: absolute;
     border-style: solid;
