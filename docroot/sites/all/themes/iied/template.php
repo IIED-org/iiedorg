@@ -32,6 +32,10 @@
   if ($form_id == 'custom-search-blocks-form-1') {
      $form['actions']['submit'] = array('#type' => 'image_button', '#src' => base_path() . path_to_theme() . '/colours/set_' . date('d') % 4 . '/search-button.gif');
   }
+  
+  if ($form_id == 'user_profile_form') {
+    unset($form['contact']);
+  }
 } 
 /**
 * Process variables for search-result.tpl.php.
