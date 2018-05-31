@@ -1,7 +1,7 @@
 name = IIED features
-description = Moves pathauto editing field out of vertical tabs.
+description = Utility module inclduing multilanguage features.
 package = User interface
-version = "7.x-1.0"
+version = "7.x-1.1"
 dependencies[] = path
 dependencies[] = pathauto
 core = "7.x"

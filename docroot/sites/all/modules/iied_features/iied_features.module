@@ -39,6 +39,9 @@ function iied_features_language_switch_links_alter(array &$links, $type, $path) 
       case 'en':
         $links[$langcode]['title'] = t('View this page in English');
         break;
+      case 'de':
+        $links[$langcode]['title'] = t('Diese Seite auf Deutsch anzeigen');
+        break;
       case 'fr':
         $links[$langcode]['title'] = t('Voir cette page en français');
         break;
@@ -47,6 +50,9 @@ function iied_features_language_switch_links_alter(array &$links, $type, $path) 
         break;
       case 'pt':
         $links[$langcode]['title'] = t('Veja esta página em Português');
+        break;
+      case 'zh-cn':
+        $links[$langcode]['title'] = t('以中文浏览此页');
         break;
     }
   }
