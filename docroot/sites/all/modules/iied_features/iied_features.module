@@ -34,6 +34,17 @@ function iied_features_language_switch_links_alter(array &$links, $type, $path) 
       $link['attributes']['hreflang'] = $langcode;
     }
   }
+  $term = menu_get_object('taxonomy_term', 2);
+  if ($term) {
+    // User is on a taxonomy term page
+    foreach ($links as $langcode => &$link) {
+      if (is_numeric(strpos(drupal_get_path_alias($links[$langcode]['href'], $langcode), 'taxonomy/term/'))) {
+        // No translation exists as no alias has been created
+        unset($links[$langcode]);
+      }
+      $link['attributes']['hreflang'] = $langcode;
+    }
+  }
   foreach ($links as $langcode => &$link) {
     switch ($langcode) {
       case 'en':
