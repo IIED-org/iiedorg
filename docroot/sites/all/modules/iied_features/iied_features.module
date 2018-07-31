@@ -5,12 +5,12 @@
  * Implements hook_wysiwyg_editor_settings_alter()
  */
 function iied_features_wysiwyg_editor_settings_alter(&$settings, $context) {
- 
+
   // The $context variable contains information about the wysiwyg profile we're using
   // In this case we just need to check that the editor being used is ckeditor
- 
+
   if ($context['profile']->editor == 'ckeditor') {
- 
+
     $settings['removeFormatAttributes'] = 'class,style,lang,width,height,align,hspace,valign,target';
     $settings['pasteFromWordPromptCleanup'] = true;
  	$settings['allowedContent'] = true;
@@ -52,6 +52,7 @@ function iied_features_language_switch_links_alter(array &$links, $type, $path) 
         $links[$langcode]['title'] = t('Veja esta página em Português');
         break;
       case 'zh-cn':
+      case 'zh-hans':
         $links[$langcode]['title'] = t('以中文浏览此页');
         break;
     }
