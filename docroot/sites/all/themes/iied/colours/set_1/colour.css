@@ -26,7 +26,7 @@ a:visited, h2 a:link, h3 a:link, .section-footer a:link {
 	border-color: #AAC02C; /* green */
 }
 
-#block-superfish-1 .active-trail {
+#block-superfish-1 .active-trail, .block-responsive-dropdown-menus li.active {
 	border-color: #AAC02C; /* green */
 }
 
@@ -457,7 +457,7 @@ blockquote:after, blockquote:before, .quotes-open, .quotes-close {
 }
 
 .bdr-colour, span.bdr-colour:before {
-    border-color: #AAC02C; /* green */
+    border-color: #AAC02C !important; /* green */
 }
 
 .txt-colour {

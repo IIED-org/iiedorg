@@ -911,3 +911,14 @@ margin-right: 36px;
 #sliding-popup .popup-content #popup-buttons button {
   margin-top: .5em;
 }
+
+/* user sticky contact 
+.page-user .region-sidebar-second-inner {
+    position: relative;
+    height: 900px;
+}
+
+#block-ds-extras-user-right-column {
+    position: sticky;
+    top: 40px;
+}*/
