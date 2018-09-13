@@ -7,7 +7,7 @@ try { google.load("feeds", "1");
   function feedLoaded(result) {
     if (!result.error && result.feed.entries.length > 0) {
       var container = document.getElementById("pubs");
-      container.innerHTML = '<h2 class="block-title">Recent publications</h2>';
+      container.innerHTML = '<h3>Recent publications</h3>';
       for (var i = 0; i < result.feed.entries.length; i++) {
           var entry = result.feed.entries[i];
           var div = document.createElement("div");
@@ -40,7 +40,7 @@ try { google.load("feeds", "1");
   function OnLoad() {
     var feed = new google.feeds.Feed(encodeURI("http://pubs.iied.org/search?f=rss&a=" + document.getElementById('page-title').innerHTML), {
       api_key : 'mfbdkjoqsivdaton59jvrdqleqyy1hzxnrzv7ff8',
-      count : 5
+      count : 6
     });
     feed.load(feedLoaded);
     }
