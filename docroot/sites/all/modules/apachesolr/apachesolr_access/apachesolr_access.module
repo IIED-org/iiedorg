@@ -60,9 +60,11 @@ function apachesolr_access_build_subquery($account) {
     throw new Exception('No access');
   }
   $node_access_query = apachesolr_drupal_subquery();
-  $node_access_query->addFilter('hash', apachesolr_site_hash());
-  // If user doesn't have bypass node access set grants on specific nodes
-  if (user_access('bypass node access', $account) === FALSE) {
+  if (user_access('bypass node access', $account)) {
+    // Access all content from the current site.
+    $node_access_query->addFilter('hash', apachesolr_site_hash());
+  }
+  else {
     // Get node access grants.
     $grants = node_access_grants('view', $account);
     foreach ($grants as $realm => $gids) {
