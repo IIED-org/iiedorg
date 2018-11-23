@@ -190,7 +190,7 @@ h6.site-slogan {
 .page-user .zone-branding-wrapper, .node-type-group .zone-branding-wrapper {
     box-shadow: 0 4px 4px -4px #4444447d;
     margin-bottom: 0;
-    
+
 }
 
 .page-user .zone-header-wrapper, .node-type-group .zone-header-wrapper {
@@ -1588,7 +1588,7 @@ td.views-field-field-main-image {
 }
 
 .page-user .zone-content {
-    margin-bottom: 2em; 
+    margin-bottom: 2em;
 }
 
 .page-user .zone-postscript-wrapper {
@@ -1598,12 +1598,12 @@ td.views-field-field-main-image {
 }
 
 .page-user .zone-postscript1-wrapper {
-    margin-bottom: 2em; 
+    margin-bottom: 2em;
     padding-top: 2em;
 }
 
 .page-user .zone-postscript2-wrapper {
-    margin-bottom: 6em; 
+    margin-bottom: 6em;
 }
 
 .ORCID a, .ResearchGate a, .Google-Scholar a {
@@ -1614,14 +1614,14 @@ td.views-field-field-main-image {
     width: 170px;
     display: block;
 }
-    
+
 .ORCID a {
     background: url(/sites/default/files/orcid_icon.png) no-repeat 10px 6px #f7f7f7;
-} 
+}
 
 .ResearchGate a {
     background: url(/sites/default/files/rg_icon.png) no-repeat 10px 6px #f7f7f7;
-} 
+}
 
 .Google-Scholar a {
     background: url(/sites/default/files/gs_icon.png) no-repeat 10px 6px #f7f7f7;
@@ -4755,6 +4755,156 @@ a.bgnd-colour {
 	color: white !important;
 	padding: .5em 1em;
 }
+
+/* news-comment pages
+-----------------------------------------------------------------
+*/
+
+/* header */
+.sectioned .zone-header-wrapper, .bgnd-colour {
+    background-color: rgba(206,83,158,0.2) !important;
+}
+
+.sectioned .zone-header-wrapper {
+    padding: 0;
+		margin-bottom: 30px;
+}
+
+.responsive-menu {
+    border-bottom: none;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+/* spacing */
+.view-news-comment .pager.pager-load-more {
+    padding: 20px 0 70px 0;
+}
+
+.sectioned #zone-preface {
+    margin-top: 3em;
+    padding: 3em 0 3em 0;
+}
+
+.sectioned #zone-postscript1 {
+    padding: 3em 0 3em 0;
+}
+
+.sectioned #zone-postscript-wrapper {
+    margin-bottom: 3em;
+    padding: 3em 0;
+}
+
+.container-wrapper-fill-light {
+    background-color: #fafafa;
+}
+
+h1#section-title {
+    font-size: 48px;
+    color: #6d6d6d;
+    margin: 20px 0 30px 0;
+}
+
+.block-responsive-dropdown-menus li a {
+    color: #6d6d6d;
+    font-size: 16px;
+}
+
+.block-responsive-dropdown-menus li a.active {
+    color: #333;
+}
+
+.menu-toggle .lines {
+    border-top: 8px solid #333;
+}
+
+.page-people .zone-header-wrapper, .page-bloggers .zone-header-wrapper {
+    background: none;
+}
+
+.card {
+  border: solid 1px #E6E6E6;
+  border-radius: 4px;
+  height: 100% !important;
+  margin-bottom: 30px;
+  min-height: 290px;
+  padding-bottom: 5px;
+  position: relative;
+}
+
+.card-padding {
+    padding: 5px 10px;
+}
+
+.card-img-top {
+  position: relative;
+}
+
+.card-img-author {
+  float: left;
+	margin-right: 10px;
+	width: 40px;
+}
+
+.card-img-author img {
+  border-radius: 20px;
+	border-bottom: none !important;
+}
+
+.card-img-author img:hover {
+	filter: none !important;
+}
+
+.card .meta {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+}
+
+/* blocks */
+
+#zone-postscript .block-disqus-recent-comments {
+	background: #fff;
+	padding: 0 10px 10px 10px;
+	height: 394px;
+	border-radius: 4px;
+	border-bottom: 1px solid rgba(15,70,100,.12);
+}
+
+#zone-postscript .block-disqus-recent-comments h2.block-title {
+  font-size: 20px;
+  border-bottom: none;
+  padding-top: 10px;
+	margin-top: 0;
+}
+
+#zone-postscript #block-views-bloggers-block-1 {
+	background: #fff;
+	border-radius: 4px;
+	padding: 10px;
+	border-bottom: 1px solid rgba(15,70,100,.12);
+}
+
+#zone-postscript #block-views-bloggers-block-1 h3 {
+	margin-bottom: 10px;
+}
+
+.block-card {
+	border: 1px solid #e0e0e0;
+	margin-bottom: 20px;
+	padding-bottom: 10px;
+	border-radius: 4px;
+}
+
+.block-card p {
+  padding: 0 10px;
+}
+
+.block-card h3 {
+  font-size: 16px;
+  margin: 5px 10px 20px 10px;
+}
+
 
 /************************SMALL SCREEN SECTION********************/
 
