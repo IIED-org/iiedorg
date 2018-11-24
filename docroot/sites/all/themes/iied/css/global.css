@@ -4762,7 +4762,7 @@ a.bgnd-colour {
 
 /* header */
 .sectioned .zone-header-wrapper, .bgnd-colour {
-    background-color: rgba(206,83,158,0.2) !important;
+    background-color: rgba(127,127,127,0.2); /* Default to grey */
 }
 
 .sectioned .zone-header-wrapper {
