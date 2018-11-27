@@ -96,15 +96,15 @@
 	border-top: 3px solid #E0E0E0;
 	border-bottom: 1px solid #E0E0E0;
 	clear: right;
-	float: right; 
+	float: right;
 	margin: 0 -80px 20px 20px;
 	padding: 1.3em 0 1em;
-	width: 300px; 
+	width: 300px;
 }
 
 .margin-quote {
     float: right;
-    margin: 0px -400px 20px 20px; 
+    margin: 0px -400px 20px 20px;
     width: 300px;
 }
 
@@ -136,26 +136,26 @@
 }
 
 .content-left {
-	float:left; 
+	float:left;
 	max-width:600px;
 }
 
 .content-right-column {
-	float:right; 
+	float:right;
 	width:300px;
 }
 
 .right-inset-full {
-	margin: 0px -400px 20px 20px; 
+	margin: 0px -400px 20px 20px;
 	float: right;
 }
 
 .right-inset-margin {
-	margin: 0px -80px 20px 20px; 
+	margin: 0px -80px 20px 20px;
 	float: right;
 }
 
-/* old natural resources group only, to remove  
+/* old natural resources group only, to remove
 #node-feature-4409 .field-name-field-standfirst {
     line-height: 1.8em;
 }*/
@@ -163,7 +163,7 @@
 /* about and our work */
 
 .aow0 {
-	max-width:none;		
+	max-width:none;
 }
 
 /*.mission {
@@ -322,10 +322,10 @@ div#block-superfish-1 {
 }
 
 .th-desc {
-    margin: 1em 3em 2em 0em; 
+    margin: 1em 3em 2em 0em;
 }
 
-/* add this 
+/* add this
 .field-type-addthis .addthis_toolbox {
 	float:right;
 	margin: 0px 10px;
@@ -337,8 +337,8 @@ div#block-superfish-1 {
 }*/
 
 /* .view-mode-full .field-name-field-addthis { removed
-	border-bottom: 6px solid gray; 
-	border-top: none; 
+	border-bottom: 6px solid gray;
+	border-top: none;
 	margin: 0.5em 0 1em;
     padding-bottom: 10px;
 }
@@ -379,7 +379,7 @@ div#block-superfish-1 {
 
 /* Control Nav */
 .flex-control-nav {
-	width: 100%; position: absolute; 
+	width: 100%; position: absolute;
 	bottom: 15px;
 	left: 35px;
 	text-align: left;
@@ -439,7 +439,7 @@ div#block-superfish-1 {
 
 /* badges, tags pages, legal tools */
 
-/*.ltbadge {   
+/*.ltbadge {
     background: url("/files/lt-badge-background.png") no-repeat 0 0;
     height: 170px;
     padding: 20px 20px 30px 40px;
@@ -455,11 +455,11 @@ div#block-superfish-1 {
 }
 
 /*fix space under titles ? */
-    
+
 /* div#block-ds-extras-project-attribution {
     position: absolute;
 } */
-    
+
 /* Twitter people views */
 
 .view-twitter-people .twitter-card {
@@ -487,11 +487,11 @@ div#block-superfish-1 {
 
 /* footer */
 
-.email-footer, .social-icons { 
+.email-footer, .social-icons {
     padding-left: 70px;
 }
 
-.footer-as { 
+.footer-as {
    margin: 0 -1em 2em 0;
 }
 
@@ -509,7 +509,7 @@ div#block-superfish-1 {
 }
 
 .grey-fill img, .box-fill-light img {
-  float: right; 
+  float: right;
   margin: -1em -1em -1em 1em;
 }
 
@@ -545,7 +545,7 @@ div#block-superfish-1 {
     float: left;
     padding: 0 1%;
     margin: 0;
-} 
+}
 
 
 /* header */
@@ -567,10 +567,10 @@ div#block-superfish-1 {
     padding-top: 50px;
 }
 
-.carlile { 
+.carlile {
   position: absolute;
   right: 0;
-  bottom: 0;  
+  bottom: 0;
   display: inline;
 }
 
@@ -579,9 +579,9 @@ div#block-superfish-1 {
     height: auto;
 }
 /*
-.ur-first { 
-    width: 220px; 
-    margin-right: 20px; 
+.ur-first {
+    width: 220px;
+    margin-right: 20px;
     float: left;
 }
 
@@ -596,7 +596,7 @@ input#mce-EMAIL {
     float:left;
 }
 
-/* change initiatives 
+/* change initiatives
 
 .ci-titles {
     float:left;
@@ -631,9 +631,9 @@ input#mce-EMAIL {
     padding: 20px 520px 30px 30px;
 }
 
-/* -------one pager------- */ 
+/* -------one pager------- */
 
-/* typography */ 
+/* typography */
 
 .lf-type h1 {
     font-size: 36px;
@@ -660,7 +660,7 @@ input#mce-EMAIL {
     font-size: 24px;
     padding-right: 150px;
     padding-left: 160px;
-}  
+}
 
 .lf-type q {
     font-size: 24px;
@@ -725,7 +725,7 @@ aside.float-right {
     float: right;
     margin: 30px -160px 30px 40px;
 }
-    
+
 .node-type-one-page-container .dates, .node-type-one-page-container .theme-label {
     margin: 1em 0;
     border-top: 1px solid #E0E0E0;
@@ -735,7 +735,7 @@ aside.float-right {
 .sidenote {
     float: right;
     clear: right;
-    margin: -60px -160px 80px 0px; /* adjust top to text size. If wide used can be margin: -270px width: 220px */ 
+    margin: -60px -160px 80px 0px; /* adjust top to text size. If wide used can be margin: -270px width: 220px */
     width: 120px;
 }
 
@@ -792,7 +792,7 @@ aside.float-right {
 }
 
 /* Search results */
-.view-mode-search_result, .page-search-site .profile { 
+.view-mode-search_result, .page-search-site .profile {
 	padding: 0 0 5px 120px;
 }
 
@@ -812,7 +812,7 @@ aside.float-right {
     top: 20px;
 }
 
-/* themes */ 
+/* themes */
 
 .collection-container p {
     margin: 0 320px 0 0;
@@ -822,7 +822,7 @@ aside.float-right {
     float: right;
 }
 
-/* containers 
+/* containers
 .related-content-grid img {
     width: 100%;
 }*/
@@ -843,11 +843,11 @@ aside.float-right {
 
 /*long read/one page updates */
 
-.lf-type figure.paragraphs-item-colorbox-gallery-thumbnails { 
+.lf-type figure.paragraphs-item-colorbox-gallery-thumbnails {
     margin: 30px -160px 30px -160px;
 }
 
-.lf-type figure.paragraphs-item-image-wide { 
+.lf-type figure.paragraphs-item-image-wide {
         margin: 30px -160px 30px -160px;
 }
 
@@ -912,7 +912,7 @@ margin-right: 36px;
   margin-top: .5em;
 }
 
-/* user sticky contact 
+/* user sticky contact
 .page-user .region-sidebar-second-inner {
     position: relative;
     height: 900px;
@@ -922,3 +922,8 @@ margin-right: 36px;
     position: sticky;
     top: 40px;
 }*/
+
+/* News-comment page */
+#zone-postscript .block-disqus-recent-comments {
+	height: 394px;
+}

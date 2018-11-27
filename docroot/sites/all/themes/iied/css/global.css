@@ -770,6 +770,11 @@ ul.view-blog-list {
 	/* margin-bottom: 0.5em; */
 }
 
+.event-date .dates {
+	display: inline-block;
+	margin-bottom: 1em;
+}
+
 .field-name-dynamic-date {
     margin-bottom: 1em;
 }
@@ -2139,6 +2144,10 @@ ul.objectives li {
 .card-img, .card-solo img {
     width: 100% !important;
     height: auto !important;
+}
+
+.card-title {
+  margin-bottom: 3em;
 }
 
 /**** Mods for GWI project pages, language switcher ****/
@@ -4865,7 +4874,7 @@ h1#section-title {
 #zone-postscript .block-disqus-recent-comments {
 	background: #fff;
 	padding: 0 10px 10px 10px;
-	height: 394px;
+	height: auto;
 	border-radius: 4px;
 	border-bottom: 1px solid rgba(15,70,100,.12);
 }
