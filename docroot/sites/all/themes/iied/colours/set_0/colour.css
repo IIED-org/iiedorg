@@ -431,11 +431,11 @@ li.dhtml-folder.collapsed {
     color: #ffffff !important;
 }
 
-.term-primary, .fill, .box-fill-colour, .region-header-first .block-menu, .mission {
+.term-primary, .fill, .box-fill-colour, .region-header-first .block-menu, .mission, .bgnd-colour {
   background: #00B3DF; /* blue */
 }
 
-.sectioned .zone-header-wrapper, .bgnd-colour {
+.sectioned .zone-header-wrapper {
     background-color: rgba(0,179,223,0.2);
 }
 

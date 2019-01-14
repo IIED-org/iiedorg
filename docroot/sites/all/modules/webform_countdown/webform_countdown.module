@@ -263,7 +263,7 @@ function _webform_analysis_countdown($component, $sids = array(), $single = FALS
   foreach ($result as $data) {
     if (drupal_strlen(trim($data['data'])) > 0) {
       $nonblanks++;
-      $wordcount += str_word_count(trim($data['data']));
+      $wordcount += _webform_countdown_count_words($data['data']);
     }
     $submissions++;
   }
@@ -312,7 +312,10 @@ function webform_countdown_validate($element, $form_state, $form) {
   if (!empty($element['#value'])) {
     if ($element['#webform_component']['extra']['type'] == 'char') {
       // Check to ensure character count is less than or equal to max.
-      if (strlen($element['#value']) > $element['#webform_component']['extra']['max']) {
+      // PHP strlen() does not match JavaScripts .length if string has newlines,
+      // so convert newlines to single char.
+      $tmpvalue = str_replace("\r\n", "\n", $element['#value']);
+      if (mb_strlen($tmpvalue) > $element['#webform_component']['extra']['max']) {
         form_error($element, t('The @title field should contain a maximum of @max characters.', array('@title' => $element['#title'], '@max' => $element['#webform_component']['extra']['max'])));
       }
     }
@@ -373,5 +376,5 @@ function _webform_countdown_count_words($val) {
   $val = str_replace('&nbsp;', ' ', $val);
   $val = str_replace('&#160;', ' ', $val);
 
-  return str_word_count($val);
+  return count(explode(' ', trim(preg_replace('/\s+/', ' ', $val))));
 }

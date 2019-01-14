@@ -22,6 +22,8 @@ function globalredirect_help($path, $arg) {
 function globalredirect_init() {
   global $language;
 
+  require_once(DRUPAL_ROOT . '/includes/locale.inc');
+
   /**
    * Get the settings.
    */
@@ -65,6 +67,7 @@ function globalredirect_init() {
     'alias' => FALSE,
     'prefix' => '',
     'external' => FALSE,
+    'globalredirect' => TRUE, // inform other modules that hook_url_outbound_alter invoked by globalredirect
   );
 
   // Get the request path. We cannot use request_path() as it uses a completely trimmed path.
@@ -158,11 +161,6 @@ function globalredirect_init() {
         // If there is no translation, change the language to fit the content
         else {
           $node = node_load($matches[1]);
-          // Check if this node is using entity_translation. Code after this part will detect correct language.
-          // Otherwise next lines of code will break functionality and always load the default language (e.g. en)
-          if (_globalredirect_type_has_entity_translation($node->type)) {
-            break;
-          }
           // Check the node has a language set, that it isn't "NONE" (und) and that it dosn't match the site's current language
           if (isset($node->language) && $node->language != LANGUAGE_NONE && $node->language != $language->language) {
             $all_languages = language_list();
@@ -226,8 +224,10 @@ function globalredirect_init() {
   // Compare the request to the alias. This also works as a 'deslashing'
   // agent. If we have a language prefix then prefix the alias
   if ($request_path != $prefix . $alias) {
-    // If it's not just a slash or user has deslash on, redirect
-    if (str_replace($prefix . $alias, '', $request_path) != '/' || $settings['deslash']) {
+    // If it's not just a slash or user has deslash on, redirect, but avoid
+    // redirecting to a directory if we are only deslashing, as apache mod_dir
+    // can cause an infinite loop.
+    if (str_replace($prefix . $alias, '', $request_path) != '/' || ($settings['deslash'] && !is_dir($alias))) {
       globalredirect_goto($alias, $options);
     }
   }
@@ -445,15 +445,4 @@ function globalredirect_request_path() {
   $path = ltrim($path, '/');
 
   return $path;
-}
-
-/**
- * Returns whether the given content type is configured to use entity_translation.
- *
- * @return TRUE if entity_translation is in use, and FALSE if not.
- */
-function _globalredirect_type_has_entity_translation($type) {
-  if (module_exists('entity_translation') && function_exists('entity_translation_node_supported_type')) {
-    return entity_translation_node_supported_type($type);
-  }
 }
