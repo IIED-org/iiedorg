@@ -1,0 +1,13 @@
+diff --git apachesolr_search_blocks.module apachesolr_search_blocks.module
+index 6f08ec4..20574c7 100644
+--- apachesolr_search_blocks.module
++++ apachesolr_search_blocks.module
+@@ -65,7 +65,7 @@ function apachesolr_search_blocks_block_content($enabled_block) {
+   // Load the custom search page.
+   $search_page = apachesolr_search_page_load($enabled_block['page_id']);
+ 
+-  return drupal_render(drupal_get_form('apachesolr_search_user_defined_search_form', $search_page, ''));
++  return drupal_render(drupal_get_form('apachesolr_search_custom_page_search_form', $search_page, ''));
+ }
+ 
+ /**

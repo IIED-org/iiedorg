@@ -65,7 +65,7 @@ function apachesolr_search_blocks_block_content($enabled_block) {
   // Load the custom search page.
   $search_page = apachesolr_search_page_load($enabled_block['page_id']);
 
-  return drupal_render(drupal_get_form('apachesolr_search_user_defined_search_form', $search_page, ''));
+  return drupal_render(drupal_get_form('apachesolr_search_custom_page_search_form', $search_page, ''));
 }
 
 /**
@@ -104,7 +104,7 @@ function apachesolr_search_blocks_form_apachesolr_search_page_settings_form_alte
     // Load up the defaults from the database if they exist.
     $edit = db_select('apachesolr_search_blocks', 'a')
       ->fields('a')
-      ->condition('page_id', $form['search_page']['#value']->page_id)
+      ->condition('page_id', $form['search_page']['#value']['page_id'])
       ->execute()
       ->fetchAssoc();
   }
