@@ -435,8 +435,48 @@ li.dhtml-folder.collapsed {
   background: #CE539E; /* pink */
 }
 
-.sectioned .zone-header-wrapper {
-    background-color: rgba(206,83,158,0.2);
+.sectioned .zone-header-wrapper, .banner-odd {
+    background-color: rgba(206,83,158,0.2); /* light pink */
+}
+
+.banner-even {
+	  background-color: rgba(170,192,44,0.2); /* light green */
+}
+
+.btn-outline {
+	color: #CE539E; /* pink */
+	border-color: #CE539E; /* pink */
+}
+
+.btn-fill {
+	color: #fff;
+	background-color: #CE539E; /* pink */
+}
+
+.btn-fill:hover, .btn-fill:focus, .btn-fill:active {
+	background-color: #9D3D78; /* dark pink */
+}
+
+.banner-even .btn-outline {
+    color: #AAC02C; /* green */
+    border-color: #AAC02C; /* green */
+}
+
+.banner-even .btn-fill {
+	color: #fff !important;
+	background-color: #AAC02C; /* green */
+}
+
+.banner-even .btn-fill:hover, .banner-even .btn-fill:focus, .banner-even .btn-fill:active {
+	background-color: #6A7F36; /* dark green */
+}
+
+.banner-social a:link {
+	color: #AAC02C !important; /* green */
+}
+
+.banner-social a:visited {
+	color: #6A7F36 !important; /* dark green */
 }
 
 blockquote:after, blockquote:before, .quotes-open, .quotes-close {
@@ -448,7 +488,7 @@ blockquote:after, blockquote:before, .quotes-open, .quotes-close {
     border-color: #CE539E; /* pink */
 }
 
-.lf-type q, .txt-colour-d {
+.lf-type q, q, .txt-colour-d {
 	color: #9D3D78; /* dark pink */
 }
 
@@ -458,6 +498,10 @@ blockquote:after, blockquote:before, .quotes-open, .quotes-close {
 
 .bdr-colour, span.bdr-colour:before {
     border-color: #CE539E !important; /* pink */
+}
+
+.border-top {
+    border-top-color: #CE539E !important; /* pink */
 }
 
 .txt-colour {

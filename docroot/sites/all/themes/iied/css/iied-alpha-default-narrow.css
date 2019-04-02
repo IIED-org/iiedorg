@@ -1,6 +1,6 @@
 /* This file will hold styles that are loaded using the same media query as the narrow grid. */
 
-/* Panels pages CB added 20120421 
+/* Panels pages CB added 20120421
 .panels-flexible-region, .panels-flexible-column {
 	clear:left;
 }
@@ -22,7 +22,7 @@
 }
 
 /* NT added */
-/* removed updated june 
+/* removed updated june
 #block-system-main .field-content img, .view-latest-nodes .field-content img, .pane-content .highlights img, .view-Highlights .field-content img {
 	max-width: 220px;
 	max-height: 115px;
@@ -34,7 +34,7 @@
     text-align: left;
 }
 
-/* images styles updated below 
+/* images styles updated below
 #region-content .node-blog img, #region-content .node-article img, #region-content .node-project img, #region-content .node-media-release img {
 	max-width: 400px;
 	max-height: 193px;
@@ -52,7 +52,7 @@
 /* about and our work */
 
 .aow0 {
-	max-width: 620px;		
+	max-width: 620px;
 }
 
 /*.mission {
@@ -125,7 +125,7 @@ div.logo-img img {
 
 /*#block-search-form { no longer needed
 	margin-top: 3.5em;
-}*/ 
+}*/
 
 #edit-search-block-form--2 {
 	width: 186px;
@@ -142,9 +142,9 @@ div.logo-img img {
 	margin-top: -1.5em;
 }
 
-/* add this 
+/* add this
 .view-mode-full .field-name-field-addthis {
-	border-top: 6px solid gray; 
+	border-top: 6px solid gray;
 	margin: 1em 0 0.5em;
     padding-top: 10px;
 }*/
@@ -154,7 +154,7 @@ div.logo-img img {
 	max-width: 400px;
 }*/
 
-/* .image-caption { 
+/* .image-caption {
     max-width: 400px;
 }*/
 
@@ -168,11 +168,11 @@ div.logo-img img {
 }*/
 
 /* Target Firefox only */
-@-moz-document url-prefix() { 
+@-moz-document url-prefix() {
   #region-content img.image-main-image {
         min-height: 224px;
   }
-    
+
   #region-content img.image-main-image {
          min-height: 192px;
   }
@@ -183,7 +183,7 @@ div.logo-img img {
 }
 
 .image-caption-container {
-    display: block !important;  
+    display: block !important;
 }
 
 /* footer */
@@ -207,7 +207,7 @@ div.logo-img img {
     float: left;
     padding: 0 1%;
     margin: 0;
-} 
+}
 
 /* header */
 
@@ -258,7 +258,7 @@ margin: 11px 0 0 55px;
 
 .responsive-menu li {
     display: inline;
-    margin: 1em 1.64em 0 0;
+    margin: 1em 1em 0 0;
 }
 
 .field.field-name-field-blogger-info {
@@ -277,3 +277,57 @@ margin: 11px 0 0 55px;
 .responsive-menu ul {
     padding-left: 0;
 }
+
+/*-- 2019 new style --*/
+
+.pnth-top, .pnth-btm {
+	width: 20px;
+	height: 50%;
+	background: white;
+	position: absolute;
+}
+.pnth-btm {
+	bottom: 0;
+	border-top-right-radius: 20px;
+}
+.pnth-top {
+	border-bottom-right-radius: 20px;
+	top: -1px;
+}
+
+.top-feature-picture {
+    margin-left: -20px;
+		position: relative;
+}
+
+.pnth-left, .pnth-right {
+	display: none;
+}
+
+.top-feature {
+    margin: 0px;
+}
+.top-card {
+		max-width: 700px;
+}
+
+.banner-strategy .block {
+    background: #EBF7FF url(/sites/default/files/strategy-bgrnd.svg) no-repeat;
+    background-size: 580px;
+    background-position-y: -70px;
+}
+
+.page-new-home .banner-strategy .lead-text {
+    width: 400px;
+    margin: 40px 40px 40px 60px;
+    float: left;
+}
+
+.social-list ul li {
+	margin-right: 60px;
+}
+
+
+
+
+/*-- end 2019 new style --*/

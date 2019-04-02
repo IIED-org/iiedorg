@@ -435,8 +435,48 @@ li.dhtml-folder.collapsed {
   background: #00B3DF; /* blue */
 }
 
-.sectioned .zone-header-wrapper {
-    background-color: rgba(0,179,223,0.2);
+.sectioned .zone-header-wrapper, banner-odd {
+    background-color: rgba(0,179,223,0.2); /* light blue */
+}
+
+.banner-even {
+    background-color: rgba(252,179,22,0.2); /* light orange */
+}
+
+.btn-outline {
+	color: #00B3DF; /* blue */
+	border-color: #00B3DF; /* blue */
+}
+
+.btn-fill {
+	color: #fff !important;
+	background-color: #00B3DF; /* blue */
+}
+
+.btn-fill:hover, .btn-fill:focus, .btn-fill:active {
+	background-color: #0580A9; /* dark blue */
+}
+
+.banner-even .btn-outline {
+    color: #FCB316; /* orange */
+    border-color: #FCB316; /* orange */
+}
+
+.banner-even .btn-fill {
+	color: #fff;
+	background-color: #FCB316; /* orange */
+}
+
+.banner-even .btn-fill:hover, .banner-even .btn-fill:focus, .banner-even .btn-fill:active {
+	background-color: #B46B29; /* dark orange */
+}
+
+.banner-social a:link {
+	color: #FCB316 !important; /* orange */
+}
+
+.banner-social a:visited {
+	color: #B46B29 !important; /* dark orange */
 }
 
 blockquote:after, blockquote:before, .quotes-open, .quotes-close {
@@ -448,7 +488,7 @@ blockquote:after, blockquote:before, .quotes-open, .quotes-close {
     border-color: #00B3DF; /* blue */
 }
 
-.lf-type q, .txt-colour-d {
+.lf-type q, q, .txt-colour-d {
     color: #0580A9; /* dark blue */
 }
 
@@ -458,6 +498,10 @@ blockquote:after, blockquote:before, .quotes-open, .quotes-close {
 
 .bdr-colour, span.bdr-colour:before {
     border-color: #00B3DF !important; /* blue */
+}
+
+.border-top {
+    border-top-color: #00B3DF !important; /* blue */
 }
 
 .txt-colour {
