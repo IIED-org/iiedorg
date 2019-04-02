@@ -662,7 +662,7 @@ input#mce-EMAIL {
     padding-left: 160px;
 }
 
-.lf-type q {
+.lf-type q, q {
     font-size: 24px;
 }
 
@@ -927,3 +927,92 @@ margin-right: 36px;
 #zone-postscript .block-disqus-recent-comments {
 	height: 394px;
 }
+
+/*-- 2019 new style --*/
+.top-card {
+		max-width: 940px;
+	}
+
+
+	/*-- strapline make change happen --*/
+
+	.mch {
+	  position: absolute;
+	  right: -175px;
+		top: -20px;
+    transition: width .5s;
+	}
+
+	.mch-rotate {
+	  transform: rotate(35deg) ;
+	-webkit-transform: rotate(35deg) ;
+	-moz-transform: rotate(35deg) ;
+	-o-transform: rotate(35deg) ;
+	-ms-transform: rotate(35deg) ;
+	}
+
+	.mch-rotate div {
+	  font-size: 43px;
+	  line-height: 32px;
+
+	}
+
+	.mch1, .mch2, .mch3 {
+	  padding-bottom: 5px;
+	  padding-top: 5px;
+		transition: width .5s;
+	}
+
+	.mch1 {
+	  color: #CE4C91;
+	  background-color: #C5E6F6;
+	  margin-left: 240px;
+	  padding-right: 25px;
+	  text-align: right;
+	  width: 280px;
+	}
+
+	.mch2 {
+	  background-color: #FFCD00;
+	  color: #00A7D9;
+	  margin-left: 327px;
+	  padding-left: 20px;
+	  width: 380px;
+	}
+
+	.mch3 {
+	  background-color: #e75642;
+	  color: #EECCDF;
+		margin-left: 180px;
+	  padding-right: 30px;
+	  text-align: right;
+		width: 370px;
+	}
+
+	/*-- end strapline make change happen --*/
+
+
+	/*-- about page --*/
+
+	header.about-header {
+			position: absolute;
+	    top: 30px;
+	    max-width: 460px;
+	    min-width: 300px;
+	    margin: 0 auto;
+	    left: 0;
+	    right: 0;
+	    z-index: 2;
+	}
+
+.page-about .block-card {
+	min-height: 150px;
+}
+
+.float-normal-left { float: left; }
+
+.social-list span {
+	display: inline-block; 
+}
+
+/*-- end 2019 new style --*/
