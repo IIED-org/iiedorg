@@ -180,24 +180,11 @@ h6.site-slogan {
 
 .zone-branding-wrapper { /* to be adjusted */
   border-bottom: solid 1px #E6E6E6;
-  margin-bottom: 2em;
+  /* margin-bottom: 2em; */
 }
 
 .page-taxonomy-term .zone-branding-wrapper {
     margin-bottom: 0;
-}
-
-/* breadcrumb styles */
-.page-user .zone-branding-wrapper, .node-type-group .zone-branding-wrapper {
-    box-shadow: 0 4px 4px -4px #4444447d;
-    margin-bottom: 0;
-
-}
-
-.page-user .zone-header-wrapper, .node-type-group .zone-header-wrapper {
-    background: rgba(246,244,243,.8);
-    margin-bottom: 2em;
-    padding: 8px 0;
 }
 
 /* Main menu (superfish) */
@@ -3110,9 +3097,9 @@ div.logo-img img {
 
 /* header */
 
-#zone-menu {
+/* #zone-menu {
     margin-bottom: 15px;
-}
+} */
 
 /* Accordions */
 
@@ -3390,6 +3377,39 @@ ul.pager-load-more li.pager-next,
     width: 220px;
 }
 
+.mch-small {
+    position: absolute;
+    right: -60px;
+    top: -35px;
+}
+
+.mch-small .mch1 {
+    margin-left: 210px;
+    padding-right: 10px;
+    width: 128px;
+}
+
+.mch-small .mch2 {
+    margin-left: 229px;
+    padding-left: 10px;
+    width: 150px;
+}
+
+.mch-small .mch3 {
+    margin-left: 127px;
+    padding-right: 10px;
+    width: 220px;
+}
+
+.mch-small .mch-rotate div {
+  font-size: 23px;
+  line-height: 14px;
+}
+
+.page-our-work .zone-leaderfirst-wrapper, .context-jobs .zone-preface-wrapper {
+	overflow: hidden;
+}
+
 /*-- end strapline make change happen --*/
 
 .pnth-left, .pnth-right {
@@ -3480,9 +3500,35 @@ ul.pager-load-more li.pager-next,
 }
 
 .page-about .report-hero:after {
-    background-image: none;
+	background-image: none;
 }
 
+.glance-nav ul {
+	list-style: none;
+	padding: 0;
+}
+
+.glance-nav ul li {
+	padding: 15px 0 0 0;
+	font-size: 16px;
+}
+
+.short-width { width: 80%; }
+
+.page-our-work .zone-preface-wrapper {
+	background: #F2F2F2;
+}
+
+.page-our-work .rss-icons {
+	position: absolute;
+	right: 3px;
+	bottom: -3px;
+}
+
+.page-our-work .view-themes-page .views-column {
+	border-bottom: 1px solid #E6E6E6;
+	margin-bottom: 1em;
+}
 
 
 /*-- end 2019 new style end--*/
@@ -3501,6 +3547,9 @@ ul.pager-load-more li.pager-next,
 .inline-block { display: inline-block; }
 .border-top-grey { border-top: 1px solid #E6E6E6; }
 .float-left { float:left; }
+.heading-small { font-size: 16px; }
+.position-bottom { position: absolute; bottom: 10px; }
+.big-number { font-size: 90px; font-weight: 100; line-height: 70px; }
 
 .m0  { margin:        0 }
 .mt0 { margin-top:    0 }
@@ -3608,10 +3657,6 @@ ul.pager-load-more li.pager-next,
     border: none;
 }
 
-.node-type-page .ui-tabs .ui-tabs-nav li a {
-
-}
-
 .node-type-page .jquery-ui-filter-tabs {
     margin-bottom: 2em;
 }
@@ -3694,11 +3739,28 @@ ul.pager-load-more li.pager-next,
 /*-- end jquery tabs --*/
 
 
+/* breadcrumb styles */
+.page-user .zone-branding-wrapper, .node-type-group .zone-branding-wrapper {
+    box-shadow: 0 4px 4px -4px #4444447d;
+    margin-bottom: 0;
 
 
+}
 
+.page-user .zone-header-wrapper, .node-type-group .zone-header-wrapper {
+    background: rgba(246,244,243,.8);
+    margin-bottom: 2em;
+    padding: 10px 0;
+}
 
+.zone-menu-wrapper {
+	border-bottom: solid 1px #f3f3f3;
+	margin-bottom: 40px;
+}
 
+.region-breadcrumb {
+	padding: 12px 0;
+}
 
 
 /*-- end 2019 new style --*/
@@ -4228,7 +4290,7 @@ a.dsq-widget-user {
 
 /* how we communicate page */
 
-.page-node-6654 .zone-postscript-wrapper {
+/* .page-node-6654 .zone-postscript-wrapper {
   background-color: #f2f2f2;
   margin: 4em 0 2em 0;
 }
@@ -4246,9 +4308,9 @@ a.dsq-widget-user {
     min-height: 200px;
 }
 
-.block-block-369 { /* quote block */
+.block-block-369 { /* quote block /
   height: 200px;
-}
+} */
 
 .blocklink {
     display: block;
@@ -4448,7 +4510,7 @@ a.dsq-widget-user {
 }
 
 /* footer area */
- .node-type-one-page-container .zone-postscript3, .page-about .zone-postscript4, .block-collection-footer {
+ .node-type-one-page-container .zone-postscript3, .block-collection-footer {
     margin-top: 2em;
 }
 
@@ -5144,13 +5206,14 @@ a.bgnd-colour {
 */
 
 /* header */
-.sectioned .zone-header-wrapper, .bgnd-colour {
+/*.sectioned .zone-header-wrapper,*/ .bgnd-colour {
     background-color: rgba(127,127,127,0.2); /* Default to grey */
 }
 
 .sectioned .zone-header-wrapper {
     padding: 0;
 		margin-bottom: 30px;
+		border-bottom: 1px solid #E6E6E6;
 }
 
 .responsive-menu {
@@ -5245,7 +5308,7 @@ h1#section-title {
 
 .card-img-left {
     float: left;
-    margin: 10px 10px 20px 10px;
+    margin: 10px 10px 10px 10px;
 }
 
 /* blocks */
