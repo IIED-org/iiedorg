@@ -435,7 +435,7 @@ li.dhtml-folder.collapsed {
   background: #CE539E; /* pink */
 }
 
-.sectioned .zone-header-wrapper, .banner-odd {
+/*.sectioned .zone-header-wrapper,*/ .banner-odd {
     background-color: rgba(206,83,158,0.2); /* light pink */
 }
 

@@ -228,9 +228,9 @@ li.menu-52767 {
 
 /* fixes */
 
-#zone-menu {
+/* #zone-menu { 2019 update
 	height: 60px;
-}
+} */
 /*
 .front #zone-menu {
     margin-bottom: 0px;
@@ -937,18 +937,9 @@ margin-right: 36px;
 	/*-- strapline make change happen --*/
 
 	.mch {
-	  position: absolute;
 	  right: -175px;
 		top: -20px;
     transition: width .5s;
-	}
-
-	.mch-rotate {
-	  transform: rotate(35deg) ;
-	-webkit-transform: rotate(35deg) ;
-	-moz-transform: rotate(35deg) ;
-	-o-transform: rotate(35deg) ;
-	-ms-transform: rotate(35deg) ;
 	}
 
 	.mch-rotate div {
@@ -957,35 +948,21 @@ margin-right: 36px;
 
 	}
 
-	.mch1, .mch2, .mch3 {
-	  padding-bottom: 5px;
-	  padding-top: 5px;
-		transition: width .5s;
-	}
-
 	.mch1 {
-	  color: #CE4C91;
-	  background-color: #C5E6F6;
 	  margin-left: 240px;
 	  padding-right: 25px;
-	  text-align: right;
 	  width: 280px;
 	}
 
 	.mch2 {
-	  background-color: #FFCD00;
-	  color: #00A7D9;
 	  margin-left: 327px;
 	  padding-left: 20px;
 	  width: 380px;
 	}
 
 	.mch3 {
-	  background-color: #e75642;
-	  color: #EECCDF;
 		margin-left: 180px;
 	  padding-right: 30px;
-	  text-align: right;
 		width: 370px;
 	}
 
@@ -1012,7 +989,56 @@ margin-right: 36px;
 .float-normal-left { float: left; }
 
 .social-list span {
-	display: inline-block; 
+	display: inline-block;
 }
+
+.context-iied-strategy-2019-2024 h1#page-title {
+    position: absolute;
+    color: #fff !important;
+    top: -100px;
+}
+.float-right-normal { float:right }
+.float-left-normal { float:left }
+
+
+.m1-normal  { margin:        1em }
+.mt1-normal  { margin-top:    1em }
+.mr1-normal  { margin-right:  1em }
+.mb1-normal  { margin-bottom: 1em }
+.ml1-normal  { margin-left:   1em }
+.mx1-normal  { margin-left:   1em; margin-right:  1em }
+.my1-normal  { margin-top:    1em; margin-bottom: 1em }
+
+.m2-normal   { margin:        2em }
+.mt2-normal  { margin-top:    2em }
+.mr2-normal  { margin-right:  2em }
+.mb2-normal  { margin-bottom: 2em }
+.ml2-normal  { margin-left:   2em }
+.mx2-normal  { margin-left:   2em; margin-right:  2em }
+.my2-normal  { margin-top:    2em; margin-bottom: 2em }
+
+.m3-normal   { margin:        60px }
+.mt3-normal  { margin-top:    60px }
+.mr3-normal  { margin-right:  60px }
+.mb3-normal  { margin-bottom: 60px }
+.ml3-normal  { margin-left:   60px }
+.mx3-normal  { margin-left:   60px; margin-right:  60px }
+.my3-normal  { margin-top:    60px; margin-bottom: 60px }
+
+.p1-normal   { padding:        1em }
+.pt1-normal  { padding-top:    1em }
+.pr1-normal  { padding-right:   }
+.pb1-normal  { padding-bottom: 1em }
+.pl1-normal  { padding-left:   1em }
+.py1-normal  { padding-top:    1em; padding-bottom: 1em }
+.px1-normal  { padding-left:   1em; padding-right:  1em }
+
+.p2-normal   { padding:        2em }
+.pt2-normal  { padding-top:    2em }
+.pr2-normal  { padding-right:  2em }
+.pb2-normal  { padding-bottom: 2em }
+.pl2-normal  { padding-left:   2em }
+.py2-normal  { padding-top:    2em; padding-bottom: 2em }
+.px2-normal  { padding-left:   2em; padding-right:  2em }
 
 /*-- end 2019 new style --*/
