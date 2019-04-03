@@ -3253,40 +3253,30 @@ p.two-column-last + p, div.two-column-last + p, span.two-column-last + p {
 }
 
 /* show more */
-ul.pager-load-more li.pager-next,
-.load-more {
+ul.pager-load-more li.pager-next {
 	width: 100%;
 }
 
-.pager-load-more .pager-next.first.last > a, .load-more {
-	background: #eef1f2;  /*  update and remove from colour */
-    border-radius: 2px;
-	/* color: #FFFFFF; */
+.pager-load-more .pager-next.first.last > a,
+.load-more {
+	background: #eef1f2;
+  border-radius: 2px;
 	font-weight: bold;
     min-height: 18px;
     padding-top: 12px;
     width: 100%;
 }
 
-.pager-load-more .pager-next.first.last > a:hover, .load-more:hover {
-	background: #E3E8E9;  /*  update and remove from colour */
+.pager-load-more .pager-next.first.last > a:hover,
+.load-more:hover {
+	background: #E3E8E9;
 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
     transition: all 0s ease 0s;
 }
 
-button.load-more {
-	margin: 1.2em 0 1em;
-	text-shadow: none;
-	border: none;
-	border-radius: 0;
-}
-
 /* load more tab style */
 
-/*--new style--*/
-
-ul.pager-load-more li.pager-next,
-.load-more {
+ul.pager-load-more li.pager-next {
 	width: 100%;
     border-top: 2px solid #eef1f2;
 }
@@ -3311,7 +3301,8 @@ ul.pager-load-more li.pager-next,
     width: 300px;
 }
 
-.pager-load-more .pager-next.first.last > a:hover, .load-more:hover {
+.pager-load-more .pager-next.first.last > a:hover, .load-more:hover,
+.gd-infinite-scroll-load-more > a:hover {
 	background: #eef1f2;
 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
     transition: all 0s ease 0s;

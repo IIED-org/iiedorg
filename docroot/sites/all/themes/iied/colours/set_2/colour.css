@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
-a:link {
+a:link,
+.load-more {
 	color: #FCB316; /* iied orange */
 }
 
@@ -402,11 +403,11 @@ li.dhtml-folder.collapsed {
     border-bottom: 4px solid #FCB316; /* orange */
 }
 
-/*.pager-load-more .pager-next.first.last > a,*/ .btn input[type="submit"], .load-more, .node-type-webform input.webform-submit, #clickdimform #btnSubmit, .buttons {
+.btn input[type="submit"], .node-type-webform input.webform-submit, #clickdimform #btnSubmit, .buttons {
 	background: #FCB316; /* orange */
 }
 
-/*.pager-load-more .pager-next.first.last > a:hover,*/ .btn input[type="submit"]:hover, .load-more:hover, .node-type-webform input.webform-submit:hover, #clickdimform #btnSubmit:hover, .buttons {
+.btn input[type="submit"]:hover, .node-type-webform input.webform-submit:hover, #clickdimform #btnSubmit:hover, .buttons {
 	background: #FAB833; /* 90% orange */
 }
 
