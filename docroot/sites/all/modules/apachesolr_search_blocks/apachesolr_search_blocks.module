@@ -1,0 +1,168 @@
+<?php
+
+/**
+ * @file
+ * Extends Apache Solr Search module to provide blocks from custom search pages.
+ *
+ * A new checkbox appears on the Search Page form that allows the block to be 
+ * created. There is also an optional block title field.
+ */
+
+/**
+ * Implements hook_block_info().
+ */
+function apachesolr_search_blocks_block_info() {
+  $blocks = array();
+
+  // Get a list of enabled blocks.
+  $search_blocks = apachesolr_search_blocks_enabled_blocks();
+  while ($block = $search_blocks->fetchAssoc()) {
+    // Give each block a consistent name for the admin page.
+    $blocks[$block['page_id']] = array(
+      'info' => t('Apache Solr Search Page: ') . $block['page_id'],
+    );
+  }
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function apachesolr_search_blocks_block_view($delta = '') {
+  $block = array();
+
+  // Get the list of enabled blocks.
+  $search_blocks = apachesolr_search_blocks_enabled_blocks();
+  
+  while ($enabled_block = $search_blocks->fetchAssoc()) {
+    // Check that we're showing the appropriate block title on the right block.
+    if ($delta == $enabled_block['page_id']) {
+      $block['subject'] = $enabled_block['block_title'];
+      $block['content'] = apachesolr_search_blocks_block_content($enabled_block);
+    }
+  }
+
+  return $block;
+}
+
+/**
+ * Callback: Generate the block content.
+ * 
+ * @param array $enabled_block
+ *   The database values for an enabled block.
+ * @return string
+ *   The html output for the search form.
+ */
+function apachesolr_search_blocks_block_content($enabled_block) {
+  if (empty($enabled_block)) {
+    return;
+  }
+
+  // Load the Apache Solr Search include file that contains the page_load function.
+  module_load_include('inc', 'apachesolr_search', 'apachesolr_search.pages');
+
+  // Load the custom search page.
+  $search_page = apachesolr_search_page_load($enabled_block['page_id']);
+
+  return drupal_render(drupal_get_form('apachesolr_search_custom_page_search_form', $search_page, ''));
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function apachesolr_search_blocks_form_apachesolr_search_delete_search_page_confirm_alter(&$form, $form_state) {
+  // Add our own submit handler to the delete form so we can remove our block settings.
+  $form['#submit'][] = 'apachesolr_search_blocks_delete_search_page_confirm_submit';
+}
+
+/**
+ * Implements hook_form_submit().
+ */
+function apachesolr_search_blocks_delete_search_page_confirm_submit($form, &$form_state) {
+  // Check if we have an entry in our table for this search page.
+  $search_block = db_select('apachesolr_search_blocks', 'a')
+    ->fields('a')
+    ->condition('page_id', $form['page_id']['#value'])
+    ->execute()
+    ->fetchAssoc();
+
+  // If we do, delete it.
+  if (!empty($search_block)) {
+    db_delete('apachesolr_search_blocks')
+      ->condition('page_id', $form_state['values']['page_id'])
+      ->execute();
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ * Add in our checkbox to enable blocks and the block title.
+ */
+function apachesolr_search_blocks_form_apachesolr_search_page_settings_form_alter(&$form, $form_state) {
+  if (isset($form['search_page']['#value'])) {
+    // Load up the defaults from the database if they exist.
+    $edit = db_select('apachesolr_search_blocks', 'a')
+      ->fields('a')
+      ->condition('page_id', $form['search_page']['#value']['page_id'])
+      ->execute()
+      ->fetchAssoc();
+  }
+
+  $form['info']['block_enable'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Create a block'),
+    '#default_value' => isset($edit['block_enable']) ? $edit['block_enable'] : 0,
+  );
+
+  $form['info']['block_title'] = array(
+    '#title' => t('Block Title'),
+    '#type' => 'textfield',
+    '#required' => FALSE,
+    '#maxlength' => 255,
+    '#default_value' => isset($edit['block_title']) ? $edit['block_title'] : '',
+    '#dependency' => array(
+      'edit-block-enable' => array(1),
+    ),
+  );
+
+  // Add our custom submit handler so we can save the custom settings.
+  $form['#submit'][] = 'apachesolr_search_blocks_page_settings_form_submit';
+}
+
+/**
+ * Implements hook_form_submit().
+ */
+function apachesolr_search_blocks_page_settings_form_submit($form, &$form_state) {
+  $search_block = new stdClass();
+  $search_block->page_id = $form_state['values']['page_id'];
+  $search_block->block_enable = $form_state['values']['block_enable'];
+  $search_block->block_title = $form_state['values']['block_title'];
+
+  // Insert/update the settings to the module table.
+  if (!empty($search_block)) {
+    db_merge('apachesolr_search_blocks')
+      ->key(array('page_id' => $search_block->page_id))
+      ->fields(array(
+        'page_id' => $search_block->page_id,
+        'block_enable' => $search_block->block_enable,
+        'block_title' => $search_block->block_title,
+      ))
+      ->execute();
+  }
+}
+
+/**
+ * Helper function: get a list of block-enabled Search Pages.
+ * 
+ * @return object
+ *   The database query result.
+ */
+function apachesolr_search_blocks_enabled_blocks() {
+  $search_blocks = db_select('apachesolr_search_blocks', 'a')
+    ->fields('a')
+    ->condition('block_enable', 1)
+    ->execute();
+
+  return $search_blocks;
+}
