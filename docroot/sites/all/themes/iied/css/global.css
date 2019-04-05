@@ -282,7 +282,7 @@ ul#secondary-menu li {
 
 /* Fixes for Project search */
 
-#search-form #edit-submit--2,
+#search-form input[type="submit"],
 #search-form label {
 	display: none;
 }
