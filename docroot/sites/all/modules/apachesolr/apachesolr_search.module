@@ -469,6 +469,14 @@ function apachesolr_search_block_info() {
     'info' => t('Apache Solr Core: Sorting'),
     'cache' => DRUPAL_NO_CACHE,
   );
+
+  // Add an Apachesolr search form block for each search page
+  foreach (apachesolr_search_load_all_search_pages() as $page_id => $search_page) {
+    $blocks['search_form_' . $page_id] = array(
+      'info' => t('Apachesolr search form : @page_label', array('@page_label' => $search_page['label'])),
+      'cache' => DRUPAL_NO_CACHE,
+    );
+  }
   return $blocks;
 }
 
@@ -529,6 +537,28 @@ function apachesolr_search_block_view($delta = '') {
         'subject' => t('Sort by'),
           'content' => theme('apachesolr_sort_list', array('items' => $themed_links))
         );
+      }
+    }
+  }
+  // Search form cases
+  elseif (strpos($delta, 'search_form_') === 0) {
+    foreach (apachesolr_search_load_all_search_pages() as $page_id => $search_page) {
+      if ($delta === 'search_form_' . $page_id) {
+        $search_page = apachesolr_search_page_load($page_id);
+
+        $keys = '';
+        if (apachesolr_has_searched($search_page['env_id'])) {
+          $query = apachesolr_current_query($search_page['env_id']);
+          $keys = $query->getParam('q');
+        }
+
+        module_load_include('pages.inc', 'apachesolr_search');
+        $content = drupal_get_form('apachesolr_search_custom_page_search_form', $search_page, $keys);
+        $block = array(
+          'subject' => t($search_page['page_title']),
+          'content' => $content,
+        );
+        return $block;
       }
     }
   }

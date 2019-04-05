@@ -94,7 +94,7 @@ li.menu-52767 {
 */
 /* fixes */
 
-/* #zone-menu { 2019 update 
+/* #zone-menu { 2019 update
 	height: 60px;
 }
 
@@ -127,7 +127,8 @@ div.logo-img img {
 	margin-top: 3.5em;
 }*/
 
-#edit-search-block-form--2 {
+#edit-search-block-form--2,
+#region-preface-first #edit-keys {
 	width: 186px;
 }
 

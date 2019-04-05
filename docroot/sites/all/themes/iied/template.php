@@ -33,19 +33,14 @@
      $form['actions']['submit'] = array('#type' => 'image_button', '#src' => base_path() . path_to_theme() . '/colours/set_' . date('d') % 4 . '/search-button.gif');
   }
 
+  if ($form_id == 'apachesolr_search_custom_page_search_form') {
+    $form['actions']['submit'] = array('#type' => 'image_button', '#src' => base_path() . path_to_theme() . '/colours/set_' . date('d') % 4 . '/search-button.gif');
+  }
+
   if ($form_id == 'user_profile_form') {
     unset($form['contact']);
   }
 }
-/**
-* Process variables for search-result.tpl.php.
-*
-* @see search-result.tpl.php
-function iied_preprocess_search_result(&$variables) {
-  // Remove user name and modification date from search results
-  	$variables['info'] = '';
-}
-*/
 
 function iied_apachesolr_search_noresults() {
   return t('<ul class="noresults">

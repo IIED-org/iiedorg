@@ -270,9 +270,27 @@ ul#secondary-menu li {
 	padding:0;
 }
 
-#edit-search-block-form--2 {
-    height: 34px;
+#edit-search-block-form--2,
+#search-form #edit-keys {
+	height: 34px;
 	width: 169px;
+}
+
+.page-search #region-preface-first {
+	margin-top: 2rem;
+}
+
+/* Fixes for Project search */
+
+#search-form #edit-submit,
+#search-form label
+ {
+	display: none;
+}
+
+#search-form #edit-basic,
+#edit-submit--2 {
+	display: inline
 }
 
 .form-item-custom-search-blocks-form-1 {

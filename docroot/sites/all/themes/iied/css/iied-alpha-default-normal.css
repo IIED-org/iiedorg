@@ -787,7 +787,8 @@ aside.float-right {
 
 /* Search box */
 
-#region-preface-first #edit-search-block-form--2 {
+#region-preface-first #edit-search-block-form--2,
+#region-preface-first #edit-keys {
     width: 890px;
 }
 
