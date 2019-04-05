@@ -3397,6 +3397,15 @@ ul.pager-load-more li.pager-next {
   line-height: 14px;
 }
 
+.mch-strat .mch {
+	z-index: 10;
+}
+
+.context-iied-strategy-2019-2024 .zone-banner-wrapper {
+    overflow: hidden;
+    margin-top: -30px;
+}
+
 .page-our-work .zone-leaderfirst-wrapper, .context-jobs .zone-preface-wrapper {
 	overflow: hidden;
 }
@@ -3531,12 +3540,12 @@ ul.pager-load-more li.pager-next {
 .text-muted { color: #999999; }
 .border-top { border-top: 2px solid !important}
 .border-top-grey { border-top: 1px solid #E6E6E6; }
+.border-bottom-grey { border-bottom: 1px solid #E6E6E6; }
 .overflow-hidden { overflow: hidden; }
 .text-center { text-align: center; }
 .body-text { font-size: 16px; }
 .display-text { font-size: 20px }
 .inline-block { display: inline-block; }
-.border-top-grey { border-top: 1px solid #E6E6E6; }
 .float-left { float:left; }
 .heading-small { font-size: 16px; }
 .position-bottom { position: absolute; bottom: 10px; }
@@ -5266,6 +5275,11 @@ h1#section-title {
   min-height: 290px;
   padding-bottom: 5px;
   position: relative;
+}
+
+.front .card {
+    margin-bottom: 0;
+    min-height: 260px;
 }
 
 .card-padding {
