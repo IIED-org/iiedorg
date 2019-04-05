@@ -282,9 +282,8 @@ ul#secondary-menu li {
 
 /* Fixes for Project search */
 
-#search-form #edit-submit,
-#search-form label
- {
+#search-form .form-submit,
+#search-form label {
 	display: none;
 }
 
