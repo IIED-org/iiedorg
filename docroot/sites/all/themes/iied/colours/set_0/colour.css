@@ -436,7 +436,7 @@ li.dhtml-folder.collapsed {
   background: #00B3DF; /* blue */
 }
 
-/*.sectioned .zone-header-wrapper,*/ banner-odd {
+/*.sectioned .zone-header-wrapper,*/ .banner-odd {
     background-color: rgba(0,179,223,0.2); /* light blue */
 }
 

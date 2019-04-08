@@ -3452,7 +3452,7 @@ ul.pager-load-more li.pager-next {
 .top-card {
     border: solid 1px #E6E6E6;
     border-radius: 4px;
-		overflow: auto;
+		overflow: hidden;
 }
 
 .top-card .card-padding {
@@ -3472,10 +3472,11 @@ ul.pager-load-more li.pager-next {
 	background: #EBF7FF;
 	margin-bottom: 60px;
 	overflow: hidden;
+	background: linear-gradient(359deg, rgba(187,234,249,1) 0%, rgba(187,234,249,1) 4%, rgba(235,247,255,1) 4%);
 }
 
 .banner-strategy .block {
-    background: #EBF7FF url(/sites/default/files/strategy-bgrnd.svg) no-repeat;
+    background: url(/sites/default/files/strategy-bgrnd.svg) no-repeat;
 		background-size: 460px;
 		background-position-y: 0;
 }

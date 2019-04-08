@@ -313,7 +313,7 @@ margin: 11px 0 0 55px;
 }
 
 .banner-strategy .block {
-    background: #EBF7FF url(/sites/default/files/strategy-bgrnd.svg) no-repeat;
+    background: url(/sites/default/files/strategy-bgrnd.svg) no-repeat;
     background-size: 580px;
     background-position-y: -70px;
 }
