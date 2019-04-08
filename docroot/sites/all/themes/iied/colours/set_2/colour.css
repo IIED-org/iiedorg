@@ -458,7 +458,7 @@ li.dhtml-folder.collapsed {
 	background-color: #B46B29; /* dark orange */
 }
 
-.banner-even .btn-outline {
+.banner-even .btn-outline, .banner-social {
   color: #00B3DF; /* blue */
   border-color: #00B3DF; /* blue */
 }
