@@ -447,9 +447,9 @@ hr.clear-left {
 	clear: left;
 }
 
-#region-leader-first { /* added for theme links at top of nodes */
+/* #region-leader-first { was added for theme links at top of nodes
     margin-bottom: 1.3em;
-}
+} */
 
 .section-content ol, .section-content ul { /* update to omega-text css */
     padding-left: 1.2em;
@@ -2049,10 +2049,6 @@ ul.objectives li {
 	margin-bottom: 1.5em;
 }
 
-.view-job-lists .views-row {
-	padding-bottom: 30px;
-}
-
 /* projects */
 
 .node-type-project .field-label-above, /* .node-type-project .field-name-field-dates .field-items */ {
@@ -2149,6 +2145,10 @@ ul.objectives li {
 
 .card-title {
   margin-bottom: 3em;
+}
+
+.front .card-title {
+  margin-bottom: 0;
 }
 
 /**** Mods for GWI project pages, language switcher ****/
@@ -3423,7 +3423,7 @@ ul.pager-load-more li.pager-next {
     margin-top: -30px;
 }
 
-.page-our-work .zone-leaderfirst-wrapper, .context-jobs .zone-preface-wrapper {
+.page-our-work .zone-leaderfirst-wrapper {
 	overflow: hidden;
 }
 
@@ -3480,7 +3480,7 @@ ul.pager-load-more li.pager-next {
 		background-position-y: 0;
 }
 
-.page-new-home .banner-strategy .lead-text {
+.page-home .banner-strategy .lead-text {
 	width: 80%;
 	margin: 100px 40px 20px 20px;
 	float: left;
@@ -3547,6 +3547,11 @@ ul.pager-load-more li.pager-next {
 	margin-bottom: 1em;
 }
 
+/*-- page title override --*/
+
+.page-our-work .zone-content h1, .page-about .zone-content h1 {
+	display: none;
+}
 
 /*-- end 2019 new style end--*/
 
@@ -3567,6 +3572,8 @@ ul.pager-load-more li.pager-next {
 .heading-small { font-size: 16px; }
 .position-bottom { position: absolute; bottom: 10px; }
 .big-number { font-size: 90px; font-weight: 100; line-height: 70px; }
+.circle { border-radius: 50%; }
+.display-none-small { display: none; }
 
 .m0  { margin:        0 }
 .mt0 { margin-top:    0 }
@@ -3653,109 +3660,6 @@ ul.pager-load-more li.pager-next {
 /*-- end utility styles --*/
 
 
-/*-- jquery tabs --*/
-
-/* jquery-ui-filter-tabs */
-
-.node-type-page .ui-tabs {
-    padding: 0;
-}
-
-.node-type-page .ui-widget {
-    font: 15px/1.5 'lato', Helvetica, Arial, sans-serif !important;
-	}
-
-.node-type-page .jquery-ui-filter-tabs .ui-widget-header {
-    background: none;
-    border: none;
-}
-
-.node-type-page #jquery-ui-filter .ui-state-default {
-    border: none;
-}
-
-.node-type-page .jquery-ui-filter-tabs {
-    margin-bottom: 2em;
-}
-
-.node-type-page .ui-tabs-panel, .node-type-page .ui-tabs-anchor {
-    color: #3e3e3e;
-    margin-top: 1.5em;
-    font-size: 16px;
-    padding: 0;
-    overflow: hidden;
-}
-
-.node-type-page .ui-tabs .ui-tabs-nav li a:link {
-	color: #333333;
-}
-
-.node-type-page #jquery-ui-filter .ui-state-hover {
-    background: #F2F2F2;
-}
-
-.node-type-page .ui-tabs .ui-tabs-nav li:last-child a:after {
-	display: none;
-}
-
-.node-type-page .ui-tabs .ui-tabs-nav li a:hover, .node-type-page .ui-tabs .ui-tabs-nav li.ui-state-active a {
-	border-bottom: 2px solid #e4e4e4;
-}
-
-.node-type-page .ui-tabs .ui-tabs-nav li a:hover:after, .node-type-page .ui-tabs .ui-tabs-nav li.ui-state-active a:after {
-}
-
-.node-type-page .jquery-ui-filter-tabs h2 {
-	padding: 45px 45px 45px 55px;
-	margin-bottom: 0;
-}
-
-.node-type-page .jquery-ui-filter .actions {
-	padding: 1em;
-}
-
-.node-type-page.responsive-layout-narrow .jquery-ui-filter .actions {
-	min-height: 590px;
-}
-
-.node-type-page.responsive-layout-normal .jquery-ui-filter .actions {
-	min-height: 460px;
-}
-
-.node-type-page .ui-corner-bottom {
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-}
-
-.actions .lead-text {
-	font-weight: bold;
-}
-
-#increasing-inequality { border-bottom: 1px solid #FDC651; }
-#increasing-inequality .actions {	background-color: #FDC651; }
-#climate-crisis { border-bottom: 1px solid #41C6E7; }
-#climate-crisis .actions {	background-color: #41C6E7; }
-#natural-world { border-bottom: 1px solid #BFD061; }
-#natural-world .actions	{ background-color: #BFD061; }
-#urban-risk { border-bottom: 1px solid #DF8FC0; }
-#urban-risk .actions { background-color: #DF8FC0; }
-#unsustainable-markets { border-bottom: 1px solid #41C7A1; }
-#unsustainable-markets .actions { background-color: #41C7A1; }
-
-.node-type-page .ui-tabs .ui-tabs-nav li.ui-state-active[aria-controls="increasing-inequality"] a { border-bottom: 2px solid #FDC651; }
-.node-type-page .ui-tabs .ui-tabs-nav li.ui-state-active[aria-controls="climate-crisis"] a { border-bottom: 2px solid #41C6E7; }
-.node-type-page .ui-tabs .ui-tabs-nav li.ui-state-active[aria-controls="natural-world"] a { border-bottom: 2px solid #BFD061; }
-.node-type-page .ui-tabs .ui-tabs-nav li.ui-state-active[aria-controls="urban-risk"] a { border-bottom: 2px solid #DF8FC0; }
-.node-type-page .ui-tabs .ui-tabs-nav li.ui-state-active[aria-controls="unsustainable-markets"] a { border-bottom: 2px solid #41C7A1; }
-
-#increasing-inequality h2 { background: url('/sites/default/files/increasing-inequality.svg') no-repeat 0 0; }
-#climate-crisis h2 { background: url('/sites/default/files/climate-crisis.svg') no-repeat 0 0; }
-#natural-world h2 { background: url('/sites/default/files/natural-world.svg') no-repeat 0 0; }
-#urban-risk h2 { background: url('/sites/default/files/urban-risk.svg') no-repeat 0 0; }
-#unsustainable-markets h2 { background: url('/sites/default/files/unsustainable-markets.svg') no-repeat 0 0; }
-/*-- end jquery tabs --*/
-
-
 /* breadcrumb styles */
 .page-user .zone-branding-wrapper, .node-type-group .zone-branding-wrapper {
     box-shadow: 0 4px 4px -4px #4444447d;
@@ -3764,11 +3668,11 @@ ul.pager-load-more li.pager-next {
 
 }
 
-.page-user .zone-header-wrapper, .node-type-group .zone-header-wrapper {
+/*.page-user .zone-header-wrapper, .node-type-group .zone-header-wrapper {
     background: rgba(246,244,243,.8);
     margin-bottom: 2em;
     padding: 10px 0;
-}
+}*/
 
 .zone-menu-wrapper {
 	border-bottom: solid 1px #f3f3f3;
@@ -3782,10 +3686,10 @@ ul.pager-load-more li.pager-next {
 
 /*-- end 2019 new style --*/
 
-
+/*
 .page-home .zone.zone-postscript2.clearfix.container-12 {
     margin-top: 5em;
-}
+} old margin */
 
 /* main view + themes pages image position */
 
@@ -3902,7 +3806,7 @@ ul.pager-load-more li.pager-next {
 
 /* Flexslider */
 
-.page-home .zone-header {
+/* .page-home .zone-header {
     margin-bottom: 3em;
 }
 
@@ -3940,7 +3844,7 @@ ul.pager-load-more li.pager-next {
 	border-right: 1px solid #E6E6E6;
 	border-left: 1px solid #E6E6E6;
 }
-
+*/
 /* FlexSlider theme */
 .flex-viewport {
     background: none repeat scroll 0 0 #FFFFFF;
@@ -5115,9 +5019,9 @@ a.overlay-link {
     color: #6a6a6a;
 }
 
-.large-intro {
+/* .large-intro {
     font-size: 1.2em;
-}
+}*/
 
 /* related project on blogs etc. */
 aside.project-link {
@@ -5244,7 +5148,7 @@ a.bgnd-colour {
     padding: 20px 0 70px 0;
 }
 
-.sectioned #zone-preface {
+/* .sectioned #zone-preface {
     padding: 3em 0 3em 0;
 }
 
@@ -5255,7 +5159,7 @@ a.bgnd-colour {
 .sectioned #zone-postscript-wrapper {
     margin-bottom: 3em;
     padding: 3em 0;
-}
+} */
 
 .container-wrapper-fill-light {
     background-color: #fafafa;
@@ -5294,9 +5198,9 @@ h1#section-title {
   position: relative;
 }
 
-.front .card {
+.front .region-leader-first .card {
     margin-bottom: 0;
-    min-height: 260px;
+    min-height: 272px;
 }
 
 .card-padding {
@@ -5378,6 +5282,13 @@ h1#section-title {
   margin: 5px 10px 20px 10px;
 }
 
+.pinned .block-card {
+  min-height: 120px;
+}
+
+.pinned h3 {
+	overflow hidden
+}
 
 /************************SMALL SCREEN SECTION********************/
 

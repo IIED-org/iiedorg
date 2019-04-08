@@ -188,7 +188,7 @@
 	position: relative;
 }
 
-.mission-bubble {
+/*.mission-bubble {
     overflow: hidden;
     width: 326px;
     height: 326px;
@@ -210,14 +210,14 @@
 .mission h1 {
     position: relative;
     top: 0;
-}
+}*/
 
-.large-intro {
+/* .large-intro {
     font-family: Georgia,"Times New Roman",Times,serif;
     font-size: 1.2em;
     line-height: 1.6em;
     margin-top: 2em;
-}
+} */
 
 /* Publications menu float for mobile */
 
@@ -932,6 +932,7 @@ margin-right: 36px;
 /*-- 2019 new style --*/
 .top-card {
 		max-width: 940px;
+		max-height: 348px;
 	}
 
 
@@ -967,6 +968,35 @@ margin-right: 36px;
 		width: 370px;
 	}
 
+	/*--  bigger for strategy page --*/
+	.mch-strat .mch-rotate div {
+	    font-size: 72px;
+	    line-height: 55px;
+	}
+
+	.mch-strat .mch {
+	    right: -90px;
+			top: -5px;
+		}
+
+	.mch-strat .mch1 {
+		    margin-left: 272px;
+		    padding-right: 30px;
+		    width: 341px;
+		}
+
+	.mch-strat .mch2 {
+	    margin-left: 299px;
+	    padding-left: 30px;
+	    width: 480px;
+	}
+
+	.mch-strat .mch3 {
+	    margin-left: 100px;
+	    padding-right: 40px;
+	    width: 560px;
+	}
+	
 	/*-- end strapline make change happen --*/
 
 
@@ -1000,7 +1030,7 @@ margin-right: 36px;
 }
 .float-right-normal { float:right }
 .float-left-normal { float:left }
-
+.display-none-small { display: block !important; }
 
 .m1-normal  { margin:        1em }
 .mt1-normal  { margin-top:    1em }

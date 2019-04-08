@@ -318,7 +318,7 @@ margin: 11px 0 0 55px;
     background-position-y: -70px;
 }
 
-.page-new-home .banner-strategy .lead-text {
+.page-home .banner-strategy .lead-text {
     width: 400px;
     margin: 40px 40px 40px 60px;
     float: left;
@@ -336,5 +336,6 @@ margin: 11px 0 0 55px;
 	margin-bottom: 30px;
 }
 
+.display-none-small { display: block !important; }
 
 /*-- end 2019 new style --*/
