@@ -1702,7 +1702,7 @@ td.views-field-field-main-image {
 
 /* sign up page */
 
-.btn input[type="submit"] {
+.page-sign-up .btn input[type="submit"] {
     background: gray; /* over-written in colour css */
     border-color: none;
     border-image: none;
@@ -1714,7 +1714,7 @@ td.views-field-field-main-image {
     font: bold 14px/1.2 Arial,sans-serif;
     outline: 0 none;
     overflow: visible;
-    padding: 10px 20px;
+    padding: 0 15px;
     text-shadow: none;
     width: auto;
 }
