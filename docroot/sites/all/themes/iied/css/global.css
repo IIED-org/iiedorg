@@ -1703,7 +1703,6 @@ td.views-field-field-main-image {
 /* sign up page */
 
 .page-sign-up .btn input[type="submit"] {
-    background: gray; /* over-written in colour css */
     border-color: none;
     border-image: none;
     border-radius: 0;
@@ -1717,10 +1716,7 @@ td.views-field-field-main-image {
     padding: 0 15px;
     text-shadow: none;
     width: auto;
-}
-
-.btn input[type="submit"]:hover {
-	background: #cccccc; /* over-written in colour css */
+		margin-top: -1em;
 }
 
 .newsletter-descriptions {
