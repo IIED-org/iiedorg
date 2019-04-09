@@ -3639,7 +3639,7 @@ ul.pager-load-more li.pager-next {
     -ms-user-select: none;
     user-select: none;
     border: 1px solid transparent;
-    /*  padding: 10px 15px; */
+    padding: 10px 15px;
     font-size: 18px;
     border-radius: 4px;
 		text-decoration: none !important;
