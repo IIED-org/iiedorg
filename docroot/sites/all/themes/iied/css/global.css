@@ -1716,8 +1716,7 @@ td.views-field-field-main-image {
     padding: 10px 15px;
     text-shadow: none;
     width: auto;
-		margin-top: -1rem;
-		line-height: 1rem;
+		margin-top: -1px;
 }
 
 .newsletter-descriptions {
@@ -3640,7 +3639,7 @@ ul.pager-load-more li.pager-next {
     -ms-user-select: none;
     user-select: none;
     border: 1px solid transparent;
-    padding: 10px 15px;
+    /*  padding: 10px 15px; */
     font-size: 18px;
     border-radius: 4px;
 		text-decoration: none !important;
