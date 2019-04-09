@@ -282,7 +282,7 @@ ul#secondary-menu li {
 
 /* Fixes for Project search */
 
-#search-form .form-submit,
+#search-form input[type="submit"],
 #search-form label {
 	display: none;
 }
@@ -1702,8 +1702,7 @@ td.views-field-field-main-image {
 
 /* sign up page */
 
-.btn input[type="submit"] {
-    background: gray; /* over-written in colour css */
+.page-sign-up input[type='submit']{
     border-color: none;
     border-image: none;
     border-radius: 0;
@@ -1714,13 +1713,10 @@ td.views-field-field-main-image {
     font: bold 14px/1.2 Arial,sans-serif;
     outline: 0 none;
     overflow: visible;
-    padding: 10px 20px;
+    padding: 10px 15px;
     text-shadow: none;
     width: auto;
-}
-
-.btn input[type="submit"]:hover {
-	background: #cccccc; /* over-written in colour css */
+		margin-top: -1px;
 }
 
 .newsletter-descriptions {
@@ -3452,7 +3448,7 @@ ul.pager-load-more li.pager-next {
 .top-card {
     border: solid 1px #E6E6E6;
     border-radius: 4px;
-		overflow: auto;
+		overflow: hidden;
 }
 
 .top-card .card-padding {
@@ -3472,10 +3468,11 @@ ul.pager-load-more li.pager-next {
 	background: #EBF7FF;
 	margin-bottom: 60px;
 	overflow: hidden;
+	background: linear-gradient(359deg, rgba(187,234,249,1) 0%, rgba(187,234,249,1) 4%, rgba(235,247,255,1) 4%);
 }
 
 .banner-strategy .block {
-    background: #EBF7FF url(/sites/default/files/strategy-bgrnd.svg) no-repeat;
+    background: url(/sites/default/files/strategy-bgrnd.svg) no-repeat;
 		background-size: 460px;
 		background-position-y: 0;
 }
@@ -3642,7 +3639,7 @@ ul.pager-load-more li.pager-next {
     -ms-user-select: none;
     user-select: none;
     border: 1px solid transparent;
-    padding: 10px 15px;
+    /*  padding: 10px 15px; */
     font-size: 18px;
     border-radius: 4px;
 		text-decoration: none !important;
