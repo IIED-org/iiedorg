@@ -16,6 +16,7 @@
     $form['search_block_form']['#title'] = t('Search'); // Change the text on the label element
     $form['search_block_form']['#title_display'] = 'invisible'; // Toggle label visibilty
     $form['actions']['submit'] = array('#type' => 'image_button', '#src' => base_path() . path_to_theme() . '/colours/set_' . date('d') % 4 . '/search-button.gif');
+    $form['actions']['submit']['#attributes']['alt'] = "Search";
 
     $path_args = arg();
 
@@ -31,10 +32,13 @@
 
   if ($form_id == 'custom-search-blocks-form-1') {
      $form['actions']['submit'] = array('#type' => 'image_button', '#src' => base_path() . path_to_theme() . '/colours/set_' . date('d') % 4 . '/search-button.gif');
+     $form['actions']['submit']['#attributes']['alt'] = "Search";
+
   }
 
   if ($form_id == 'apachesolr_search_custom_page_search_form') {
     $form['actions']['submit'] = array('#type' => 'image_button', '#src' => base_path() . path_to_theme() . '/colours/set_' . date('d') % 4 . '/search-button.gif');
+    $form['actions']['submit']['#attributes']['alt'] = "Search";
   }
 
   if ($form_id == 'user_profile_form') {

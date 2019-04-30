@@ -34,8 +34,8 @@
         $vars['site_slogan_hidden'] = $theme->page['site_slogan_hidden'];
         $vars['logo'] = '/sites/all/themes/iied/colours/set_' . date('d') % 4 . '/logo.svg';
 		    $vars['logopng'] = '/sites/all/themes/iied/colours/set_' . date('d') % 4 . '/logo.png';
-        $vars['logo_img'] = $vars['logo'] ? '<img src="' . $vars['logo'] . '" alt="' . $vars['site_name'] . '" id="logo" onerror="this.src=' . $vars['logopng'] . '" />' : '';
-        $vars['linked_logo_img'] = $vars['logo'] ? l($vars['logo_img'], '<front>', array('attributes' => array('rel' => 'home', 'title' => t($vars['site_name'])), 'html' => TRUE)) : '';
+        $vars['logo_img'] = $vars['logo'] ? '<img src="' . $vars['logo'] . '" alt="IIED logo" id="logo" onerror="this.src=' . $vars['logopng'] . '" />' : '';
+        $vars['linked_logo_img'] = $vars['logo'] ? l($vars['logo_img'], '<front>', array('attributes' => array('rel' => 'home', 'title' => 'IIED'), 'html' => TRUE)) : '';
         break;
     }
   }
