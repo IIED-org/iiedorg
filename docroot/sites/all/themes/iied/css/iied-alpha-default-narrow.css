@@ -100,10 +100,24 @@ li.menu-52767 {
 
 /* Themes dropdown */
 
-#block-superfish-1 li ul {
-	width: 680px;
-	margin-left: -305px; /* -250px; if first */
+#block-superfish-1 li li a {
+	width: 204px;
 }
+
+#block-superfish-1 li ul {
+	margin-right: 25px;
+	width: 705px;
+	margin-left: -305px; /* -250px; if first */
+	padding: 15px 0 55px 15px;
+}
+
+#block-superfish-1 #menu-59641-1 {
+    position: absolute;
+    bottom: 5px;
+		width: 680px;
+		border-top: 1px solid #e6e6e6;
+}
+
 
 /* Logo image, site slogan */
 

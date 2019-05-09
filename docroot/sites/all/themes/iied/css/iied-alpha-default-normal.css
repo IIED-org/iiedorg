@@ -241,12 +241,6 @@ li.menu-52767 {
 }
 
 
-/* Themes dropdown */
-#block-superfish-1 li ul {
-	width: 990px;
-	margin-left: -366px; /* -366px; if first */
-}
-
 /* Logo image, site slogan */
 
 h6.site-slogan {
@@ -255,11 +249,11 @@ h6.site-slogan {
 	letter-spacing:normal;
 }
 
-div.logo-img {
+/* div.logo-img { moved to media query
 	width: auto;
 	overflow: visible;
     margin-left: -45px;
-}
+}*/
 
 .no-svg div.logo-img img {
 	width: auto;
@@ -270,6 +264,24 @@ div.logo-img {
 	display: block;
 	z-index: 1;
 	overflow: visible;
+}
+
+/* Themes dropdown */
+#block-superfish-1 li ul {
+	width: 990px;
+	margin-left: -366px; /* -366px; if first */
+	padding: 15px 0 55px 40px;
+}
+
+#block-superfish-1 #menu-59641-1 {
+    position: absolute;
+    bottom: 5px;
+		width: 936px;
+		border-top: 1px solid #e6e6e6;
+}
+
+#block-superfish-1 .last-item-work {
+
 }
 
 #main-menu li a, #block-superfish-1 li a {
@@ -284,7 +296,7 @@ div.logo-img {
 	/*width: 135px;*/
 	margin-right: 10px;
 	/*font-family:Arial, Helvetica, sans-serif;*/
-	font-size:14px;
+	/* font-size:14px; */
 }
 
 #block-superfish-1 li a.sf-depth-1 {
@@ -307,7 +319,8 @@ div#block-superfish-1 {
 
 /* Themes dropdown adjustments for wider name */
 #block-superfish-1 li li a {
-    width: 226px;
+    /* width: 226px; */
+		width: 309px;
 }
 
 /* Individual theme pages */
@@ -929,6 +942,14 @@ margin-right: 36px;
 	height: 394px;
 }
 
+.over-right-full {
+    margin-right: -400px;
+}
+
+.right-inset-margin-full {
+    margin-right: -80px;
+}
+
 /*-- 2019 new style --*/
 .top-card {
 		max-width: 940px;
@@ -996,7 +1017,7 @@ margin-right: 36px;
 	    padding-right: 40px;
 	    width: 560px;
 	}
-	
+
 	/*-- end strapline make change happen --*/
 
 
