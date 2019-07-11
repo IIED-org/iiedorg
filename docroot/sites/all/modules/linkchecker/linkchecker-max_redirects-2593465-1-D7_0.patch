@@ -1,0 +1,13 @@
+diff --git a/linkchecker.module b/linkchecker.module
+index ce283b2..ecccdbf 100644
+--- a/linkchecker.module
++++ b/linkchecker.module
+@@ -476,7 +476,7 @@ function _linkchecker_check_links() {
+     $options = array(
+       'headers' => $headers,
+       'method' => $link->method,
+-      'max_redirects' => 0,
++      'max_redirects' => 5,
+     );
+ 
+     if ($has_httprl) {

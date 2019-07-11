@@ -532,7 +532,7 @@ function _linkchecker_check_links() {
     $options = array(
       'headers' => $headers,
       'method' => $link->method,
-      'max_redirects' => 5,
+      'max_redirects' => 0,
     );
 
     if ($has_httprl) {
