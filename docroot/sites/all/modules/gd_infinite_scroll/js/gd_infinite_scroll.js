@@ -153,7 +153,7 @@ Drupal.behaviors.gd_infinite_scroll = {
   },
   loadOnScroll: function(autopager_id, e) {
     var content = this.state[autopager_id]['content'];
-    if (content.offset().top + content.height() < $(document).scrollTop() + $(window).height()) {
+    if (content.offset().top < $(document).scrollTop() + $(window).height()) {
       this.load(autopager_id);
     }
   },
