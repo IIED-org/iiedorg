@@ -89,9 +89,6 @@
 *   $db_url = 'mysqli://username:password@localhost/databasename';
 *   $db_url = 'pgsql://username:password@localhost/databasename';
 */
-$db_url = 'mysql://iied_drupal_user:mZiu550$@localhost/iied_drupal-yin';
-$db_prefix = '';
-
 /**
 * Access control for update.php script
 *
@@ -126,7 +123,7 @@ $update_free_access = FALSE;
 # $base_url = 'https://www.iied.org';  // NO trailing slash!
 
 /* Uncomment next lines to add base_url after DNS update, cache purging */
-if (isset($_ENV['AH_SITE_ENVIRONMENT']) && $_ENV['AH_SITE_ENVIRONMENT'] === 'prod') { 
+if (isset($_ENV['AH_SITE_ENVIRONMENT']) && $_ENV['AH_SITE_ENVIRONMENT'] === 'prod') {
   $base_url = 'https://www.iied.org';
   $conf['acquia_purge_https'] = TRUE;
   $conf['acquia_purge_http'] = FALSE;
@@ -253,7 +250,17 @@ $drupal_hash_salt = '0_nxhVMhvmb0DE4CDklegK2_R9IoCGAMZD_IaaJRIbw';
 // settings.php for development on your local workstation, set $db_url
 // (Drupal 5 or 6) or $databases (Drupal 7 or 8) as described in comments above.
 if (file_exists('/var/www/site-php')) {
+  // Delay the initial database connection.
+  $conf['acquia_hosting_settings_autoconnect'] = FALSE;
   require('/var/www/site-php/iiedorg/iiedorg-settings.inc');
+  // Alter the charset and collation of the databases.
+  $databases['default']['default']['driver'] = 'mysql';
+  $databases['default']['default']['charset'] = 'utf8mb4';
+  $databases['default']['default']['collation'] = 'utf8mb4_general_ci';
+  $databases['[DATABASE_NAME]']['default']['charset'] = 'utf8mb4';
+  $databases['[DATABASE_NAME]']['default']['collation'] = 'utf8mb4_general_ci';
+  // Now connect to the default database.
+  acquia_hosting_db_choose_active();
 }
 
 /* Set Acquia search to read-write on dev & stage */
@@ -267,7 +274,7 @@ if (isset($conf['memcache_servers'])) {
 }
 
 if (file_exists(DRUPAL_ROOT . '/' . conf_path() . '/settings.local.php')) {
-    include DRUPAL_ROOT . '/' . conf_path() . '/settings.local.php';  
+    include DRUPAL_ROOT . '/' . conf_path() . '/settings.local.php';
 }
 
 // <DDSETTINGS>
