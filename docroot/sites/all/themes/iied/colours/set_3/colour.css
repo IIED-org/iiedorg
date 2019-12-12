@@ -5,8 +5,12 @@ a:link,
     color: #C84093; /* dark pink */
 }
 
-a:visited, h2 a:link, h3 a:link, .section-footer a:link {
+a:visited, h2 a:link, h3 a:link {
   color: #C84093; /* dark pink */
+}
+
+.section-footer a:link {
+  color: #C0378B; /* darker pink */
 }
 
 #block-superfish-1 li li a, .mm-list > li > a {
@@ -450,11 +454,12 @@ li.dhtml-folder.collapsed {
 }
 
 .btn-fill {
-	color: #fff;
+	color: #000 !important;
 	background-color: #CE539E; /* pink */
 }
 
 .btn-fill:hover, .btn-fill:focus, .btn-fill:active {
+  color: #fff !important;
 	background-color: #C84093; /* dark pink */
 }
 
@@ -464,7 +469,7 @@ li.dhtml-folder.collapsed {
 }
 
 .banner-even .btn-fill {
-	color: #fff !important;
+	color: #000;
 	background-color: #AAC02C; /* green */
 }
 
@@ -517,11 +522,11 @@ h2.block-title {
   color: #3e3e3e !important;
 }
 
-.node p a:link, .node p a:visited {
+.node p a:link, .node p a:visited, .node li a:link, .node li a:visited {
 	border-bottom: 1px solid #dcdcdc !important;
 	transition: border-color .15s ease-out;
 }
 
-.node p a:hover, .node p a:active {
+.node p a:hover, .node p a:active, .node li a:hover, .node li a:active {
 	border-color: #CE539E !important; /* pink */
 }
