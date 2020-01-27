@@ -1,0 +1,13 @@
+name = Animate On Scroll
+description = AOS is small library to animate elements on your page as you scroll. It allows you to animate elements as you scroll down, and up. If you scroll back to top, elements will animate to it's previous state and are ready to animate again if you scroll down.
+core = 7.x
+package = User Interface
+
+dependencies[] = libraries (>=7.x-2.0)
+
+; Information added by Drupal.org packaging script on 2018-03-16
+version = "7.x-1.0"
+core = "7.x"
+project = "animate_on_scroll"
+datestamp = "1521211985"
+

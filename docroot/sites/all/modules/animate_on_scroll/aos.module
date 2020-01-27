@@ -1,0 +1,54 @@
+<?php
+
+/**
+ * @file
+ * Integration with AOS library.
+ */
+
+/**
+ * Implements hook_help().
+ */
+function aos_help($path, $arg) {
+  switch ($path) {
+  case 'admin/help#aos':
+    return '<p>' . t('<a href="@aos" target="_blank">Animate On Scroll</a> is a small library to animate elements on your page as you scroll. It allows you to animate elements as you scroll down, and up. If you scroll back to top, elements will animate to it\'s previous state and are ready to animate again if you scroll down.', array(
+      '@aos' => 'https://michalsnik.github.io/aos/',
+    )) . '</p>';
+  }
+}
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function aos_page_build(&$page) {
+  // Load libraries module.
+  drupal_load('module', 'libraries');
+  // Load the AOS library.
+  libraries_load('aos');
+  // Add our js to initialize AOS.
+  drupal_add_js(drupal_get_path('module', 'aos') . '/js/script.js', array('scope' => 'footer'));
+}
+
+/**
+ * Implements hook_libraries_info().
+ */
+function aos_libraries_info() {
+  $libraries['aos'] = array(
+    'name' => 'Animate On Scroll',
+    'vendor url' => 'https://michalsnik.github.io/aos/',
+    'download url' => 'https://github.com/michalsnik/aos/archive/master.zip',
+    'version arguments' => array(
+      'file' => 'package.json',
+      'pattern' => '/((?:\d+\.?){2,3})/',
+    ),
+    'files' => array(
+      'css' => array(
+        'dist/aos.css',
+      ),
+      'js' => array(
+        'dist/aos.js',
+      )
+    ),
+  );
+  return $libraries;
+}
