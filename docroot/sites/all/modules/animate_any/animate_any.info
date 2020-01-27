@@ -1,0 +1,12 @@
+name = Animate Any
+description = Integrates CSS animate.css to apply animation to your site.
+core = "7.x"
+configure = admin/config/animate_any
+package = Animation
+
+; Information added by Drupal.org packaging script on 2017-05-12
+version = "7.x-1.1"
+core = "7.x"
+project = "animate_any"
+datestamp = "1494581289"
+

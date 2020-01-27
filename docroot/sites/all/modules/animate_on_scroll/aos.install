@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * @file
+ * Library requirements for AOS.
+ */
+
+/**
+ * Implements hook_requirements().
+ */
+function aos_requirements($phase) {
+  $requirements = array();
+  // Check requirements for status report page.
+  if ($phase == 'runtime') {
+    // Make sure libraries module is loaded.
+    drupal_load('module', 'libraries');
+    $aos = libraries_detect('aos');
+    // Report the version of AOS library.
+    $requirements['aos'] = array(
+      'title' => $aos['name'],
+      'severity' => $aos['installed'] ? REQUIREMENT_OK : REQUIREMENT_WARNING,
+      'value' => $aos['installed'] ? $aos['version'] : $aos['error message'],
+    );
+  }
+  return $requirements;
+}
