@@ -112,7 +112,7 @@ function iied_features_content($lnk, $ttl) {
   $facebook = '<li><i class="fa fa-facebook"></i><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=' . $lnk . '" title="'. $ttl . '">&nbsp;' . t("Share") . '</a></li>';
   $twitter = '<li><i class="twitter fa fa-twitter"></i><a target="_blank" href="https://twitter.com/share?text=' . urlencode($ttl) . '&url=' . $lnk . '">&nbsp;' . t("Tweet") . '</a></li>';
   $linkedin = '<li><i class="fa fa-linkedin"></i><a target="_blank" href="https://www.linkedin.com/sharing/share-offsite/?url=' . $lnk . '&title=' . urlencode($ttl) . '&source=LinkedIn">&nbsp;' . t("Share") . '</a></li>';
-  $email = '<li><i class="fa fa-envelope"></i><a title="Email" href="mailto:?subject=' . $ttl . '&body=I%20thought%20you%20might%20enjoy%20this%20from%20IIED:%20' . $lnk .'">&nbsp;' . t("Email") . '</a></li>';
+  $email = '<li><i class="fa fa-envelope"></i><a title="Email" href="mailto:?subject=' . $ttl . '&body=I%20thought%20you%20might%20enjoy%20this%20from%20IIED:\n\n' . $lnk .'">&nbsp;' . t("Email") . '</a></li>';
   $copy = '<li><i class="fa fa-link"></i><a class="js-copy-url" href="#">&nbsp;Copy link</a></li>';
   $content = '<div class="iiedFeatures"><ul>' . $facebook . $twitter . $linkedin . $email . $copy . '</ul></div>';
   return $content;
