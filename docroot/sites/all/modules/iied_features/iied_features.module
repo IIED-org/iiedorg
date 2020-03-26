@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Implements hook_wysiwyg_editor_settings_alter()
  */
@@ -71,3 +70,52 @@ function iied_features_language_switch_links_alter(array &$links, $type, $path) 
     }
   }
 }
+
+/**
+ * Implements hook_block_info().
+ */
+function iied_features_block_info() {
+  $blocks['iied_features'] = array(
+    // The name that will appear in the block list.
+    'info' => t('Sharing links'),
+    // Default setting.
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ * TODO: Add footer scope
+*/
+
+function iied_features_block_view($delta = '') {
+  $block = array();
+  switch ($delta) {
+    case 'iied_features':
+      $pageUrl = url(drupal_get_path_alias(current_path()), array('absolute' => TRUE));
+      $title = drupal_get_title();
+      $block['subject'] = t('Share this page');
+      $block['content'] = array(
+        '#markup' => iied_features_content($pageUrl, $title),
+      );
+       $path = drupal_get_path('module', 'iied_features');
+       drupal_add_css($path . "/iied_features.css");
+       drupal_add_js(array('iiedFeatures' => array('pageUrl' => $pageUrl)), 'setting');
+       drupal_add_js($path . '/iied_features.js', array('scope' => 'footer'));
+      break;
+  }
+  return $block;
+}
+
+function iied_features_content($lnk, $ttl) {
+  $facebook = '<li><i class="fa fa-facebook"></i><a href="https://www.facebook.com/sharer/sharer.php?u=' . $lnk . '" title="'. $ttl . '" target="_blank">&nbsp;' . t("Share") . '</a></li>';
+  $twitter = '<li><i class="twitter fa fa-twitter"></i><a href="https://twitter.com/share?text=' . urlencode($ttl) . '&url=' . $lnk . '">&nbsp;' . t("Tweet") . '</a></li>';
+  $linkedin = '<li><i class="fa fa-linkedin"></i><a href="https://www.linkedin.com/sharing/share-offsite/?url=' . $lnk . '&title=' . urlencode($ttl) . '&source=LinkedIn" target="_blank">&nbsp;' . t("Share") . '</a></li>';
+  $email = '<li><i class="fa fa-envelope"></i><a title="Email" href="mailto:?subject=' . $ttl . '&body=I%20thought%20you%20might%20enjoy%20this%20from%20IIED:%20' . $lnk .'">&nbsp;' . t("Email") . '</a></li>';
+  $copy = '<li><i class="fa fa-link"></i><a class="js-copy-url" href="#">&nbsp;Copy link</a></li>';
+  $content = '<div class="iiedFeatures"><ul>' . $facebook . $twitter . $linkedin . $email . $copy . '</ul></div>';
+  return $content;
+}
+
+// $deleteThis = field_delete_field($addThis);
