@@ -8,24 +8,30 @@
 .iiedFeatures ul li {
   display: block;
   float: left;
+}
+
+.iiedFeatures button {
   margin: 0 15px 1em 0;
   padding: 5px 10px;
   border: solid 1px #E0E0E0;
   border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  position: relative;
+  display: inline-block;
+  background: transparent;
+  outline: none;
+  text-shadow: none;
 }
 
-.iiedFeatures a:link, .iiedFeatures a:visited {
-  color: #767676 !important;
+.iiedFeatures button:hover a {
+  color: white !important;
 }
 
-.iiedFeatures a:hover, .iiedFeatures a:active {
-  color: #00B3DF !important;
-}
-
-.js-copy-url {
+.copylink {
   visibility: hidden;
 }
 
-.js-copy-url.show {
+.copylink.show {
   visibility: visible;
 }
