@@ -1,0 +1,31 @@
+.iiedFeatures ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: inline;
+}
+
+.iiedFeatures ul li {
+  display: block;
+  float: left;
+  margin: 0 15px 1em 0;
+  padding: 5px 10px;
+  border: solid 1px #E0E0E0;
+  border-radius: 4px;
+}
+
+.iiedFeatures a:link, .iiedFeatures a:visited {
+  color: #767676 !important;
+}
+
+.iiedFeatures a:hover, .iiedFeatures a:active {
+  color: #00B3DF !important;
+}
+
+.js-copy-url {
+  visibility: hidden;
+}
+
+.js-copy-url.show {
+  visibility: visible;
+}
