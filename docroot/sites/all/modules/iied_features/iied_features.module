@@ -109,11 +109,11 @@ function iied_features_block_view($delta = '') {
 }
 
 function iied_features_content($lnk, $ttl) {
-  $facebook = '<li><i class="fa fa-facebook"></i><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=' . $lnk . '" title="'. $ttl . '">&nbsp;' . t("Share") . '</a></li>';
-  $twitter = '<li><i class="twitter fa fa-twitter"></i><a target="_blank" href="https://twitter.com/share?text=' . urlencode($ttl) . '&url=' . $lnk . '">&nbsp;' . t("Tweet") . '</a></li>';
-  $linkedin = '<li><i class="fa fa-linkedin"></i><a target="_blank" href="https://www.linkedin.com/sharing/share-offsite/?url=' . $lnk . '&title=' . urlencode($ttl) . '&source=LinkedIn">&nbsp;' . t("Share") . '</a></li>';
-  $email = '<li><i class="fa fa-envelope"></i><a title="Email" href="mailto:?subject=' . $ttl . '&body=' . t('I thought you might enjoy this from IIED:') . '%0D%0A%0D%0A' . $lnk .'">&nbsp;' . t("Email") . '</a></li>';
-  $copy = '<li><i class="fa fa-link"></i><a class="js-copy-url" href="#">&nbsp;Copy link</a></li>';
+  $facebook = '<li><button class="btn-fill btn-outline"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=' . $lnk . '" title="Facebook '. $ttl . '"><i class="fa fa-facebook"></i>&nbsp;' . t("Share") . '</a></button></li>';
+  $twitter = '<li><button class="btn-fill btn-outline"><a target="_blank" href="https://twitter.com/share?text=' . urlencode($ttl) . '&url=' . $lnk . '" title="Tweet '. $ttl . '"><i class="twitter fa fa-twitter"></i>&nbsp;' . t("Tweet") . '</a></button></li>';
+  $linkedin = '<li><button class="btn-fill btn-outline"><a target="_blank" href="https://www.linkedin.com/sharing/share-offsite/?url=' . $lnk . '&title=' . urlencode($ttl) . '&source=LinkedIn" title="LinkedIn '. $ttl . '"><i class="fa fa-linkedin"></i>&nbsp;' . t("Share") . '</a></button></li>';
+  $email = '<li><button class="btn-fill btn-outline"><a title="Email '. $ttl . '" href="mailto:?subject=' . $ttl . '&body=' . t('I thought you might enjoy this from IIED:') . '%0D%0A%0D%0A' . $lnk .'"><i class="fa fa-envelope"></i>&nbsp;' . t("Email") . '</a></button></li>';
+  $copy = '<li><button class="btn-fill btn-outline js-copy-btn"><a title="Copy link to '. $ttl . '" href="#"><i class="fa fa-link"></i>&nbsp;<span class="copylink">Copy link</span></a></button></li>';
   $content = '<div class="iiedFeatures"><ul>' . $facebook . $twitter . $linkedin . $email . $copy . '</ul></div>';
   return $content;
 }

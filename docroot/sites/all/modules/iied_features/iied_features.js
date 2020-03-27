@@ -2,7 +2,7 @@
   Drupal.behaviors.iiedFeatures = {
     attach: function(context, settings) {
 
-      function copyTextToClipboard(button, text) {
+      function copyTextToClipboard(copylink, text) {
       var textArea = document.createElement("textarea");
     //
     // *** This styling is an extra step which is likely not required. ***
@@ -48,24 +48,26 @@
     textArea.focus();
     textArea.select();
 
+    var msg = 'Sorry, unable to copy'
+
     try {
       var successful = document.execCommand('copy');
-      var msg = successful ? 'successful' : 'unsuccessful';
-      //alert('Copying link was ' + msg + ': ' + text);
-      button.innerHTML = '&nbsp;Copied!';
-
-    } catch (err) {
-      button.innerHTML = '&nbsp;Sorry, unable to copy';
+      if (successful) {
+        msg = 'Copied!';
+      }
     }
-
+    catch(err) {
+      // nothing
+    }
+    copylink.innerText = msg;
     document.body.removeChild(textArea);
   }
 
-  $('.js-copy-url', context).click(function(e){
+  $('.js-copy-btn', context).click(function(e){
     var linktext = settings.iiedFeatures.pageUrl;
     e.preventDefault();
     copyTextToClipboard(this, linktext);
   });
-  $('.js-copy-url').addClass('show');
+  $('.copylink').addClass('show');
 }}
 })(jQuery);
