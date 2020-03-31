@@ -4772,6 +4772,28 @@ h1#section-title {
 	overflow hidden
 }
 
+/* Rating widgets */
+
+.rate-widget-yesno .item-list ul {
+	margin: 0;
+	padding: 0
+
+}
+
+.rate-widget-yesno .item-list ul li {
+	margin: 0 1rem 0 0;
+}
+
+.rate-widget-yesno .item-list ul li a {
+	padding: 3px 7px;
+	border-radius: 4px;
+}
+
+.rate-widget-yesno .rate-info {
+	font-size: 1rem;
+	margin: 1rem 0 0 0;
+}
+
 /************************SMALL SCREEN SECTION********************/
 
 /* .responsive-layout-mobile .zone-branding-wrapper {
