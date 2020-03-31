@@ -239,7 +239,7 @@ ini_set('url_rewriter.tags',        '');
 * Remove the leading hash signs to enable.
 */
 $conf['locale_custom_strings_en'] = array(
-   'users'      => 'People',
+    'users'      => 'People',
 );
 
 $drupal_hash_salt = '0_nxhVMhvmb0DE4CDklegK2_R9IoCGAMZD_IaaJRIbw';
