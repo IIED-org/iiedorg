@@ -4775,13 +4775,12 @@ h1#section-title {
 /* Rating widgets */
 
 .rate-widget-yesno .item-list ul {
-	margin: 0;
+	margin: 0 0 1em 0;
 	padding: 0
-
 }
 
 .rate-widget-yesno .item-list ul li {
-	margin: 0 1rem 0 0;
+	margin: 0 1em 0 0;
 }
 
 .rate-widget-yesno .item-list ul li a {
