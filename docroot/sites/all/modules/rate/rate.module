@@ -1377,8 +1377,14 @@ function rate_preprocess_rate_template_yesno(&$variables) {
   extract($variables);
 
   $buttons = array();
-  foreach ($links as $link) {
-    $button = theme('rate_button', array('text' => $link['text'], 'href' => $link['href'], 'class' => 'rate-yesno-btn'));
+  // CB 20200408 Add active class to the clicked link, hide votes.
+  foreach ($links as $key => $link) {
+
+    $classes = 'rate-yesno-btn';
+    if (isset($results['user_vote']) && $results['user_vote'] == $link['text']) {
+      $classes .= ' active';
+    }
+    $button = theme('rate_button', array('text' => $link['text'], 'href' => $link['href'], 'class' => $classes));
     // $button .= $link['votes'];
     $buttons[] = $button;
   }
@@ -1393,6 +1399,7 @@ function rate_preprocess_rate_template_yesno(&$variables) {
       $info[] = t('Thank you for your feedback.', array('@option' => t($results['user_vote'])));
     }
   }
+
   $variables['info'] = implode(' ', $info);
 }
 

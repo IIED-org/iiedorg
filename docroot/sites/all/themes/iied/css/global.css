@@ -4784,13 +4784,17 @@ h1#section-title {
 }
 
 .rate-widget-yesno .item-list ul li a {
-	padding: 3px 7px;
+	padding: 3px 10px;
 	border-radius: 4px;
 }
 
 .rate-widget-yesno .rate-info {
 	font-size: 1em;
 	margin: 1em 0;
+}
+
+.rate-button.active {
+	background-color: inherit;
 }
 
 /************************SMALL SCREEN SECTION********************/

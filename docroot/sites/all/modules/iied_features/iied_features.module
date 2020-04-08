@@ -81,6 +81,12 @@ function iied_features_block_info() {
     // Default setting.
     'cache' => DRUPAL_NO_CACHE,
   );
+  $blocks['iied_features_icons'] = array(
+    // The name that will appear in the block list.
+    'info' => t('Sharing icons'),
+    // Default setting.
+    'cache' => DRUPAL_NO_CACHE,
+  );
   return $blocks;
 }
 
@@ -91,29 +97,44 @@ function iied_features_block_info() {
 
 function iied_features_block_view($delta = '') {
   $block = array();
+  $pageUrl = url(drupal_get_path_alias(current_path()), array('absolute' => TRUE));
+  $title = drupal_get_title();
+  $path = drupal_get_path('module', 'iied_features');
   switch ($delta) {
     case 'iied_features':
-      $pageUrl = url(drupal_get_path_alias(current_path()), array('absolute' => TRUE));
-      $title = drupal_get_title();
       $block['subject'] = t('Share this page');
       $block['content'] = array(
-        '#markup' => iied_features_content($pageUrl, $title),
+        '#markup' => iied_features_content($pageUrl, $title, true),
       );
-       $path = drupal_get_path('module', 'iied_features');
-       drupal_add_css($path . "/iied_features.css");
-       drupal_add_js(array('iiedFeatures' => array('pageUrl' => $pageUrl)), 'setting');
-       drupal_add_js($path . '/iied_features.js', array('scope' => 'footer'));
+      break;
+    case 'iied_features_icons':
+      $block['subject'] = t('Share this page');
+      $block['content'] = array(
+        '#markup' => iied_features_content($pageUrl, $title, false),
+      );
       break;
   }
+  drupal_add_css($path . "/iied_features.css");
+  drupal_add_js(array('iiedFeatures' => array('pageUrl' => $pageUrl)), 'setting');
+  drupal_add_js($path . '/iied_features.js', array('scope' => 'footer'));
   return $block;
 }
 
-function iied_features_content($lnk, $ttl) {
-  $facebook = '<li><button class="btn-fill btn-outline"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=' . $lnk . '" title="Facebook '. $ttl . '"><i class="fa fa-facebook"></i>&nbsp;' . t("Share") . '</a></button></li>';
-  $twitter = '<li><button class="btn-fill btn-outline"><a target="_blank" href="https://twitter.com/share?text=' . urlencode($ttl) . '&url=' . $lnk . '" title="Tweet '. $ttl . '"><i class="twitter fa fa-twitter"></i>&nbsp;' . t("Tweet") . '</a></button></li>';
-  $linkedin = '<li><button class="btn-fill btn-outline"><a target="_blank" href="https://www.linkedin.com/sharing/share-offsite/?url=' . $lnk . '&title=' . urlencode($ttl) . '&source=LinkedIn" title="LinkedIn '. $ttl . '"><i class="fa fa-linkedin"></i>&nbsp;' . t("Share") . '</a></button></li>';
-  $email = '<li><button class="btn-fill btn-outline"><a title="Email '. $ttl . '" href="mailto:?subject=' . $ttl . '&body=' . t('I thought you might enjoy this from IIED:') . '%0D%0A%0D%0A' . $lnk .'"><i class="fa fa-envelope"></i>&nbsp;' . t("Email") . '</a></button></li>';
-  $copy = '<li><button class="btn-fill btn-outline js-copy-btn"><a title="Copy link to '. $ttl . '" href="#"><i class="fa fa-link"></i>&nbsp;<span class="copylink">Copy link</span></a></button></li>';
-  $content = '<div class="iiedFeatures"><ul>' . $facebook . $twitter . $linkedin . $email . $copy . '</ul></div>';
+function iied_features_content($lnk, $ttl, $linktext) {
+  if ($linktext) {
+    $facebook = '<li><button class="btn-fill btn-outline"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=' . $lnk . '" title="Facebook '. $ttl . '"><i class="fa fa-facebook"></i><span class="icon-label">' . t("Share") . '</span></a></button></li>';
+    $twitter = '<li><button class="btn-fill btn-outline"><a target="_blank" href="https://twitter.com/share?text=' . urlencode($ttl) . '&url=' . $lnk . '" title="Tweet '. $ttl . '"><i class="twitter fa fa-twitter"></i><span class="icon-label">' . t("Tweet") . '</span></a></button></li>';
+    $linkedin = '<li><button class="btn-fill btn-outline"><a target="_blank" href="https://www.linkedin.com/sharing/share-offsite/?url=' . $lnk . '&title=' . urlencode($ttl) . '&source=LinkedIn" title="LinkedIn '. $ttl . '"><i class="fa fa-linkedin"></i><span class="icon-label">' . t("Share") . '</span></a></button></li>';
+    $email = '<li><button class="btn-fill btn-outline"><a title="Email '. $ttl . '" href="mailto:?subject=' . $ttl . '&body=' . t('I thought you might enjoy this from IIED:') . '%0D%0A%0D%0A' . $lnk .'"><i class="fa fa-envelope"></i><span class="icon-label">' . t("Email") . '</span></a></button></li>';
+    $copy = '<li><button class="btn-fill btn-outline js-copy-btn"><a title="Copy link to '. $ttl . '" href="#"><i class="fa fa-link"></i>&nbsp;<span class="copylink">Copy link</span></a></button></li>';
+    $content = '<div class="iiedFeatures"><ul>' . $facebook . $twitter . $linkedin . $email . $copy . '</ul></div>';
+  }
+  else {
+    $facebook = '<li><button class="btn-fill btn-outline"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=' . $lnk . '" title="Facebook '. $ttl . '"><i class="fa fa-facebook"></i></a></button></li>';
+    $twitter = '<li><button class="btn-fill btn-outline"><a target="_blank" href="https://twitter.com/share?text=' . urlencode($ttl) . '&url=' . $lnk . '" title="Tweet '. $ttl . '"><i class="twitter fa fa-twitter"></i></a></button></li>';
+    $linkedin = '<li><button class="btn-fill btn-outline"><a target="_blank" href="https://www.linkedin.com/sharing/share-offsite/?url=' . $lnk . '&title=' . urlencode($ttl) . '&source=LinkedIn" title="LinkedIn '. $ttl . '"><i class="fa fa-linkedin"></i></a></button></li>';
+    $email = '<li><button class="btn-fill btn-outline"><a title="Email '. $ttl . '" href="mailto:?subject=' . $ttl . '&body=' . t('I thought you might enjoy this from IIED:') . '%0D%0A%0D%0A' . $lnk .'"><i class="fa fa-envelope"></i></a></button></li>';
+    $content = '<div class="iiedFeatures"><ul>' . $email . $facebook . $twitter . $linkedin  . '</ul></div>';
+  }
   return $content;
 }
