@@ -1094,3 +1094,25 @@ margin-right: 36px;
 .px2-normal  { padding-left:   2em; padding-right:  2em }
 
 /*-- end 2019 new style --*/
+
+/*-- main events page --*/
+.views-column-first .card-img-top-promo-wrapper {
+    height: 296px;
+    width: 296px;
+    float: right;
+    overflow: hidden;
+    margin-left: 20px;
+}
+.promo-row .views-column-first .card {
+   padding-bottom: 0;
+   background-color: #F7F7F7;
+}
+
+.views-column-first .card-img-top-promo {
+    width: 200%;
+    margin-left: -150px;
+}
+
+.social-list ul li {
+    margin-right: 50px !important;
+}

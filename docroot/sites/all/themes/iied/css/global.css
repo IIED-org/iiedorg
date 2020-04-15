@@ -875,7 +875,7 @@ blockquote:after, blockquote:before {
 .page-user .field-name-field-standfirst {
     font-size: 15px;
     line-height: 23px;
-    color: #6D6D6D;
+    color: #3e3e3e;
     -webkit-font-smoothing: auto;
 }
 
@@ -1271,6 +1271,10 @@ td.views-field-field-main-image {
 
 .page-user .more-link {
 	margin-top: -0.5em;
+}
+
+.more-link {
+    text-align: left;
 }
 
 .page-user .field-name-field-biography, .page-user .field-name-field-expertise {
@@ -1836,6 +1840,77 @@ ul.objectives li {
 .language-switcher-locale-url li .active {
     display: none;
 }
+
+/* EVENTS PAGES */
+
+.fa-circle {
+      animation: colorchange 50s;
+      -webkit-animation: colorchange 50s;
+    }
+
+    @keyframes colorchange
+    {
+      0%   {color: #00B3DF;}
+      33%  {color: #FCB316;}
+      66%  {color: #CE539E;}
+      100%  {color: #AAC02C;}
+    }
+
+    @-webkit-keyframes colorchange
+    {
+      0%   {color: #00B3DF;}
+      33%  {color: #FCB316;}
+      66%  {color: #CE539E;}
+      100%  {color: #AAC02C;}
+    }
+
+.btn-sm {
+    display: inline-block;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 10px 15px;
+    font-size: 18px;
+    border-radius: 4px;
+	text-decoration: none !important;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.btn-sm {
+    font-size: 16px !important;
+    border-radius: 30px !important;
+}
+
+.event-related {
+    padding: 0 10px;
+}
+
+.light-fill {
+    background-color: #F7F7F7 !important;
+}
+
+.node-type-event figcaption.image-caption p {
+    border-left: 1px solid #E6E6E6;
+    padding: 5px 0 0 10px;
+}
+
+.node-type-event figcaption {
+    padding: 0;
+}
+
+.node-type-event .region-postscript-first {
+    color: #3e3e3e;
+    font-size: 16px;
+    line-height: 1.67em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
 
 /*finance page*/
 
@@ -3004,6 +3079,7 @@ ul.pager-load-more li.pager-next {
 	list-style:none;
 	margin-right: 20px;
   padding: 0;
+	margin-bottom: 10px;
 }
 
 .banner-social {
@@ -3088,6 +3164,7 @@ ul.pager-load-more li.pager-next {
 .circle { border-radius: 50%; }
 .display-none-small { display: none; }
 .lc {text-transform: lowercase; }
+.light-fill { background-color: #F7F7F7 !important; }
 
 .m0  { margin:        0 !important }
 .mt0 { margin-top:    0 !important }
@@ -3772,13 +3849,17 @@ a.dsq-widget-user {
 .media-desc, .img-caption {
     border-bottom: 1px solid #E0E0E0;
     font-size: 16px;
-    color: #8e8e8e; /* lighter grey */
+    color: #767676;
     padding-bottom: 1em;
     display: block;
 }
 
 .media-desc p, .img-caption p {
     margin-bottom: 0;
+}
+
+.node-type-article .media-desc, .node-type-blog .media-desc, .node-type-event .media-desc, .node-type-blog .img-caption, .node-type-article .img-caption, .node-type-event .img-caption{
+    font-size: 90%;
 }
 
 .img-caption {
@@ -4764,6 +4845,10 @@ h1#section-title {
   margin: 5px 10px 20px 10px;
 }
 
+.field-name-event-information-card .block-card h3 {
+	font-size: 18px;
+}
+
 .pinned .block-card {
   min-height: 120px;
 }
@@ -4784,7 +4869,7 @@ h1#section-title {
 }
 
 .rate-widget-yesno .item-list ul li a {
-	padding: 3px 10px;
+  padding: 7px 15px;
 	border-radius: 4px;
 }
 
@@ -4793,8 +4878,49 @@ h1#section-title {
 	margin: 1em 0;
 }
 
-.rate-button.active {
-	background-color: inherit;
+.rate-yesno-btn {
+    background: #fff;
+    color: #000 !important;
+    border: 1px solid #E6E6E6;
+}
+
+.field-name-rate, .block-iied-features {
+	border-top: 1px solid #E6E6E6;
+	padding-top: 1em;
+}
+
+/* Sharing widget */
+
+.iiedFeatures button {
+	padding: 7px 15px;
+	font: 15px/1.5 'lato',Helvetica,Arial,sans-serif;
+}
+
+.iiedFeatures .icon-label {
+	font: 15px/1.5 'lato',Helvetica,Arial,sans-serif !important;
+	-webkit-font-smoothing: auto;
+}
+
+.iiedFeatures i.fa {
+	margin-right: 4px;
+	font-size: 16px;
+}
+
+.iiedFeatures ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	display: flex;
+	align-items: stretch;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.iiedFeatures ul li {
+	display: block;
+	/* float: left; */
+	/* width: 18%; */
+	flex: 0 1 auto;
 }
 
 /************************SMALL SCREEN SECTION********************/
