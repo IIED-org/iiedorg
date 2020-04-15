@@ -530,3 +530,7 @@ h2.block-title {
 .node p a:hover, .node p a:active, .node li a:hover, .node li a:active {
 	border-color: #FCB316 !important; /* orange */
 }
+
+.rate-widget .rate-button.active {
+  background: #FCB316; /* orange */
+}
