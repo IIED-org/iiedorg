@@ -1116,3 +1116,7 @@ margin-right: 36px;
 .social-list ul li {
     margin-right: 50px !important;
 }
+
+.node-type-one-page-container .rate-widget-1 {
+    float: left;
+}

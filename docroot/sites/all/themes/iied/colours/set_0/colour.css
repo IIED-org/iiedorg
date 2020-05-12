@@ -534,3 +534,7 @@ h2.block-title {
 .rate-widget .rate-button.active {
 	background: #00B3DF; /* blue */
 }
+
+.btn-share:hover, .btn-share:focus, .btn-share:active {
+    background-color: #00B3DF; /* blue */
+}

@@ -1,31 +1,54 @@
 .iiedFeatures ul {
   margin: 0;
-  padding: 0;
+  padding: 0 !important;
   list-style-type: none;
-  display: inline;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .iiedFeatures ul li {
   display: block;
-  float: left;
+  /*float: left;*/
+  flex: 0 1 auto;
 }
 
 .iiedFeatures button {
-  margin: 0 15px 1em 0;
-  padding: 5px 10px;
+  background: transparent;
   border: solid 1px #E0E0E0;
   border-radius: 4px;
   cursor: pointer;
-  transition: all 0.5s ease;
-  position: relative;
-  display: inline-block;
-  background: transparent;
+/*display: inline-block;*/
+  font: 15px/1.5 'lato',Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing: auto;
+  margin: 0 15px 1em 0;
   outline: none;
+  padding: 7px 14px;
+  position: relative;
   text-shadow: none;
+  /* transition: all 0.5s ease; */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  overflow: hidden;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: color, background-color;
+  transition-property: color, background-color;
 }
 
 .iiedFeatures button:hover a {
-  color: white !important;
+  color: #000 !important;
+}
+
+.iiedFeatures .icon-label {
+	font: 15px/1.5 'lato',Helvetica,Arial,sans-serif !important;
+	-webkit-font-smoothing: auto;
 }
 
 .copylink {
@@ -34,4 +57,44 @@
 
 .copylink.show {
   visibility: visible;
+}
+
+.iiedFeatures i.fa {
+	margin-right: 5px;
+	font-size: 16px;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+
+.iiedFeatures button:hover i.fa, .iiedFeatures button:focus i.fa, .iiedFeatures button:active i.fa {
+  color: #fff !important;
+  -webkit-transform: scale(1.3) translateZ(0);
+  transform: scale(1.3) translateZ(0);
+}
+
+#block-iied-features-iied-features-icons .iiedFeatures button  {
+  border-radius: 20px;
+  margin: 0 2px 20px 0;
+  padding: 4px 2px 3px 7px;
+  width: 32px;
+  height: 32px;;
+}
+
+.node-type-one-page-container #block-iied-features-iied-features {
+  max-width: 540px; /* size restriction for long reads */
+}
+
+.node-type-feature .block-iied-features {
+  max-width: 540px;
+  margin-top: 1em;
+}
+
+.node-type-one-page-container #block-iied-features-iied-features .iiedFeatures button {
+    padding: 7px;
 }
