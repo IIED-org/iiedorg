@@ -136,13 +136,13 @@ class EntityPagerViewsPluginStyle extends views_plugin_style {
     );
 
     // Remove unwanted inherited form elements.
-    $form['grouping'] = '';
+    $form['grouping'] = array();
 
     if ($this->uses_fields()) {
-      $form['row_class'] = '';
+      $form['row_class'] = array();
     }
-    $form['default_row_class'] = '';
-    $form['row_class_special'] = '';
+    $form['default_row_class'] = array();
+    $form['row_class_special'] = array();
   }
 
 }
