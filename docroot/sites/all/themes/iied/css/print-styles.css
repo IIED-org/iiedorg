@@ -1,7 +1,7 @@
 /**
  * Print stylesheet for iied.org
-* @version         1.0
-* @lastmodified    16.07.2020
+* @version         1.1
+* @lastmodified    24.11.2020
 */
 
 @media print {
@@ -66,6 +66,7 @@
   a:visited,
   a {
     background: transparent;
+    color: #520;
     text-decoration: underline;
     text-align: left;
   }
@@ -76,7 +77,6 @@
 
   a[href^="http"]:after {
     content: " <" attr(href) "> ";
-    color: #00f;
   }
 
   $a:after > img {
@@ -91,7 +91,8 @@
     content: " <" attr(href) "> ";
   }
 
-  .embedded-video {
+  .embedded-video,
+  .paragraphs-item-video-embed {
     display: none;
     width: 0 !important;
     height: 0 !important;
@@ -105,28 +106,25 @@
     overflow: hidden;
   }
 
-  .field-name-rate, .block-iied-features, #block-views-related-by-tags-block-3,
-
-    #zone-footer, .point, .btt, #zone-branding .grid-8,
+  .field-name-rate, .block-iied-features, #block-views-related-by-tags-block-3, .view-related-by-tags,
+    #zone-footer, .point, .btt, #zone-branding .grid-8, .btt, #zone-postscript4-wrapper, .print-none, #region-sidebar-second
 
    /* Check long reads and add more here!
 
-
-
     #breadcrumbs,
-    .site-title img, .post-tags */
-  #region-menu {
+    .site-title img, .post-tags */ {
     display: none;
   }
 
-  .entry:after {
-    content: "\ Add message here: copyright?";
+  /* messages before and after the content */
+  #section-content::after {
+    content: "\ This work is licensed under a Creative Commons Attribution 4.0 International License. You are free to copy and redistribute. ";
     color: #999 !important;
     font-size: 1em;
     padding-top: 30px;
   }
-  #header:before {
-    content: "\ Add message here, thanks?";
+  #zone-menu::before {
+    content: "\ Thank you for printing this page. ";
     color: #777 !important;
     font-size: 1em;
     padding-top: 30px;

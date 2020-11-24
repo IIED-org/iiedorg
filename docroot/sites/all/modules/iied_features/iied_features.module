@@ -126,15 +126,16 @@ function iied_features_content($lnk, $ttl, $linktext) {
     $facebook = '<li><button class="btn-share"><a class="share-facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=' . $lnk . '" title="Facebook '. $ttl . '"><i class="fa fa-facebook"></i><span class="icon-label">' . t("Share") . '</span></a></button></li>';
     $linkedin = '<li><button class="btn-share"><a class="share-linkedin" target="_blank" href="https://www.linkedin.com/sharing/share-offsite/?url=' . $lnk . '" title="LinkedIn '. $ttl . '"><i class="fa fa-linkedin"></i><span class="icon-label">' . t("Share") . '</span></a></button></li>';
     $email = '<li><button class="btn-share"><a class="share-email" title="Email '. $ttl . '" href="mailto:?subject=' . $ttl . '&body=' . t('I thought you might enjoy this from IIED:') . '%0D%0A%0D%0A' . $lnk .'"><i class="fa fa-envelope"></i><span class="icon-label">' . t("Email") . '</span></a></button></li>';
-    $copy = '<li><button class="btn-share js-copy-btn"><a class="share-url" title="Copy link to '. $ttl . '" href="#"><i class="fa fa-link"></i>&nbsp;<span class="copylink">Copy link</span></a></button></li>';
-    $content = '<div class="iiedFeatures"><ul>' . $twitter . $facebook . $linkedin . $email . $copy . '</ul></div>';
+    $copy = '<li><button class="btn-share js-copy-btn"><a class="share-url" title="Copy link to '. $ttl . '" href="#"><i class="fa fa-link"></i>&nbsp;<span class="copylink">Copy&nbsp;link</span></a></button></li>';
+    $print = '<li><button class="btn-share print-btn"><a class="share-print" title="Print/PDF" href="#" onclick="window.print();"><i class="fa fa-print"></i>&nbsp;<span class="printlink">Print/PDF</span></a></button></li>';
+    $content = '<div class="iiedFeatures"><ul>' . $twitter . $facebook . $linkedin . $email . $copy . $print . '</ul></div>';
   }
   else {
     $twitter = '<li><button class="btn-share"><a class="share-twitter" target="_blank" href="https://twitter.com/share?text=' . urlencode($ttl) . ', via @IIED&url=' . $lnk . '" title="Tweet '. $ttl . '"><i class="twitter fa fa-twitter"></i></a></button></li>';
     $facebook = '<li><button class="btn-share"><a class="share-facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=' . $lnk . '" title="Facebook '. $ttl . '"><i class="fa fa-facebook"></i></a></button></li>';
     $linkedin = '<li><button class="btn-share"><a class="share-linkedin" target="_blank" href="https://www.linkedin.com/sharing/share-offsite/?url=' . $lnk . '" title="LinkedIn '. $ttl . '"><i class="fa fa-linkedin"></i></a></button></li>';
     $email = '<li><button class="btn-share"><a class="share-email" title="Email '. $ttl . '" href="mailto:?subject=' . $ttl . '&body=' . t('I thought you might enjoy this from IIED:') . '%0D%0A%0D%0A' . $lnk .'"><i class="fa fa-envelope"></i></a></button></li>';
-    $content = '<div class="iiedFeatures"><ul>' . $email . $twitter . $facebook . $linkedin  . '</ul></div>';
+    $content = '<div class="iiedFeatures"><ul>' . $email . $twitter . $facebook . $linkedin . '</ul></div>';
   }
   return $content;
 }

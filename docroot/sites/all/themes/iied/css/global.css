@@ -4919,6 +4919,11 @@ h1#section-title {
 
 /* Sharing widget */
 
+.iiedFeatures .js-copy-btn,
+.iiedFeatures .print-btn {
+	display: none;
+}
+
 /*.iiedFeatures button {
 	padding: 7px 15px;
 	font: 15px/1.5 'lato',Helvetica,Arial,sans-serif;

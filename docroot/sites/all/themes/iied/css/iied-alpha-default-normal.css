@@ -1120,3 +1120,8 @@ margin-right: 36px;
 .node-type-one-page-container .rate-widget-1 {
     float: left;
 }
+
+.iiedFeatures .js-copy-btn,
+.iiedFeatures .print-btn {
+	display: block;
+}
