@@ -1119,7 +1119,19 @@ margin-right: 36px;
 
 .node-type-one-page-container .rate-widget-1 {
     float: left;
+		position: absolute;
+		width: 45%;
 }
+
+.social-list ul li {
+  margin-right: 50px !important;
+}
+
+.node-type-one-page-container #block-iied-features-iied-features {
+	max-width: 480px;
+	margin-right: 1em;
+}
+
 
 .iiedFeatures .js-copy-btn,
 .iiedFeatures .print-btn {

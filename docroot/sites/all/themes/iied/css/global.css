@@ -4888,6 +4888,14 @@ h1#section-title {
 	margin: 1em 0;
 }
 
+.node-type-one-page-container .rate-widget-1 {
+  right: 0;
+  top: 0;
+}
+.node-type-one-page-container .rate-description {
+  padding-top: 28px;
+}
+
 .rate-yesno-btn {
     background: #fff;
     color: #000 !important;
@@ -4902,9 +4910,7 @@ h1#section-title {
 
 .rate-info, .rate-description {
   color: #3e3e3e;
-	float: left;
-  font-size: 1em;
-	padding-top: 8px;
+	margin-bottom: 7px;
 }
 
 #comments .indented {
@@ -4924,11 +4930,17 @@ h1#section-title {
 	display: none;
 }
 
-/*.iiedFeatures button {
-	padding: 7px 15px;
-	font: 15px/1.5 'lato',Helvetica,Arial,sans-serif;
+.iiedFeatures button {
+	margin: 0 10px 20px 0;
+	padding: 5px 10px;
+	font: 15px/1.5 Lato,Helvetica,Arial,sans-serif;
 }
 
+.iiedFeatures i.fa {
+  display: block;
+}
+
+/*
 .iiedFeatures .icon-label {
 	font: 15px/1.5 'lato',Helvetica,Arial,sans-serif !important;
 	-webkit-font-smoothing: auto;
