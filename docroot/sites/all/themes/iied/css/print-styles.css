@@ -118,7 +118,7 @@
 
   /* messages before and after the content */
   #section-content::after {
-    content: "\ This work is licensed under a Creative Commons Attribution 4.0 International License. You are free to copy and redistribute. ";
+    content: "\ You are free to copy and redistribute this work under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International Licence (CC BY-NC-ND 4.0).";
     color: #999 !important;
     font-size: 1em;
     padding-top: 30px;
