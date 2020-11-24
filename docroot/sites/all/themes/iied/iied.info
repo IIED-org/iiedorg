@@ -78,9 +78,17 @@ zones[section7] = 'Section Level 7'
 zones[section8] = 'Section Level 8'
 zones[section9] = 'Section Level 9'
 zones[section10] = 'Section Level 10'
+
+; Stylesheets
 css[global.css][name] = 'Your custom global styles'
 css[global.css][description] = 'This file holds all the globally active custom CSS of your theme.'
 css[global.css][options][weight] = '10'
+
+css[print-styles.css][name] = Styles for printing
+css[print-styles.css][description] = Print style overrides
+css[print-styles.css][options][weight] = 20
+css[print-styles.css][options][media] = print
+
 settings[alpha_grid] = 'alpha_default'
 settings[alpha_primary_alpha_default] = 'normal'
 settings[alpha_responsive] = '1'
