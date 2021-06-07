@@ -4971,6 +4971,7 @@ h1#section-title {
 	}
 	img#fiftylogo {
 		max-width: 35px !important;
+		max-height: 35px !important;
 	}
 
 }
@@ -4980,6 +4981,7 @@ h1#section-title {
 
 img#fiftylogo {
 	max-width: 55px;
+	max-height: 55px;
 }
 
 /* Header searchbox and menu margin */
@@ -5030,6 +5032,7 @@ ul.view-blog-list li p {
 
 	img#fiftylogo {
 		max-width: 43px !important;
+		max-height: 43px !important;
 	}
 	/* Individual theme pages */
 
@@ -5073,5 +5076,6 @@ div.two-column-last p {
 	}
 	img#fiftylogo {
 		max-width: 60px !important;
+		max-height: 60px !important;
 	}
 }
