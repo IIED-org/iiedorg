@@ -1890,10 +1890,6 @@ ul.objectives li {
     padding: 0 10px;
 } */
 
-.light-fill {
-    background-color: #F7F7F7 !important;
-}
-
 .node-type-event figcaption.image-caption p {
     border-left: 1px solid #E6E6E6;
     padding: 5px 0 0 10px;
@@ -3165,6 +3161,7 @@ ul.pager-load-more li.pager-next {
 .display-none-small { display: none; }
 .lc {text-transform: lowercase; }
 .light-fill { background-color: #F7F7F7 !important; }
+.white-fill { background-color: #ffffff !important; }
 .d-block {display: block; }
 .d-none {display: none; }
 
@@ -4921,6 +4918,18 @@ h1#section-title {
 
 #comments {
 	border-top: 1px solid #E6E6E6;
+}
+
+/* IIED fifty year birthday badge */
+.f-years svg {
+		color: #00B3DF;
+		fill: #000000;
+		max-width: 108px;
+		height: auto;
+}
+
+.f-years h2 {
+	  font-size: 22px;
 }
 
 /* Sharing widget */

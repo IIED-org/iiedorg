@@ -538,3 +538,7 @@ h2.block-title {
 .btn-share:hover {
   background-color: #AAC02C; /* green */
 }
+
+.current-colour svg {
+  color: #AAC02C !important; /* green */
+}
