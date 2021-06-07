@@ -4949,50 +4949,7 @@ h1#section-title {
   display: block;
 }
 
-/*
-.iiedFeatures .icon-label {
-	font: 15px/1.5 'lato',Helvetica,Arial,sans-serif !important;
-	-webkit-font-smoothing: auto;
-}
-
-.iiedFeatures i.fa {
-	margin-right: 4px;
-	font-size: 16px;
-}
-
-.iiedFeatures ul {
-	margin: 0;
-	padding: 0;
-	list-style-type: none;
-	display: flex;
-	align-items: stretch;
-	justify-content: space-between;
-	width: 100%;
-}*/
-
-/*.iiedFeatures ul li {
-	display: block; */
-	/* float: left; */
-	/* width: 18%; */
-/*	flex: 0 1 auto;
-} */
-
-/************************SMALL SCREEN SECTION********************/
-
-/* .responsive-layout-mobile .zone-branding-wrapper {
-    margin-bottom: 1em;
-} */
-
-/*.responsive-layout-mobile .region-header-first {
-    margin-bottom: 1em;
-} this was margin under themes, no longer needed*/
-
-/*.responsive-layout-mobile .set-label:before {
-    margin-left: 0.3em;
-}*/
-
 /******************* 50 years logo ******************************/
-
 
 .logos div {
 	display: inline-block;
@@ -5007,7 +4964,8 @@ img#fiftylogo {
 	margin-top: 28px;
 }
 
-@media only screen and (max-width: 370px) { /* Smallest screen sizes */
+@media only screen and (max-width: 370px) {
+/******************** Smallest screen sizes *********************/
 	img#fiftylogo {
 		max-width: 35px;
 	}
@@ -5061,30 +5019,15 @@ ul.view-blog-list li p {
 
 }
 
-@media screen and (min-width: 1020px) {
-div.logo-img {
-	width: auto !important;
-	overflow: visible;
-    margin-left: -45px;
-}
-div.logo-img img {
-	width: auto !important;
-}
-img#fiftylogo {
-	max-width: 50px !important;
-}
-
-}
-
 @media only screen and (min-width: 480px) and (max-width: 739px) {
 /******************** mobile landscape styles *******************/
 
 	div.logo-img {
-		width: auto;
+		width: 200px !important;
 	}
 
 	div.logo-img img {
-		width: 200px;
+		width: 200px !important;
 	}
 
 	/* Individual theme pages */
@@ -5116,4 +5059,19 @@ div.two-column-last p {
     margin-top: -70px;
 }
 
+}
+
+@media screen and (min-width: 1020px) {
+	/******************** Extra wide styles   **********************/
+	div.logo-img {
+		width: auto !important;
+		overflow: visible;
+	    margin-left: -45px;
+	}
+	div.logo-img img {
+		width: auto !important;
+	}
+	img#fiftylogo {
+		max-width: 50px !important;
+	}
 }
