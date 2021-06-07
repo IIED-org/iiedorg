@@ -130,15 +130,6 @@ li.menu-52767 {
 
 div.logo-img {
 	width: auto;
-	overflow:visible;
-}
-
-div.logo-img img {
-	width: 180px;
-}
-
-img#fiftylogo {
-	max-width: 35px;
 }
 
 /*#block-search-form { no longer needed
@@ -357,3 +348,15 @@ margin: 11px 0 0 55px;
 .display-none-small { display: block !important; }
 
 /*-- end 2019 new style --*/
+
+div.logo-img {
+	width: 180px;
+}
+
+div.logo-img img {
+	width: 180px;
+}
+
+img#fiftylogo {
+	max-width: 35px;
+}

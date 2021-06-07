@@ -4993,9 +4993,11 @@ h1#section-title {
 
 /******************* 50 years logo ******************************/
 
+
 .logos div {
-		display: inline-block;
+	display: inline-block;
 }
+
 img#fiftylogo {
 	max-width: 50px;
 }
@@ -5005,10 +5007,15 @@ img#fiftylogo {
 	margin-top: 28px;
 }
 
-
-@media only screen and (max-width: 380px) {
-	.fiftylogo-img {
-		display: none !important;	/* Hide on smallest screens */
+@media only screen and (max-width: 370px) { /* Smallest screen sizes */
+	img#fiftylogo {
+		max-width: 35px;
+	}
+	div.logo-img {
+		width: 55px;
+	}
+	div.logo-img img {
+		width: 160px;
 	}
 }
 
@@ -5060,6 +5067,10 @@ div.logo-img {
 	overflow: visible;
     margin-left: -45px;
 }
+img#fiftylogo {
+	max-width: 50px !important;
+}
+
 }
 
 @media only screen and (min-width: 480px) and (max-width: 739px) {
@@ -5072,6 +5083,7 @@ div.logo-img {
 	div.logo-img img {
 		width: 200px;
 	}
+
 	/* Individual theme pages */
 
 .theme-caption {
