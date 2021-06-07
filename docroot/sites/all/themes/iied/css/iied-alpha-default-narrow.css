@@ -134,7 +134,11 @@ div.logo-img {
 }
 
 div.logo-img img {
-	width: auto;
+	width: 180px;
+}
+
+img#fiftylogo {
+	max-width: 35px;
 }
 
 /*#block-search-form { no longer needed

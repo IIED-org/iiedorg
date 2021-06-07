@@ -27,7 +27,7 @@
         break;
 
       case 'branding':
-		$vars['site_name'] = $theme->page['site_name'];
+		    $vars['site_name'] = $theme->page['site_name'];
         $vars['linked_site_name'] = l($vars['site_name'], '<front>', array('attributes' => array('rel' => 'home', 'title' => t('Home')), 'html' => TRUE));
         $vars['site_slogan'] = $theme->page['site_slogan'];
         $vars['site_name_hidden'] = $theme->page['site_name_hidden'];
@@ -36,7 +36,10 @@
 		    $vars['logopng'] = '/sites/all/themes/iied/colours/set_' . date('d') % 4 . '/logo.png';
         $vars['logo_img'] = $vars['logo'] ? '<img src="' . $vars['logo'] . '" alt="IIED logo" id="logo" onerror="this.src=' . $vars['logopng'] . '" />' : '';
         $vars['linked_logo_img'] = $vars['logo'] ? l($vars['logo_img'], '<front>', array('attributes' => array('rel' => 'home', 'title' => 'IIED'), 'html' => TRUE)) : '';
+        $vars['fiftylogo'] = '/sites/all/themes/iied/colours/set_' . date('d') % 4 . '/50years.svg';
+        $vars['fiftylogo_img'] = $vars['fiftylogo'] ? '<img src="' . $vars['fiftylogo'] . '" alt="fifty years" id="fiftylogo"/>' : '';
         break;
+
     }
   }
  }

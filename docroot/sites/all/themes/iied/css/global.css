@@ -4982,6 +4982,27 @@ h1#section-title {
     margin-left: 0.3em;
 }*/
 
+/******************* 50 years logo ******************************/
+
+.logos div {
+		display: inline-block;
+}
+img#fiftylogo {
+	max-width: 50px;
+}
+
+.fiftylogo-img {
+	vertical-align: top;
+	margin-top: 28px;
+}
+
+
+@media only screen and (max-width: 380px) {
+	.fiftylogo-img {
+		display: none !important;	/* Hide on smallest screens */
+	}
+}
+
 @media only screen and (max-width: 480px) {
 /******************* Mobile portrait mode ***********************/
 
@@ -5039,6 +5060,9 @@ div.logo-img {
 		width: auto;
 	}
 
+	div.logo-img img {
+		width: 200px;
+	}
 	/* Individual theme pages */
 
 .theme-caption {
