@@ -1138,14 +1138,10 @@ margin-right: 36px;
 	display: block;
 }
 
-div.logo-img {
-	width: 250px;
-}
-
-div.logo-img img {
-	width: 250px;
+div.logo-img, div.logo-img img {
+	width: 245px;
 }
 
 img#fiftylogo {
-	max-width: 40px;
+	max-width: 52px;
 }

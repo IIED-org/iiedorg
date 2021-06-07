@@ -4955,10 +4955,6 @@ h1#section-title {
 	display: inline-block;
 }
 
-img#fiftylogo {
-	max-width: 50px;
-}
-
 .fiftylogo-img {
 	vertical-align: top;
 	margin-top: 28px;
@@ -4966,19 +4962,25 @@ img#fiftylogo {
 
 @media only screen and (max-width: 370px) {
 /******************** Smallest screen sizes *********************/
-	img#fiftylogo {
-		max-width: 35px;
-	}
+
 	div.logo-img {
-		width: 55px;
+		width: 57px;
 	}
 	div.logo-img img {
 		width: 160px;
 	}
+	img#fiftylogo {
+		max-width: 35px !important;
+	}
+
 }
 
 @media only screen and (max-width: 480px) {
 /******************* Mobile portrait mode ***********************/
+
+img#fiftylogo {
+	max-width: 55px;
+}
 
 /* Header searchbox and menu margin */
   #region-search, #region-menu {
@@ -5022,14 +5024,13 @@ ul.view-blog-list li p {
 @media only screen and (min-width: 480px) and (max-width: 739px) {
 /******************** mobile landscape styles *******************/
 
-	div.logo-img {
+	div.logo-img, div.logo-img img {
 		width: 200px !important;
 	}
 
-	div.logo-img img {
-		width: 200px !important;
+	img#fiftylogo {
+		max-width: 43px !important;
 	}
-
 	/* Individual theme pages */
 
 .theme-caption {
@@ -5072,6 +5073,6 @@ div.two-column-last p {
 		width: auto !important;
 	}
 	img#fiftylogo {
-		max-width: 50px !important;
+		max-width: 60px !important;
 	}
 }

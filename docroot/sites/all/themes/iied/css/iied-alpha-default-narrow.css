@@ -349,14 +349,10 @@ margin: 11px 0 0 55px;
 
 /*-- end 2019 new style --*/
 
-div.logo-img {
-	width: 180px;
-}
-
-div.logo-img img {
-	width: 180px;
+div.logo-img, div.logo-img img {
+	width: 175px;
 }
 
 img#fiftylogo {
-	max-width: 35px;
+	max-width: 37px;
 }
