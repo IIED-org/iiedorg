@@ -5068,7 +5068,7 @@ div.logo-img {
     margin-left: -45px;
 }
 div.logo-img img {
-	width: auto;
+	width: auto !important;
 }
 img#fiftylogo {
 	max-width: 50px !important;
