@@ -5063,7 +5063,7 @@ ul.view-blog-list li p {
 
 @media screen and (min-width: 1020px) {
 div.logo-img {
-	width: auto;
+	width: auto !important;
 	overflow: visible;
     margin-left: -45px;
 }
