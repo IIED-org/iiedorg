@@ -5065,12 +5065,11 @@ div.two-column-last p {
 @media screen and (min-width: 1020px) {
 	/******************** Extra wide styles   **********************/
 	div.logo-img {
-		width: auto !important;
 		overflow: visible;
-	    margin-left: -45px;
+	  margin-left: -45px;
 	}
-	div.logo-img img {
-		width: auto !important;
+	div.logo-img, div.logo-img img {
+		width: 260px !important;
 	}
 	img#fiftylogo {
 		max-width: 60px !important;
