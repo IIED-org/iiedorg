@@ -1137,3 +1137,15 @@ margin-right: 36px;
 .iiedFeatures .print-btn {
 	display: block;
 }
+
+div.logo-img {
+	width: auto;
+}
+
+div.logo-img img {
+	width: 220px;
+}
+
+img#fiftylogo {
+	max-width: 50px;
+}

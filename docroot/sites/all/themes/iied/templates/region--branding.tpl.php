@@ -3,17 +3,22 @@
      <?php print $content; ?>
      <?php if ($linked_logo_img || $site_name || $site_slogan): ?>
     <div class="branding-data clearfix">
-      <?php if ($linked_logo_img): ?>
-      <div class="logo-img">
-      	<?php print $linked_logo_img; ?>
-       </div>
+      <div class="logos">
+        <?php if ($linked_logo_img): ?>
+        <div class="logo-img">
+        	<?php print $linked_logo_img; ?>
+        </div>
+        <div class="fiftylogo-img">
+          <?php print $fiftylogo_img; ?>
+        </div>
+      </div>
       <?php endif; ?>
       <?php if ($site_name || $site_slogan): ?>
       <?php $class = $site_name_hidden && $site_slogan_hidden ? ' element-invisible' : ''; ?>
-      <hgroup class="site-name-slogan<?php print $class; ?>">        
+      <hgroup class="site-name-slogan<?php print $class; ?>">
         <?php if ($site_name): ?>
         <?php $class = $site_name_hidden ? ' element-invisible' : ''; ?>
-        <?php if ($is_front): ?>        
+        <?php if ($is_front): ?>
         <h1 class="site-name<?php print $class; ?>"><?php print $linked_site_name; ?></h1>
         <?php else: ?>
         <h2 class="site-name<?php print $class; ?>"><?php print $linked_site_name; ?></h2>
