@@ -4974,6 +4974,11 @@ h1#section-title {
 		max-height: 35px !important;
 	}
 
+	/* Header searchbox and menu margin */
+	  #region-search, #region-menu {
+	    margin-left: 110px !important;
+	  }
+
 }
 
 @media only screen and (max-width: 480px) {
@@ -4986,7 +4991,7 @@ img#fiftylogo {
 
 /* Header searchbox and menu margin */
   #region-search, #region-menu {
-    margin-left: 110px;
+    margin-left: 160px;
   }
 
 .col {
@@ -5061,6 +5066,11 @@ div.two-column-last p {
 /* header */
 #region-search {
     margin-top: -70px;
+}
+
+/* Header searchbox and menu margin */
+#region-search, #region-menu {
+  margin-left: 260px;
 }
 
 }
