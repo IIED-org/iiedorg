@@ -9,7 +9,7 @@
         	<?php print $linked_logo_img; ?>
         </div>
         <div class="fiftylogo-img">
-          <?php print $fiftylogo_img; ?>
+          <?php print $linked_fiftylogo_img; ?>
         </div>
       </div>
       <?php endif; ?>

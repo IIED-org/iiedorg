@@ -38,6 +38,11 @@
         $vars['linked_logo_img'] = $vars['logo'] ? l($vars['logo_img'], '<front>', array('attributes' => array('rel' => 'home', 'title' => 'IIED'), 'html' => TRUE)) : '';
         $vars['fiftylogo'] = '/sites/all/themes/iied/colours/set_' . date('d') % 4 . '/50years.svg';
         $vars['fiftylogo_img'] = $vars['fiftylogo'] ? '<img src="' . $vars['fiftylogo'] . '" alt="fifty years" id="fiftylogo"/>' : '';
+        $vars['linked_fiftylogo_img'] = l($vars['fiftylogo_img'], '/iied-50-protecting-people-planet-for-half-century', array(
+          'attributes' => array('rel' => 'home', 'title' => 'IIED @50'), 'query' => array(
+                'utm_source' => 'nav',
+                'utm_medium' => 'web'
+              ), 'html' => TRUE));
         break;
 
     }
