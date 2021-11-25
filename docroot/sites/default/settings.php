@@ -251,16 +251,16 @@ $drupal_hash_salt = '0_nxhVMhvmb0DE4CDklegK2_R9IoCGAMZD_IaaJRIbw';
 // (Drupal 5 or 6) or $databases (Drupal 7 or 8) as described in comments above.
 if (file_exists('/var/www/site-php')) {
   // Delay the initial database connection.
-  $conf['acquia_hosting_settings_autoconnect'] = FALSE;
+  // $conf['acquia_hosting_settings_autoconnect'] = FALSE;
   require('/var/www/site-php/iiedorg/iiedorg-settings.inc');
   // Alter the charset and collation of the databases.
-  $databases['default']['default']['driver'] = 'mysql';
-  $databases['default']['default']['charset'] = 'utf8mb4';
-  $databases['default']['default']['collation'] = 'utf8mb4_general_ci';
-  $databases['iiedorg']['default']['charset'] = 'utf8mb4';
-  $databases['iiedorg']['default']['collation'] = 'utf8mb4_general_ci';
-  // Now connect to the default database.
-  acquia_hosting_db_choose_active();
+  // $databases['default']['default']['driver'] = 'mysql';
+  // $databases['default']['default']['charset'] = 'utf8mb4';
+  // $databases['default']['default']['collation'] = 'utf8mb4_general_ci';
+  // $databases['iiedorg']['default']['charset'] = 'utf8mb4';
+  // $databases['iiedorg']['default']['collation'] = 'utf8mb4_general_ci';
+  // // Now connect to the default database.
+  // acquia_hosting_db_choose_active();
 }
 
 /* Set Acquia search to read-write on dev & stage */
