@@ -4,4 +4,7 @@ docroot/sites/*/files
 docroot/sites/*/private
 docroot/sites/default/settings.local.php
 
+# Ignore Mac files and database dumps
 .DS_Store
+ *.sql
+*.sql.*
