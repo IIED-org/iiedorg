@@ -60,6 +60,9 @@ DirectoryIndex index.php index.html index.htm
 # Various rewrite rules.
 <IfModule mod_rewrite.c>
   RewriteEngine on
+  # Determine whether environment is production and serve different robots.txt
+  RewriteCond %{ENV:AH_SITE_ENVIRONMENT} !prod
+  RewriteRule ^robots\.txt$ robots-noindex.txt [L]
 
   # Redirect old pubs links before setting https
   RewriteCond %{QUERY_STRING} ^o=(.*)$
