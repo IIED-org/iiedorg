@@ -6,3 +6,15 @@ config:
   ah_site_group: iiedorg
   php: '7.4'
   webroot: docroot
+services:
+  appserver:
+    overrides:
+      environment:
+        DRUSH_OPTIONS_ROOT: '/app/docroot'
+        DRUSH_OPTIONS_URI: 'https://d7iiedorg.lndo.site'
+  adminer:
+    type: compose
+    services:
+      image: dehy/adminer
+      command: '/bin/s6-svscan /etc/services.d'
+    portforward: true
