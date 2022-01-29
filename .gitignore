@@ -8,3 +8,6 @@ docroot/sites/default/settings.local.php
 .DS_Store
  *.sql
 *.sql.*
+
+# Ignore IDE config files (eg. VSCode)
+*.code-workspace 
