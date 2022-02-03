@@ -171,8 +171,15 @@ function drush_migration_filepath() {
         )
         ->execute();
       if ($replace_basic) {
-        $log_message = dt("Replaced @count link(s) to basic file path with @new_path", array('@count' => $replace_basic, '@new_path' => $new_basic_path));
-        $replacement_log[] = $log_message;
+        $log_message = dt(
+          "Replaced @count link(s) to @old_path with @new_path in @table",
+          array(
+            '@count' => $replace_basic,
+            '@old_path' => $old_basic_path,
+            '@new_path' => $new_basic_path,
+            '@table' => $table_name,
+          )
+        );        $replacement_log[] = $log_message;
         drush_print($log_message);
       }
 
@@ -187,7 +194,13 @@ function drush_migration_filepath() {
         )
         ->execute();
       if ($replace_styles) {
-        $log_message = dt("Replaced @count link(s) to styles file path with @new_path", array('@count' => $replace_styles, '@new_path' => $new_styles_path));
+        $log_message = dt("Replaced @count link(s) to @old_path with @new_path in @table",
+        array(
+          '@count' => $replace_styles,
+          '@old_path' => $old_styles_path,
+          '@new_path' => $new_styles_path,
+          '@table' => $table_name,
+        ));
         $replacement_log[] = $log_message;
         drush_print($log_message);
       }
@@ -203,7 +216,13 @@ function drush_migration_filepath() {
       )
       ->execute();
       if ($replace_https_links) {
-        $log_message = dt("Replaced @count link(s) to @old_path with @new_path", array('@count' => $replace_https_links, '@old_path' => $old_https_path, '@new_path' => $new_https_path));
+        $log_message = dt("Replaced @count link(s) to @old_path with @new_path in @table",
+        array(
+          '@count' => $replace_https_links,
+          '@old_path' => $old_https_path,
+          '@new_path' => $new_https_path,
+          '@table' => $table_name,
+        ));
         $replacement_log[] = $log_message;
         drush_print($log_message);
       }
@@ -218,8 +237,15 @@ function drush_migration_filepath() {
       )
       ->execute();
       if ($replace_http_links) {
-        $log_message = dt("Replaced @count link(s) to @old_path with @new_path", array('@count' => $replace_https_links, '@old_path' => $old_http_path, '@new_path' => $new_http_path));
-        $replacement_log[] = $log_message;
+        $log_message = dt(
+          "Replaced @count link(s) to @old_path with @new_path in @table",
+          array(
+            '@count' => $replace_http_links,
+            '@old_path' => $old_http_path,
+            '@new_path' => $new_http_path,
+            '@table' => $table_name,
+          )
+        );        $replacement_log[] = $log_message;
         drush_print($log_message);
       }
       // @todo - add block_custom to the target tables for replace query.
