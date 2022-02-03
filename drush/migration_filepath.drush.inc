@@ -144,23 +144,22 @@ function drush_migration_filepath() {
 
     // The rich text fields with links to the above patterns are as follows.
     $fields_to_update = [
-      'body',
-      'field_additional_resources',
-      'field_basic_text',
-      'field_contact_0',
-      'field_description',
-      'field_downloads',
-      'field_funded_by',
-      'field_glossary',
-      'field_howtoapply',
-      'field_links',
-      'field_overlay_text',
-      'field_series_badge',
-      'field_source',
+      'block_custom' => 'body',
+      'field_data_body' => 'body_value',
+      'field_data_field_additional_resources' => 'field_additional_resources_value',
+      'field_data_field_basic_text' => 'field_basic_text_value',
+      'field_data_field_contact_0' => 'field_contact_0_value',
+      'field_data_field_description' => 'field_description_value',
+      'field_data_field_downloads' => 'field_downloads_value',
+      'field_data_field_funded_by' => 'field_funded_by_value',
+      'field_data_field_glossary' => 'field_glossary_value',
+      'field_data_field_howtoapply' => 'field_howtoapply_value',
+      'field_data_field_links' => 'field_links_value',
+      'field_data_field_overlay_text' => 'field_overlay_text_value',
+      'field_data_field_series_badge' => 'field_series_badge_value',
+      'field_data_field_source' => 'field_source_value',
     ];
-    foreach ($fields_to_update as $field_to_update) {
-      $table_name = 'field_data_' . $field_to_update;
-      $column_name = $field_to_update . '_value';
+    foreach ($fields_to_update as $table_name => $column_name) {
       // Replace references to links to files in the sites/default/files/ .
       $old_basic_path = 'sites/default/files/' . $filename;
       $new_basic_path = 'sites/default/files' . $target_directory_for_file . '/' . $filename;
@@ -172,7 +171,7 @@ function drush_migration_filepath() {
         )
         ->execute();
       if ($replace_basic) {
-        $log_message = dt("Replaced @count links to basic file path with @new_path", array('@count' => $replace_basic, '@new_path' => $new_basic_path));
+        $log_message = dt("Replaced @count link(s) to basic file path with @new_path", array('@count' => $replace_basic, '@new_path' => $new_basic_path));
         $replacement_log[] = $log_message;
         drush_print($log_message);
       }
@@ -188,10 +187,42 @@ function drush_migration_filepath() {
         )
         ->execute();
       if ($replace_styles) {
-        $log_message = dt("Replaced @count links to styles file path with @new_path", array('@count' => $replace_styles, '@new_path' => $new_styles_path));
+        $log_message = dt("Replaced @count link(s) to styles file path with @new_path", array('@count' => $replace_styles, '@new_path' => $new_styles_path));
         $replacement_log[] = $log_message;
         drush_print($log_message);
       }
+
+      // Replace https://www.iied.org/sites/default/files/ with /sites/default/files/
+      $old_https_path = 'https://www.iied.org/sites/default/files/';
+      $new_https_path = '/sites/default/files/';
+      $replace_https_links = db_update($table_name)
+      ->expression(
+        $column_name,
+        'replace(' . $column_name . ', :old, :new)',
+        [':old' => $old_https_path, ':new' =>  $new_https_path]
+      )
+      ->execute();
+      if ($replace_https_links) {
+        $log_message = dt("Replaced @count link(s) to @old_path with @new_path", array('@count' => $replace_https_links, '@old_path' => $old_https_path, '@new_path' => $new_https_path));
+        $replacement_log[] = $log_message;
+        drush_print($log_message);
+      }
+      // Replace  http://www.iied.org/sites/default/files/ with /sites/default/files/
+      $old_http_path = 'http://www.iied.org/sites/default/files/';
+      $new_http_path = '/sites/default/files/';
+      $replace_http_links = db_update($table_name)
+      ->expression(
+        $column_name,
+        'replace(' . $column_name . ', :old, :new)',
+        [':old' => $old_http_path, ':new' =>  $new_http_path]
+      )
+      ->execute();
+      if ($replace_http_links) {
+        $log_message = dt("Replaced @count link(s) to @old_path with @new_path", array('@count' => $replace_https_links, '@old_path' => $old_http_path, '@new_path' => $new_http_path));
+        $replacement_log[] = $log_message;
+        drush_print($log_message);
+      }
+      // @todo - add block_custom to the target tables for replace query.
     }
 
     $count++;
