@@ -115,6 +115,8 @@ function drush_migration_filepath() {
 
     // Each file should go to the directory based on its timestamp.
     $target_directory_for_file = $target_directory . '/' . generate_directory_name($file->timestamp);
+    // Trim off the starting backslash, if present.
+    $target_directory_for_file = ltrim($target_directory_for_file, "/");
 
     // Construct a dummy URI for it so we can use the stream wrappers.
     $new_directory = file_build_uri($target_directory_for_file);
@@ -208,7 +210,7 @@ function drush_migration_filepath() {
 
       // Replace references to this file in the field_data_body field.
       $old_styles_path = 'public/' . $filename;
-      $new_styles_path = 'public' . $target_directory_for_file . '/' . $filename;
+      $new_styles_path = 'public/' . $target_directory_for_file . '/' . $filename;
       $replace_styles = db_update($table_name)
         ->expression(
           $column_name,
