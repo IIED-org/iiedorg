@@ -160,9 +160,32 @@ function drush_migration_filepath() {
       'field_data_field_source' => 'field_source_value',
     ];
     foreach ($fields_to_update as $table_name => $column_name) {
-      // Replace references to links to files in the sites/default/files/ .
-      $old_basic_path = 'sites/default/files/' . $filename;
-      $new_basic_path = 'sites/default/files' . $target_directory_for_file . '/' . $filename;
+    // Replace  http://www.iied.org/files with /sites/default/files
+      $old_files_path = 'http://www.iied.org/files/';
+      $new_files_path = '/sites/default/files/';
+      $replace_files_links = db_update($table_name)
+      ->expression(
+        $column_name,
+        'replace(' . $column_name . ', :old, :new)',
+        [':old' => $old_files_path, ':new' =>  $new_files_path]
+      )
+      ->execute();
+      if ($replace_files_links) {
+        $log_message = dt(
+          "Replaced @count link(s) to @old_path with @new_path in @table",
+          array(
+            '@count' => $replace_files_links,
+            '@old_path' => $old_files_path,
+            '@new_path' => $new_files_path,
+            '@table' => $table_name,
+          )
+        );
+        $replacement_log[] = $log_message;
+        drush_print($log_message);
+      }
+      // Replace references to links to files in sites/default/files.
+      $old_basic_path = '/sites/default/files/' . $filename;
+      $new_basic_path = '/sites/default/files/' . $target_directory_for_file . '/' . $filename;
       $replace_basic = db_update($table_name)
         ->expression(
           $column_name,

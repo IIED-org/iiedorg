@@ -273,6 +273,8 @@ if (isset($conf['memcache_servers'])) {
   $conf['cache_class_cache_form'] = 'DrupalDatabaseCache';
 }
 
+$conf['image_allow_insecure_derivatives'] = TRUE;
+
 if (file_exists(DRUPAL_ROOT . '/' . conf_path() . '/settings.local.php')) {
     include DRUPAL_ROOT . '/' . conf_path() . '/settings.local.php';
 }
