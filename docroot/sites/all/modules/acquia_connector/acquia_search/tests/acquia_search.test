@@ -175,6 +175,7 @@ class AcquiaSearchUnitTestCase extends DrupalUnitTestCase {
   public function testApacheSolrOverride() {
 
     global $conf;
+    $environment = acquia_search_get_environment();
 
     $acquia_identifier = $this->id;
     $site_folder = $this->randomName(32);
@@ -206,8 +207,7 @@ class AcquiaSearchUnitTestCase extends DrupalUnitTestCase {
     acquia_search_add_apachesolr_overrides($core_service, $environments);
 
     $this->assertTrue(empty($conf['apachesolr_environments']['ACQUIA']['conf']['apachesolr_read_only']));
-    $this->assertTrue(!empty($conf['apachesolr_environments']['ACQUIA']['conf']['acquia_search_key']));
-    $this->assertIdentical($conf['apachesolr_environments']['ACQUIA']['url'], "http://{$solr_hostname}/solr/{$acquia_identifier}.dev.{$site_folder}");
+    $this->assertIdentical($conf['apachesolr_environments']['ACQUIA']['url'], $environment['url']);
 
     // Acquia dev environment and a DB name.
     unset($conf['apachesolr_environments']);
@@ -218,8 +218,7 @@ class AcquiaSearchUnitTestCase extends DrupalUnitTestCase {
     acquia_search_add_apachesolr_overrides($core_service, $environments);
 
     $this->assertTrue(empty($conf['apachesolr_environments']['ACQUIA']['conf']['apachesolr_read_only']));
-    $this->assertTrue(!empty($conf['apachesolr_environments']['ACQUIA']['conf']['acquia_search_key']));
-    $this->assertIdentical($conf['apachesolr_environments']['ACQUIA']['url'], "http://{$solr_hostname}/solr/{$acquia_identifier}.dev.{$ah_db_name}");
+    $this->assertIdentical($conf['apachesolr_environments']['ACQUIA']['url'], $environment['url']);
 
     // Acquia Test environment and a DB name. According to the mock, no cores
     // available for the Test environment so it is read only.
@@ -232,7 +231,7 @@ class AcquiaSearchUnitTestCase extends DrupalUnitTestCase {
 
     $this->assertTrue($conf['apachesolr_environments']['ACQUIA']['conf']['apachesolr_read_only']);
     $this->assertTrue(empty($conf['apachesolr_environments']['ACQUIA']['conf']['acquia_search_key']));
-    $this->assertTrue(empty($conf['apachesolr_environments']['ACQUIA']['url']));
+    $this->assertIdentical($conf['apachesolr_environments']['ACQUIA']['url'], $environment['url']);
 
     // Acquia Prod environment and a DB name but AH_PRODUCTION isn't set - so
     // read only.
@@ -245,7 +244,7 @@ class AcquiaSearchUnitTestCase extends DrupalUnitTestCase {
 
     $this->assertTrue($conf['apachesolr_environments']['ACQUIA']['conf']['apachesolr_read_only']);
     $this->assertTrue(empty($conf['apachesolr_environments']['ACQUIA']['conf']['acquia_search_key']));
-    $this->assertTrue(empty($conf['apachesolr_environments']['ACQUIA']['url']));
+    $this->assertIdentical($conf['apachesolr_environments']['ACQUIA']['url'], $environment['url']);
 
     // Acquia Prod environment and a DB name and AH_PRODUCTION is set - so it
     // should override to connect to the prod index.
@@ -258,8 +257,7 @@ class AcquiaSearchUnitTestCase extends DrupalUnitTestCase {
     acquia_search_add_apachesolr_overrides($core_service, $environments);
 
     $this->assertTrue(empty($conf['apachesolr_environments']['ACQUIA']['conf']['apachesolr_read_only']));
-    $this->assertTrue(!empty($conf['apachesolr_environments']['ACQUIA']['conf']['acquia_search_key']));
-    $this->assertIdentical($conf['apachesolr_environments']['ACQUIA']['url'], "http://{$solr_hostname}/solr/{$acquia_identifier}");
+    $this->assertIdentical($conf['apachesolr_environments']['ACQUIA']['url'], $environment['url']);
 
     // Trying to override already overridden settings should not succeed.
     unset($_SERVER['AH_PRODUCTION']);
@@ -270,8 +268,7 @@ class AcquiaSearchUnitTestCase extends DrupalUnitTestCase {
     acquia_search_add_apachesolr_overrides($core_service, $environments);
 
     $this->assertTrue(empty($conf['apachesolr_environments']['ACQUIA']['conf']['apachesolr_read_only']));
-    $this->assertTrue(!empty($conf['apachesolr_environments']['ACQUIA']['conf']['acquia_search_key']));
-    $this->assertIdentical($conf['apachesolr_environments']['ACQUIA']['url'], "http://{$solr_hostname}/solr/{$acquia_identifier}");
+    $this->assertIdentical($conf['apachesolr_environments']['ACQUIA']['url'], $environment['url']);
 
   }
 
@@ -305,9 +302,9 @@ class AcquiaSearchUnitTestCase extends DrupalUnitTestCase {
     $core_service = new PreferredSearchCoreService($acquia_identifier, $ah_env, $site_folder, $ah_db_name, $available_cores);
     acquia_search_add_apachesolr_overrides($core_service, $environments);
 
-    $expected_url = "http://{$solr_hostname}/solr/{$acquia_identifier}.dev.{$site_folder}";
+    $environment = acquia_search_get_environment();
 
-    $this->assertIdentical($conf['apachesolr_environments']['ACQUIA']['url'], $expected_url);
+    $this->assertIdentical($conf['apachesolr_environments']['ACQUIA']['url'], $environment['url']);
 
   }
 
@@ -336,11 +333,11 @@ class AcquiaSearchUnitTestCase extends DrupalUnitTestCase {
     $core_service = new PreferredSearchCoreService($acquia_identifier, $ah_env, $site_folder, $ah_db_name, $available_cores);
     acquia_search_add_apachesolr_overrides($core_service, $environments);
 
-    $expected_url = "http://{$solr_hostname}/solr/{$acquia_identifier}.dev.{$ah_db_name}";
+    $environment = acquia_search_get_environment();
 
-    $this->assertIdentical($conf['apachesolr_environments']['ACQUIA']['url'], $expected_url);
+    $this->assertIdentical($conf['apachesolr_environments']['ACQUIA']['url'], $environment['url']);
 
-    $this->assertIdentical($conf['apachesolr_environments']['ACQUIA_2']['url'], $expected_url);
+    $this->assertIdentical($conf['apachesolr_environments']['ACQUIA_2']['url'], $environment['url']);
 
     $this->assertTrue(empty($conf['apachesolr_environments']['NON-ACQUIA']['url']));
 
@@ -461,7 +458,7 @@ class AcquiaSearchWebTestCase extends DrupalWebTestCase {
    * Overrides DrupalTestCase::setUp().
    */
   public function setUp() {
-    parent::setUp('acquia_agent', 'acquia_connector_test', 'search', 'apachesolr', 'apachesolr_search', 'acquia_search');
+    parent::setUp('acquia_agent', 'acquia_connector_test', 'apachesolr', 'apachesolr_search', 'acquia_search');
 
     // Generate and store a random set of credentials.
     $this->id = $this->randomName(10);
@@ -531,7 +528,7 @@ class AcquiaSearchWebTestCase extends DrupalWebTestCase {
    */
   public function enableAcquiaSearchEnvironment() {
     // API function that creates the environemnt if it doesn't exist yet.
-    acquia_search_enable_acquia_solr_environment();
+    acquia_search_enable_acquia_solr_environment(ACQUIA_SEARCH_ENVIRONMENT_ID);
     $this->clearStaticCache();
   }
 
@@ -619,6 +616,29 @@ class AcquiaSearchWebTestCase extends DrupalWebTestCase {
     $edit = array('search_block_form' => 'test');
     $this->drupalPost('', $edit, t('Search'));
     $this->assertUrl('search/site/test', array(), t('The core search block redirects to the Apache Solr search page.'), 'Acquia Search');
+  }
+
+  /**
+   * Tests that global settings form contains EdisMax radio buttons.
+   */
+  public function testSearchEnvironmentsSettingsForm() {
+    $permissions = ['administer site configuration', 'administer search'];
+    $this->privilegedUser = $this->drupalCreateUser($permissions);
+    $this->drupalLogin($this->privilegedUser);
+
+    $this->drupalGet('admin/config/search/apachesolr/settings');
+    $this->assertResponse(200);
+    $this->assertText('Always allow advanced syntax for Acquia Search');
+  }
+
+  /**
+   * Tests that user have no access to delete search environment.
+   */
+  public function testDeleteSearchEnvironmentAccess() {
+    $this->assertFalse(acquia_search_environment_delete_access([]));
+
+    $environment = ['env_id' => ACQUIA_SEARCH_V3_ENVIRONMENT_ID];
+    $this->assertFalse(acquia_search_environment_delete_access($environment));
   }
 
 }

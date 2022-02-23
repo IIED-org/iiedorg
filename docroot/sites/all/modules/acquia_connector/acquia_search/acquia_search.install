@@ -99,6 +99,33 @@ function acquia_search_enable() {
 }
 
 /**
+ * Implements hook_disable().
+ */
+function acquia_search_disable() {
+  // Remove the base Acquia Search environment we added.
+  apachesolr_environment_delete(ACQUIA_SEARCH_ENVIRONMENT_ID);
+  apachesolr_environment_delete(ACQUIA_SEARCH_V3_ENVIRONMENT_ID);
+  // Unset all other acquia search environments.
+  $environments = apachesolr_load_all_environments();
+  foreach ($environments as $environment) {
+    if (!empty($environment['service_class']) &&
+      $environment['service_class'] === AcquiaSearchSolrService::class) {
+      // Remove traces of acquia_search.
+      // Unset our acquia url and set it back to default.
+      $environment['url'] = 'http://localhost:8983/solr';
+      // Emptying the service class, unsetting it would not work, since it would
+      // not overwrite the old value.
+      $environment['service_class'] = '';
+      apachesolr_environment_save($environment);
+    }
+  }
+  variable_del('acquia_search_derived_key_salt');
+  variable_del('apachesolr_default_environment');
+  // Make sure apachesolr search is the default search module.
+  variable_set('search_default_module', 'apachesolr_search');
+}
+
+/**
  * Helper function for hook_install().
  */
 function _acquia_search_find_block_region($block_regions = array()) {
@@ -127,11 +154,8 @@ function _acquia_search_get_default_facets() {
  * Implements hook_uninstall().
  */
 function acquia_search_uninstall() {
-  variable_del('acquia_search_path');
-  variable_del('acquia_search_base_url');
   variable_del('acquia_search_derived_key_salt');
-  variable_del('acquia_search_disable_auto_switch');
-  variable_del('acquia_search_disable_auto_read_only');
+  variable_del('acquia_search_solr_core');
 }
 
 /**

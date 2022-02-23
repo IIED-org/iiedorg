@@ -2,10 +2,11 @@
 language: php
 
 os: linux
+dist: focal
 
 version: ~> 1.0
 
-php: "7.2"
+php: "7.4"
 
 cache:
   directories:
@@ -18,6 +19,13 @@ env:
     - PATH="$HOME/.composer/vendor/bin:$PATH"
     - SIMPLETEST_DB=mysql://drupal:drupal@localhost/drupal
 
+addons:
+  apt:
+    packages:
+      - apache2
+      - libapache2-mod-php7.4
+      - php7.4-mysql
+
 services:
   - mysql
 
@@ -25,21 +33,12 @@ install:
   # Create MySQL DB.
   - mysql -u root -e "CREATE DATABASE drupal; CREATE USER 'drupal'@'localhost' IDENTIFIED BY 'drupal'; GRANT ALL ON drupal.* TO 'drupal'@'localhost';"
 
-  # prestissimo allows composer to install packages in parallel.
-  - composer global require "hirak/prestissimo:^0.3"
   - composer global require --no-interaction drush/drush:^8.0
+  - export PATH=$PATH:/home/travis/.config/composer/vendor/bin
 
-  # Install and configure Apache and PHP-FPM.
-  # Adapted from TravisCI example: https://docs.travis-ci.com/user/languages/php/#apache--php
-  - sudo apt-get update
-  - sudo apt-get install apache2 libapache2-mod-fastcgi
-  # enable php-fpm
-  - sudo cp ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf.default ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf
-  - sudo a2enmod rewrite actions fastcgi alias
-  - echo "cgi.fix_pathinfo = 1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  # Install and configure Apache. PHP is configured above
+  - sudo a2enmod rewrite actions alias
   - sudo sed -i -e "s,www-data,travis,g" /etc/apache2/envvars
-  - sudo chown -R travis:travis /var/lib/apache2/fastcgi
-  - ~/.phpenv/versions/$(phpenv version-name)/sbin/php-fpm
   # configure apache virtual hosts
   - sudo cp -f build/travis-ci-apache /etc/apache2/sites-available/000-default.conf
   - sudo sed -e "s?%DOCROOT%?$DRUPAL_DIR?g" --in-place /etc/apache2/sites-available/000-default.conf
@@ -74,7 +73,7 @@ script:
   - cd $TRAVIS_BUILD_DIR
 
   # Output the result and exit.
-  - TEST_OUTPUT=$(! egrep -i "([1-9]+[0-9]* fails?)|([1-9]+[0-9]* exceptions?)|(fatal)" /tmp/test.txt > /dev/null)$?
+  - TEST_OUTPUT=$(! egrep -i "([1-9]+[0-9]* fails?)|(fatal)" /tmp/test.txt > /dev/null)$?
   - php -i | grep 'php.ini'
   - sudo cat /var/log/apache2/error.log
   - echo $TEST_EXIT
