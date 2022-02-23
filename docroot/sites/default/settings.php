@@ -275,6 +275,27 @@ if (isset($conf['memcache_servers'])) {
 
 $conf['image_allow_insecure_derivatives'] = TRUE;
 
+/* 
+Set the SOLR core according to Acquia environment
+*/
+if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
+  switch ($_ENV['AH_SITE_ENVIRONMENT']) {
+    case 'prod':
+      $conf['acquia_search_solr_search_index'] = "BGIJ-137918.prod.iiedorg";
+    break;
+    case 'test':
+      $conf['acquia_search_solr_search_index'] = "BGIJ-137918.test.iiedorg";
+    break;
+    case 'dev':
+      $conf['acquia_search_solr_search_index'] = "BGIJ-137918.dev.iiedorg";
+    break;
+   }
+  }
+  else {
+   // Set index to read-only in local development environments
+    $conf['apachesolr_read_only'] = "1";
+  }
+
 if (file_exists(DRUPAL_ROOT . '/' . conf_path() . '/settings.local.php')) {
     include DRUPAL_ROOT . '/' . conf_path() . '/settings.local.php';
 }
