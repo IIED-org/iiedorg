@@ -74,6 +74,7 @@ function _acquia_agent_alter_module_updates_cmp($a, $b) {
  */
 function acquia_agent_requirements($phase) {
   include_once 'acquia_agent.module';
+  require_once DRUPAL_ROOT . '/includes/install.inc';
   acquia_agent_load_versions();
 
   $requirements = array();
@@ -143,6 +144,21 @@ function acquia_agent_requirements($phase) {
           'value' => t('@memory_minimum_limit (or more) is recommended', array('@memory_minimum_limit' => ACQUIA_AGENT_DRUPAL_MINIMUM_PHP_MEMORY)),
         );
       }
+
+      $msg = t('Drupal 7 will be end of life on November 28, 2022. Acquia offers <a href="@support_url" target = "blank">extended support</a>,
+      included with your cloud subscription, until November 2025. You are also encouraged to look at @name <a href="@migrate_url" target = "blank">Migrate Accelerator</a> to help migrate to the latest major version of Drupal.',
+        array(
+          '@support_url' => url("https://docs.acquia.com/support/guide/#acquia-drupal-7-extended-support-program"),
+          '@migrate_url' => url("https://www.acquia.com/products/drupal-cloud/migrate"),
+          '@name' => "Acquia's",
+        ));
+
+      $requirements['acquia_agent_eol'] = [
+        'title' => t('Acquia Agent module'),
+        'value' => t('The 7.x version is EOL!'),
+        'description' => $msg,
+        'severity' => REQUIREMENT_WARNING,
+      ];
       break;
 
     case 'install':

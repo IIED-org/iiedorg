@@ -555,6 +555,15 @@ function acquia_agent_help($path, $arg) {
       $output .= '<dd>' . t('As part of the Acquia Insight service, some variables can be corrected to their recommended settings from within the Insight system. The list of variables that can be corrected can also be updated at your discretion. <a href="!url">Learn more</a>', array('!url' => url('https://docs.acquia.com/acquia-cloud/insight/config/', array('external' => TRUE)))) . '</dd>';
       $output .= '</dl>';
       return $output;
+
+    case 'admin/config/system/acquia-agent':
+    case 'admin/modules':
+    case 'admin/reports/status':
+      module_load_include('install', 'acquia_agent');
+      $reqs = acquia_agent_requirements('runtime');
+      if (!empty($reqs['acquia_agent_eol']) && !empty($reqs['acquia_agent_eol']['description'])) {
+        drupal_set_message($reqs['acquia_agent_eol']['description'], 'warning');
+      }
   }
 }
 
@@ -790,15 +799,17 @@ function acquia_agent_stream_context_create($url, $module = 'acquia_agent') {
  */
 function acquia_agent_valid_response(array $data, $key = NULL) {
   $authenticator = $data['authenticator'];
-  $result = $data['result'];
-  $result_auth = $result['authenticator'];
-  $valid = ($authenticator['nonce'] == $result_auth['nonce']);
-  $valid = $valid && ($authenticator['time'] < $result_auth['time']);
-  if (empty($key)) {
-    $key = acquia_agent_settings('acquia_key');
+  if ($result = $data['result']) {
+    $result_auth = $result['authenticator'];
+    $valid = ($authenticator['nonce'] == $result_auth['nonce']);
+    $valid = $valid && ($authenticator['time'] < $result_auth['time']);
+    if (empty($key)) {
+      $key = acquia_agent_settings('acquia_key');
+    }
+    $hash = _acquia_agent_hmac($key, $result_auth['time'], $result_auth['nonce'], $result['body']);
+    return $valid && ($hash == $result_auth['hash']);
   }
-  $hash = _acquia_agent_hmac($key, $result_auth['time'], $result_auth['nonce'], $result['body']);
-  return $valid && ($hash == $result_auth['hash']);
+  return FALSE;
 }
 
 /**
