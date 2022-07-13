@@ -24,60 +24,88 @@ function custom_pub_help($path, $arg) {
  * you must add the permissions to a role.
  */
 function custom_pub_permission() {
-  $permissions = array();
-  $types = variable_get('custom_pub_types', array());
+  $permissions = [];
+  $types = variable_get('custom_pub_types', []);
 
   foreach ($types as $type) {
     $key = 'edit_custom_pub_' . $type['type'];
-    $permissions[$key] = array(
-      'title' => 'Can access/use ' . t('%type', array('%type' => $type['type'])) . ' custom publishing option on node forms'
-    );
+    $permissions[$key] = [
+      'title' => 'Can access/use ' . t('%type', ['%type' => $type['type']]) . ' custom publishing option on node forms',
+    ];
+    $key = 'view_custom_pub_' . $type['type'];
+    $permissions[$key] = [
+      'title' => 'Can view ' . t('%type', ['%type' => $type['type']]) . ' nodes',
+    ];
   }
 
   return $permissions;
 }
 
 /**
+ * Implements hook_node_access().
+ */
+function custom_pub_node_access($node, $op, $account) {
+  if (!is_object($node) || $op != "view") {
+    return NODE_ACCESS_IGNORE;
+  }
+  $types = variable_get('custom_pub_types', []);
+
+  foreach ($types as $type) {
+    if (!isset($node->{$type['type']})) {
+      continue;
+    }
+    if (!empty($node->{$type['type']})) {
+      $key = 'view_custom_pub_' . $type['type'];
+      if (user_access($key, $account)) {
+        return NODE_ACCESS_ALLOW;
+      }
+      return NODE_ACCESS_DENY;
+    }
+  }
+  return NODE_ACCESS_IGNORE;
+}
+
+/**
  * Implements hook_theme().
  */
 function custom_pub_theme() {
-  return array(
-    'custom_pub_edit_form' => array(
+  return [
+    'custom_pub_edit_form' => [
       'file' => 'theme.inc',
       'path' => drupal_get_path('module', 'custom_pub'),
       'render element' => 'form',
-    ),
-  );
+    ],
+  ];
 }
 
 /**
  * Implements hook_menu().
  */
 function custom_pub_menu() {
-  $items['admin/structure/custom_pub'] = array(
+  $items['admin/structure/custom_pub'] = [
     'title' => 'Custom Publishing Options',
     'page callback' => 'custom_pub_admin',
-    'access arguments' => array('administer content types'),
+    'access arguments' => ['administer content types'],
     'description' => 'Add and remove custom publishing options from the Node form(s).',
     'file' => 'custom_pub.admin.inc',
-  );
+  ];
 
-  $items['admin/structure/custom_pub/list'] = array(
+  $items['admin/structure/custom_pub/list'] = [
     'title' => 'Overview',
     'type' => MENU_DEFAULT_LOCAL_TASK,
     'weight' => -10,
-  );
+  ];
 
-  $items['admin/structure/custom_pub/add'] = array(
+  $items['admin/structure/custom_pub/add'] = [
     'title' => 'Add a publishing option',
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('custom_pub_add'),
-    'access arguments' => array('administer content types'),
+    'page arguments' => ['custom_pub_add'],
+    'access arguments' => ['administer content types'],
     'description' => 'Add and remove custom publishing options from the Node form(s).',
     'file' => 'custom_pub.admin.inc',
     'type' => MENU_LOCAL_TASK,
     'context' => MENU_CONTEXT_PAGE | MENU_CONTEXT_INLINE,
-  );
+  ];
 
   return $items;
 }
@@ -94,26 +122,28 @@ function custom_pub_menu_alter(&$items) {
  * Implements hook_forms().
  */
 function custom_pub_forms($form_id, $args) {
-  //We need to use this hook because on the admin page there is the possibility of multiple forms for the edit form. See http://drupal.org/node/354519
-  $types = variable_get('custom_pub_types', array());
+  // We need to use this hook because on the admin page there is the possibility of multiple forms for the edit form.
+  // See http://drupal.org/node/354519
+  $types = variable_get('custom_pub_types', []);
   foreach ($types as $type) {
     if ($form_id == 'custom_pub_edit_' . $type['type']) {
-      $forms[$form_id] = array('callback' => 'custom_pub_edit');
+      $forms[$form_id] = ['callback' => 'custom_pub_edit'];
       return $forms;
     }
   }
 
   if ($form_id == 'node_admin_content') {
     module_load_include('inc', 'node', 'node.admin');
-    $forms['node_admin_content'] = array(
+    $forms['node_admin_content'] = [
       'callback' => 'custom_pub_node_admin_content',
-    );
+    ];
     return $forms;
   }
 }
 
 /**
  * Implements hook_form_alter().
+ *
  * @param $form
  * @param $form_state
  * @param $form_id
@@ -126,16 +156,16 @@ function custom_pub_form_alter(&$form, $form_state, $form_id) {
     foreach ($types as $type) {
       $default_value = (isset($node->{$type['type']})) ? $node->{$type['type']} : NULL;
 
-      $form['options'][$type['type']] = array(
+      $form['options'][$type['type']] = [
         '#type' => 'checkbox',
         '#title' => check_plain(t($type['name'])),
         '#default_value' => $default_value,
         '#access' => user_access('administer content types') ? TRUE : user_access('edit_custom_pub_' . $type['type']),
-      );
+      ];
     }
 
-    // set access states on core publishing options so we don't create a security issue
-    $core = array('status', 'promote', 'sticky');
+    // Set access states on core publishing options so we don't create a security issue.
+    $core = ['status', 'promote', 'sticky'];
 
     foreach ($core as $core_option) {
       if (!isset($form['options'][$core_option]['#access'])) {
@@ -151,7 +181,7 @@ function custom_pub_form_alter(&$form, $form_state, $form_id) {
     }
   }
 
-  // Add options to the node_type_form for editing default node options
+  // Add options to the node_type_form for editing default node options.
   if ($form_id == 'node_type_form') {
     $node_type = $form['#node_type'];
     $types = custom_pub_by_node_type($node_type);
@@ -172,33 +202,33 @@ function custom_pub_form_alter(&$form, $form_state, $form_id) {
  * Implements hook_views_data_alter().
  */
 function custom_pub_views_data_alter(&$data) {
-  $types = variable_get('custom_pub_types', array());
+  $types = variable_get('custom_pub_types', []);
   $node_types = node_type_get_types();
   foreach ($types as $type) {
-    $used_in = array();
+    $used_in = [];
     foreach ($node_types as $node_type) {
       if (!empty($type['node_types'][$node_type->type])) {
         $used_in[] = $node_type->name;
       }
     }
 
-    // published status
-    $data['node'][$type['type']] = array(
+    // Published status.
+    $data['node'][$type['type']] = [
       'title' => t($type['name']),
-      'help' => t('Custom Publishing Option. Appears in: !types', array('!types' => implode(', ', $used_in))),
-      'field' => array(
+      'help' => t('Custom Publishing Option. Appears in: !types', ['!types' => implode(', ', $used_in)]),
+      'field' => [
         'handler' => 'views_handler_field_boolean',
         'click sortable' => TRUE,
-      ),
-      'filter' => array(
+      ],
+      'filter' => [
         'handler' => 'views_handler_filter_boolean_operator',
         'label' => t($type['name']),
         'type' => 'yes-no',
-      ),
-      'sort' => array(
+      ],
+      'sort' => [
         'handler' => 'views_handler_sort',
-      ),
-    );
+      ],
+    ];
   }
 }
 
@@ -206,14 +236,14 @@ function custom_pub_views_data_alter(&$data) {
  * Implements hook_schema_alter().
  */
 function custom_pub_schema_alter(&$schema) {
-  $types = variable_get('custom_pub_types', array());
+  $types = variable_get('custom_pub_types', []);
   foreach ($types as $type) {
-    $schema['node']['fields'][$type['type']] = array(
-      'description' => t('Custom publishing option @name', array('@name' => $type['name'])),
+    $schema['node']['fields'][$type['type']] = [
+      'description' => t('Custom publishing option @name', ['@name' => $type['name']]),
       'type' => 'int',
       'not null' => TRUE,
       'default' => 0,
-    );
+    ];
   }
 }
 
@@ -221,28 +251,22 @@ function custom_pub_schema_alter(&$schema) {
  * Implements hook_action_info().
  */
 function custom_pub_action_info() {
-  $actions['custom_pub_on_action'] = array(
+  $actions['custom_pub_on_action'] = [
     'label' => 'Toggle a Custom Publishing Option on',
     'type' => 'node',
     'description' => t('Toggle a Custom Publishing Option on'),
     'configurable' => TRUE,
-    'behavior' => array('changes_node_property'),
-    'hooks' => array(
-      'nodeapi' => array('presave'),
-      'comment' => array('insert', 'update'),
-    ),
-  );
-  $actions['custom_pub_off_action'] = array(
+    'behavior' => ['changes_node_property'],
+    'triggers' => ['node_presave', 'comment_insert', 'comment_update'],
+  ];
+  $actions['custom_pub_off_action'] = [
     'label' => 'Toggle a Custom Publishing Option off',
     'type' => 'node',
     'description' => t('Toggle a Custom Publishing Option off'),
     'configurable' => TRUE,
-    'behavior' => array('changes_node_property'),
-    'hooks' => array(
-      'nodeapi' => array('presave'),
-      'comment' => array('delete', 'insert', 'update'),
-    ),
-  );
+    'behavior' => ['changes_property'],
+    'triggers' => ['node_presave', 'comment_insert', 'comment_update'],
+  ];
 
   return $actions;
 }
@@ -259,14 +283,13 @@ function custom_pub_action_info() {
  *   The available context of the current action.
  */
 function custom_pub_on_action(&$node, &$context) {
-  //This is mainly for the Rules Module. I couldn't get a node to save unless I set this manually
+  // This is mainly for the Rules Module.
   $context['auto_save'] = TRUE;
-  $types = variable_get('custom_pub_types', array());
+  $types = variable_get('custom_pub_types', []);
   foreach ($context['types'] as $type) {
     if (!empty($type) && in_array($node->type, array_keys($types[$type]['node_types']))) {
       $node->$type = 1;
-      node_save($node);
-      watchdog('action', 'Toggled @type %title custom publishing option: @label to on.', array('@type' => node_type_get_types('name', $node), '%title' => $node->title, '@label' => $types[$type]['name']));
+      watchdog('action', 'Toggled @type %title custom publishing option: @label to on.', ['@type' => node_type_get_types('name', $node), '%title' => $node->title, '@label' => $types[$type]['name']]);
     }
   }
 }
@@ -277,17 +300,18 @@ function custom_pub_on_action(&$node, &$context) {
  * Allows the user to pick custom publishing options to turn on.
  *
  * @param $context
+ *
  * @return array
  */
 function custom_pub_on_action_form($context) {
   $pub_types = custom_pub_types_list();
-  $form['types'] = array(
+  $form['types'] = [
     '#title' => t('Custom Publishing Options'),
     '#description' => t('Select the Custom publishing options to toggle on when this action is triggered.'),
     '#type' => 'checkboxes',
     '#options' => $pub_types,
-    '#default_value' => isset($context['types']) ? $context['types'] : array(),
-  );
+    '#default_value' => isset($context['types']) ? $context['types'] : [],
+  ];
 
   return $form;
 }
@@ -297,10 +321,11 @@ function custom_pub_on_action_form($context) {
  *
  * @param $form
  * @param $form_state
+ *
  * @return array
  */
 function custom_pub_on_action_submit($form, &$form_state) {
-  return array('types' => $form_state['values']['types']);
+  return ['types' => $form_state['values']['types']];
 }
 
 /**
@@ -317,17 +342,20 @@ function custom_pub_on_action_submit($form, &$form_state) {
  * @return array
  */
 function custom_pub_off_action(&$node, &$context) {
-  //This is mainly for the Rules Module. I couldn't get a node to save unless I set this manually
+  // This is mainly for the Rules Module.
   $context['auto_save'] = TRUE;
-  $types = variable_get('custom_pub_types', array());
+  $types = variable_get('custom_pub_types', []);
   foreach ($context['types'] as $type) {
     if (in_array($node->type, array_keys($types[$type]['node_types']))) {
       $node->$type = 0;
-      node_save($node);
-      watchdog('action', 'Toggled @type %title custom publishing option: @label to off.', array('@type' => node_type_get_types('name', $node), '%title' => $node->title, '@label' => $types[$type]['name']));
+      watchdog('action', 'Toggled @type %title custom publishing option: @label to off.', [
+        '@type' => node_type_get_types('name', $node),
+        '%title' => $node->title,
+        '@label' => $types[$type]['name'],
+      ]);
     }
   }
-  return array('node' => $node);
+  return ['node' => $node];
 }
 
 /**
@@ -336,17 +364,18 @@ function custom_pub_off_action(&$node, &$context) {
  * Allows the user to pick custom publishing options to turn off.
  *
  * @param $context
+ *
  * @return array
  */
 function custom_pub_off_action_form($context) {
   $pub_types = custom_pub_types_list();
-  $form['types'] = array(
+  $form['types'] = [
     '#title' => t('Custom Publishing Options'),
     '#description' => t('Select the Custom publishing options to toggle off when this action is triggered.'),
     '#type' => 'checkboxes',
     '#options' => $pub_types,
-    '#default_value' => isset($context['types']) ? $context['types'] : array(),
-  );
+    '#default_value' => isset($context['types']) ? $context['types'] : [],
+  ];
 
   return $form;
 }
@@ -356,17 +385,18 @@ function custom_pub_off_action_form($context) {
  *
  * @param $form
  * @param $form_state
+ *
  * @return array
  */
 function custom_pub_off_action_submit($form, &$form_state) {
-  return array('types' => $form_state['values']['types']);
+  return ['types' => $form_state['values']['types']];
 }
 
 /**
  * Implements hook_query_TAG_alter().
  */
 function custom_pub_query_node_load_multiple_alter(QueryAlterableInterface $query) {
-  $types = variable_get('custom_pub_types', array());
+  $types = variable_get('custom_pub_types', []);
   if (count($types)) {
     foreach ($types as $field => $type) {
       if (db_field_exists('node', $field)) {
@@ -383,7 +413,7 @@ function custom_pub_node_prepare($node) {
   $types = custom_pub_by_node_type($node);
   // If this is a new node, fill in the default values.
   if (!isset($node->nid)) {
-    $node_options = variable_get('node_options_' . $node->type, array('status', 'promote'));
+    $node_options = variable_get('node_options_' . $node->type, ['status', 'promote']);
     foreach (array_keys($types) as $key) {
       if (!isset($node->$key)) {
         $node->$key = in_array($key, $node_options);
@@ -396,26 +426,26 @@ function custom_pub_node_prepare($node) {
  * Implements hook_entity_property_info().
  */
 function custom_pub_entity_property_info() {
-  $info = array();
+  $info = [];
 
-  $types = variable_get('custom_pub_types', array());
+  $types = variable_get('custom_pub_types', []);
   if (!empty($types)) {
     $properties = &$info['node']['properties'];
 
     foreach ($types as $type) {
       if (isset($type['node_types']) && is_array($type['node_types'])) {
-        $description = t('Custom Publishing Option. Appears in: !types', array('!types' => implode(', ', $type['node_types'])));
+        $description = t('Custom Publishing Option. Appears in: !types', ['!types' => implode(', ', $type['node_types'])]);
       }
       else {
         $description = t('Custom Publishing Option. Not currently used.');
       }
 
-      $properties[$type['type']] = array(
+      $properties[$type['type']] = [
         'label' => t($type['name']),
         'type' => 'boolean',
         'setter callback' => 'entity_property_verbatim_set',
         'description' => $description,
-      );
+      ];
     }
   }
 
@@ -446,12 +476,12 @@ function custom_pub_entity_presave($entity, $type) {
  * @return array
  */
 function custom_pub_by_node_type($node_type) {
-  $return_types = array();
+  $return_types = [];
   if (is_object($node_type) || is_array($node_type)) {
     (object) $node_type;
     $node_type = $node_type->type;
   }
-  $types = variable_get('custom_pub_types', array());
+  $types = variable_get('custom_pub_types', []);
   foreach ($types as $key => $type) {
     if (!empty($type['node_types'][$node_type])) {
       $return_types[$key] = $type;
@@ -469,9 +499,9 @@ function custom_pub_by_node_type($node_type) {
  * @return array
  */
 function custom_pub_types_list() {
-  $pub_types = array();
+  $pub_types = [];
 
-  $types = variable_get('custom_pub_types', array());
+  $types = variable_get('custom_pub_types', []);
   foreach ($types as $type) {
     $pub_types[$type['type']] = $type['name'];
   }
@@ -486,19 +516,19 @@ function custom_pub_types_list() {
  */
 function custom_pub_node_operations() {
   $types = custom_pub_types_list();
-  $operations = array();
+  $operations = [];
 
   foreach ($types as $machine_name => $name) {
-    $operations[$machine_name] = array(
-      'label' => t('Add "!name" status', array('!name' => $name)),
+    $operations[$machine_name] = [
+      'label' => t('Add "!name" status', ['!name' => $name]),
       'callback' => 'node_mass_update',
-      'callback arguments' => array('updates' => array($machine_name => 1)),
-    );
-    $operations['remove_' . $machine_name] = array(
-      'label' => t('Remove "!type" status', array('!type' => $name)),
+      'callback arguments' => ['updates' => [$machine_name => 1]],
+    ];
+    $operations['remove_' . $machine_name] = [
+      'label' => t('Remove "!type" status', ['!type' => $name]),
       'callback' => 'node_mass_update',
-      'callback arguments' => array('updates' => array($machine_name => 0)),
-    );
+      'callback arguments' => ['updates' => [$machine_name => 0]],
+    ];
   }
 
   return $operations;
@@ -510,24 +540,25 @@ function custom_pub_node_operations() {
  * @return array
  */
 function custom_pub_features_api() {
-  return array(
-    'custom_pub' => array(
+  return [
+    'custom_pub' => [
       'name' => t('Custom Publishing Options'),
       'feature_source' => TRUE,
       'default_hook' => 'custom_pub_defaults',
       'file' => drupal_get_path('module', 'custom_pub') . '/custom_pub.features.inc',
-    ),
-  );
+    ],
+  ];
 }
 
 /**
  * Returns custom publish types defined in the system.
  *
  * @param bool $rebuild
+ *
  * @return array
  */
 function custom_pub_types($rebuild = FALSE) {
-  $pub_types = variable_get('custom_pub_types', array());
+  $pub_types = variable_get('custom_pub_types', []);
 
   if ($rebuild) {
     foreach (module_implements('custom_pub_defaults') as $module) {
@@ -537,12 +568,12 @@ function custom_pub_types($rebuild = FALSE) {
           $pub_types[$type] = $option;
 
           if (!db_field_exists('node', $type)) {
-            $spec = array(
+            $spec = [
               'description' => 'Custom publishing option ' . $option['name'],
               'type' => 'int',
               'not null' => TRUE,
-              'default' => 0
-            );
+              'default' => 0,
+            ];
 
             db_add_field('node', $type, $spec);
           }
@@ -568,6 +599,7 @@ function custom_pub_types_rebuild() {
 
 /**
  * Implements hook_i18n_sync_options_alter().
+ *
  * @param $fields
  * @param $type
  */
@@ -580,15 +612,16 @@ function custom_pub_i18n_sync_options_alter(&$fields, $type) {
   $pub_types = custom_pub_types();
 
   foreach ($pub_types as $machine_name => $pub_type) {
-    $fields[$machine_name] = array(
+    $fields[$machine_name] = [
       'title' => t($pub_type['name']),
-    );
+    ];
   }
 }
 
 /**
  * Implements hook_preprocess_node().
  * Add the custom publishing option state as a class if it is enabled, similar to core node publish states.
+ *
  * @param $variables
  */
 function custom_pub_preprocess_node(&$variables) {
@@ -601,6 +634,100 @@ function custom_pub_preprocess_node(&$variables) {
     foreach ($ids as $machine_name) {
       if (isset($node->{$machine_name}) && $node->{$machine_name}) {
         $variables['classes_array'][] = 'node-' . $machine_name;
+      }
+    }
+  }
+}
+
+/**
+ * Access check function for custom_pub items.
+ *
+ * Checks for node access etc are already taken care of.
+ *
+ * @param $group
+ * @param $instance
+ * @param null $object
+ *
+ * @return array
+ */
+function custom_pub_fasttoggle_access($object, $type, $group, $instance) {
+  $access = user_access('edit_custom_pub_' . $instance);
+  if ($access) {
+    return fasttoggle_allow_access_if($access);
+  }
+  else {
+    return fasttoggle_deny_access_if(!$access);
+  }
+}
+
+/**
+ * Implementation of hook_fasttoggle_available_links().
+ */
+function custom_pub_fasttoggle_available_links($type = NULL, $obj = NULL) {
+  $result = [];
+
+  if (!is_null($type) && $type != "node") {
+    return $result;
+  }
+
+  if (!is_null($type) && !is_null($obj)) {
+    $custom_publish_options = custom_pub_by_node_type($obj->type);
+  }
+  else {
+    $custom_publish_options = variable_get('custom_pub_types', []);
+  }
+
+  if (empty($custom_publish_options)) {
+    return $result;
+  }
+
+  $result['node'] = [
+    'fields' => [
+      'custom_pub' => [
+        'instances' => [
+        ],
+      ],
+    ],
+  ];
+
+  foreach ($custom_publish_options as $machine_name => $data) {
+    $result['node']['fields']['custom_pub']['instances'][$machine_name] = [
+      'description' => t("Toggle the '{$data['name']}' custom publishing option."),
+      'default' => TRUE,
+      'access' => ['custom_pub_fasttoggle_access'],
+      'labels' => [
+        FASTTOGGLE_LABEL_ACTION => [
+          0 => t('set @option status', ['@option' => $data['name']]),
+          1 => t('unset @option status', ['@option' => $data['name']]),
+        ],
+        FASTTOGGLE_LABEL_STATUS => [
+          0 => t('@option not set', ['@option' => $data['name']]),
+          1 => t('@option set', ['@option' => $data['name']])],
+      ],
+    ];
+  }
+
+  return $result;
+}
+
+/**
+ * Allow devel_generate module to setup "Custom Publishing Options" randomly.
+ *
+ * Implements hook_node_presave().
+ *
+ * @param $node
+ */
+function custom_pub_node_presave($node) {
+  if (module_exists('devel_generate') && isset($node->devel_generate)) {
+    $types = custom_pub_by_node_type($node);
+
+    if (count($types)) {
+      $types = array_keys($types);
+
+      foreach ($types as $machine_name) {
+        if (isset($node->{$machine_name})) {
+          $node->{$machine_name} = mt_rand(0, 1);
+        }
       }
     }
   }

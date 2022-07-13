@@ -12,7 +12,11 @@ function taxonomy_orphanage_batch_roundup($field, $limit, $display_finished, &$c
   $batch_limit = ($limit > 0 && $limit < 100) ? $limit : 100;
   $query = db_select('field_data_' . $field['field_name'], 'f');
   $query
-    ->fields('f', array('entity_type', 'entity_id', $field['field_name'] . '_tid'))
+    ->fields('f', array(
+      'entity_type',
+      'entity_id',
+      $field['field_name'] . '_tid',
+    ))
     ->leftJoin('taxonomy_term_data', 't', 't.tid=f.' . $field['field_name'] . '_tid');
   $query
     ->where('t.tid IS NULL')
@@ -39,18 +43,21 @@ function taxonomy_orphanage_batch_roundup($field, $limit, $display_finished, &$c
   $res = $query->execute();
   foreach ($res as $target) {
     $context['sandbox']['progress']++;
-    $entity = array_shift(entity_load($target->entity_type, array($target->entity_id)));
+    $loaded_entity = entity_load($target->entity_type, array($target->entity_id));
+    $entity = array_shift($loaded_entity);
     if (!$entity) {
       continue;
     }
-    foreach ($entity->{$field['field_name']}[$entity->language] as $k => $term) {
-      if ($term['tid'] == $target->{$field['field_name'] . '_tid'}) {
-        unset($entity->{$field['field_name']}[$entity->language][$k]);
-        $context['results']['count']++;
-        if (entity_save($target->entity_type, $entity) === FALSE) {
-          throw new Exception('Failed to save entity type:' . $target->entity_type . ' id: ' . $target->entity_id);
+    foreach ($entity->{$field['field_name']} as $language => $items) {
+      foreach ($items as $k => $term) {
+        if ($term['tid'] == $target->{$field['field_name'] . '_tid'}) {
+          unset($entity->{$field['field_name']}[$language][$k]);
+          $context['results']['count']++;
+          if (entity_save($target->entity_type, $entity) === FALSE) {
+            throw new Exception('Failed to save entity type:' . $target->entity_type . ' id: ' . $target->entity_id);
+          }
+          break;
         }
-        break;
       }
     }
     if ($context['sandbox']['progress'] == $context['sandbox']['max']) {
@@ -68,7 +75,8 @@ function taxonomy_orphanage_batch_roundup($field, $limit, $display_finished, &$c
  */
 function taxonomy_orphanage_batch_finished($success, $results, $operations) {
   if ($success) {
-    $msg = t('@count orphaned taxonomy references have been removed.', array('@count' => $results['count']));
+    $count = isset($results['count']) ? $results['count'] : 0;
+    $msg = t('@count orphaned taxonomy references have been removed.', array('@count' => $count));
     $dsm_type = 'status';
     $log_type = WATCHDOG_INFO;
   }
@@ -79,8 +87,7 @@ function taxonomy_orphanage_batch_finished($success, $results, $operations) {
   }
 
   watchdog('taxonomy_orphanage', $msg, array(), $log_type);
-  if ($results['display_finished']) {
+  if (isset($results['display_finished']) && $results['display_finished']) {
     drupal_set_message($msg, $dsm_type);
   }
 }
-

@@ -172,7 +172,7 @@ function _webform_render_countdown($component, $value = NULL, $filter = TRUE) {
     '#type' => 'textarea',
     '#title' => $filter ? _webform_filter_xss($component['name']) : $component['name'],
     '#title_display' => $component['extra']['title_display'] ? $component['extra']['title_display'] : 'before',
-    '#default_value' => $filter ? _webform_filter_values($component['value'], $node) : $component['value'],
+    '#default_value' => $filter ? webform_replace_tokens($component['value'], $node, NULL, NULL, FALSE) : $component['value'],
     '#required' => $component['required'],
     '#weight' => $component['weight'],
     '#description' => $filter ? _webform_filter_descriptions($component['extra']['description'], $node) : $component['extra']['description'],

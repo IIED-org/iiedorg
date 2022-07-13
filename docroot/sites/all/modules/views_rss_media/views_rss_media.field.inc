@@ -41,14 +41,48 @@ function views_rss_media_field_formatter_settings_form($field, $instance, $view_
   $element = array();
 
   if ($field['type'] == 'image' || $field['type'] == 'file') {
-    $image_styles = image_style_options(FALSE);
-    $element['image_style'] = array(
-      '#title' => t('Image style'),
-      '#type' => 'select',
-      '#default_value' => $settings['image_style'],
-      '#empty_option' => t('None (original image)'),
-      '#options' => $image_styles,
-    );
+    $file_image = FALSE;
+    if ($field['type'] == 'file') {
+      foreach ($field['bundles'] as $entity => $bundles) {
+        foreach ($bundles as $bundle) {
+          $file_field_instance = field_info_instance($entity, $field['field_name'], $bundle);
+          // Determine file type when widget is from media module. If no reference to images, hide image style field.
+          if (isset($file_field_instance['widget']['module']) && $file_field_instance['widget']['module'] == 'media') {
+            // Check if Image has been selected as an option in the Allowed types field.
+            if ($allowed_types = $file_field_instance['widget']['settings']['allowed_types']) {
+              if (!empty($allowed_types['image'])) {
+                $file_image = TRUE;
+                break 2;
+              }
+            }
+            // Check if image extensions have been included in the File extensions field.
+            if ($file_extensions = $file_field_instance['settings']['file_extensions']) {
+              foreach (array('png', 'gif', 'jpg', 'jpeg') as $image_type) {
+                if (stripos($file_extensions, $image_type) !== FALSE) {
+                  $file_image = TRUE;
+                  break 3;
+                }
+              }
+            }
+          }
+          // If not using the media module, assume image style field should be displayed.
+          else {
+            $file_image = TRUE;
+            break 2;
+          }
+        }
+      }
+    }
+    if ($field['type'] == 'image' || $file_image) {
+      $image_styles = image_style_options(FALSE);
+      $element['image_style'] = array(
+        '#title' => t('Image style'),
+        '#type' => 'select',
+        '#default_value' => $settings['image_style'],
+        '#empty_option' => t('None (original image)'),
+        '#options' => $image_styles,
+      );
+    }
   }
 
   if ($display['type'] == 'media_content') {
@@ -173,6 +207,10 @@ function views_rss_media_field_formatter_view($entity_type, $entity, $field, $in
 
   foreach ($items as $delta => $item) {
 
+    if (empty($item['type'])) {
+      $item['type'] = 'NONE';
+    }
+
     if ($field['type'] == 'video_embed_field') {
       $url = $item['video_url'];
       $item['video_data'] = unserialize($item['video_data']);
@@ -180,7 +218,7 @@ function views_rss_media_field_formatter_view($entity_type, $entity, $field, $in
 
     // When generating a thumbnail for a video file,
     // let's process only thumbnail image details.
-    if ($item['type'] == 'video' && $display['type'] == 'media_thumbnail') {
+    if ($display['type'] == 'media_thumbnail' && $item['type'] == 'video') {
       $item = (array) $item['thumbnailfile'];
     }
 
@@ -205,6 +243,7 @@ function views_rss_media_field_formatter_view($entity_type, $entity, $field, $in
         if (!file_exists(drupal_realpath($path))) {
           image_style_create_derivative($image_style, $item_uri, $path);
         }
+        $item['filesize'] = file_exists(drupal_realpath($path)) ? filesize($path) : NULL;
         $item_uri = $path;
       }
 
@@ -236,17 +275,25 @@ function views_rss_media_field_formatter_view($entity_type, $entity, $field, $in
 
       // Additional properties for images.
       if ($item['type'] == 'image') {
-        $media_info = image_load($item_uri);
+        $media_info = image_get_info($item_uri);
         if (!empty($media_info)) {
           $item['info'] = $media_info;
-          $rss_element['attributes']['width'] = $media_info->info['width'];
-          $rss_element['attributes']['height'] = $media_info->info['height'];
+          $rss_element['attributes']['width'] = $media_info['width'];
+          $rss_element['attributes']['height'] = $media_info['height'];
         }
       }
 
       // Additional properties for audio files.
       if ($item['type'] == 'audio' && module_exists('getid3')) {
-        $media_info = getid3_analyze(drupal_realpath($item_uri));
+        // @todo: getid3 module replaced "getid3_analyze" function in 7.x-2.x. Remove this check in Drupal 8.
+        if (function_exists('getid3_analyze')) {
+          $media_info = getid3_analyze(drupal_realpath($item_uri));
+        }
+        else {
+          $files = entity_load('file', FALSE, array('uri' => $item_uri));
+          $file = !empty($files) ? reset($files) : FALSE;
+          $media_info = getid3_analyze_file($file);
+        }
         if (!empty($media_info)) {
           $item['info'] = $media_info;
           $rss_element['attributes']['bitrate'] = round($media_info['audio']['bitrate'] / 1000);
@@ -258,7 +305,15 @@ function views_rss_media_field_formatter_view($entity_type, $entity, $field, $in
 
       // Additional properties for video files.
       if ($item['type'] == 'video' && module_exists('getid3')) {
-        $media_info = getid3_analyze(drupal_realpath($item_uri));
+        // @todo: getid3 module replaced "getid3_analyze" function in 7.x-2.x. Remove this check in Drupal 8.
+        if (function_exists('getid3_analyze')) {
+          $media_info = getid3_analyze(drupal_realpath($item_uri));
+        }
+        else {
+          $files = entity_load('file', FALSE, array('uri' => $item_uri));
+          $file = !empty($files) ? reset($files) : FALSE;
+          $media_info = getid3_analyze_file($file);
+        }
         if (!empty($media_info)) {
           $item['info'] = $media_info;
           $rss_element['attributes']['bitrate'] = round($media_info['video']['bitrate'] / 1000);
@@ -366,11 +421,11 @@ function views_rss_media_field_formatter_view($entity_type, $entity, $field, $in
       );
       // Attributes for images: width and height.
       if ($item['type'] == 'image') {
-        $media_info = image_load($item_uri);
+        $media_info = image_get_info($item_uri);
         if (!empty($media_info)) {
           $item['info'] = $media_info;
-          $rss_element['attributes']['width'] = $media_info->info['width'];
-          $rss_element['attributes']['height'] = $media_info->info['height'];
+          $rss_element['attributes']['width'] = $media_info['width'];
+          $rss_element['attributes']['height'] = $media_info['height'];
         }
       }
       // Attribute: time.

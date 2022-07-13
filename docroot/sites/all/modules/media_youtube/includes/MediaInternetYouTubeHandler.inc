@@ -96,7 +96,6 @@ class MediaInternetYouTubeHandler extends MediaInternetBaseHandler {
     }
     else {
       throw new Exception("Error Processing Request. (Error: {$response->code}, {$response->error})");
-      return;
     }
   }
 
@@ -111,15 +110,32 @@ class MediaInternetYouTubeHandler extends MediaInternetBaseHandler {
     $uri = file_stream_wrapper_uri_normalize('youtube://' . $type . '/' . check_plain($id));
     $external_url = file_create_url($uri);
     $oembed_url = url('https://www.youtube.com/oembed', array('query' => array('url' => $external_url, 'format' => 'json')));
-    $response = drupal_http_request($oembed_url, array('method' => 'HEAD'));
+    $response = drupal_http_request($oembed_url);
 
-    if ($response->code == 401) {
-      throw new MediaInternetValidationException('Embedding has been disabled for this YouTube video.');
+    if (!isset($response->error)) {
+      $data = drupal_json_decode($response->data);
+      if (!empty($data)) {
+        return TRUE;
+      }
+      else {
+        $error_data = t('Unspecific');
+        if (is_string($response->data)) {
+          $error_data = $response->data;
+        }
+        throw new MediaInternetValidationException("The YouTube video ID is invalid, video was deleted or is disabled for embedding. Error: {$error_data}");
+      }
     }
-    elseif ($response->code != 200) {
-      throw new MediaInternetValidationException('The YouTube video ID is invalid or the video was deleted.');
+    elseif ($response->code == 401) {
+      $message = t("There was an error, please check the video settings. Embedding, and playback on other websites, may have been disabled by the video owner. (Error: @code, @error)", ['@code' => $response->code, '@error' => $response->error]);
+      throw new MediaInternetValidationException($message);
     }
-
-    return TRUE;
+    elseif ($response->code == 403) {
+      $message = t("There was an error, please check the video settings. The video may be private, disabled or unavailable. (Error: @code, @error)", ['@code' => $response->code, '@error' => $response->error]);
+      throw new MediaInternetValidationException($message);
+    }
+    else {
+      $message = t("There was an error with this YouTube video. Please check the URL and video settings and try again. (Error: @code, @error)", ['@code' => $response->code, '@error' => $response->error]);
+      throw new MediaInternetValidationException($message);
+    }
   }
 }

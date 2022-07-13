@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for Hreflang module.
+ */
+
+/**
+ * Implements hook_uninstall().
+ */
+function hreflang_uninstall() {
+  variable_del('hreflang_x_default');
+}

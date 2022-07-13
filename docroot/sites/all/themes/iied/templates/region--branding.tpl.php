@@ -8,9 +8,6 @@
         <div class="logo-img">
         	<?php print $linked_logo_img; ?>
         </div>
-        <div class="fiftylogo-img">
-          <?php print $linked_fiftylogo_img; ?>
-        </div>
       </div>
       <?php endif; ?>
       <?php if ($site_name || $site_slogan): ?>

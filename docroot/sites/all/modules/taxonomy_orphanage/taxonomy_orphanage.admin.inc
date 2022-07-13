@@ -32,7 +32,16 @@ function taxonomy_orphanage_settings() {
     '#title' => t('Cron roundup limit'),
     '#default_value' => variable_get('taxonomy_orphanage_cron_limit', 50),
     '#description' => t('The number of entities per field per cron run to process. NOTE: setting this to a high value can cause instability if your crons are executed via the web server and not by drush.'),
-    '#options' => array('-1' => t('All'), 10 => 10, 20 => 20, 50 => 50, 100 => 100, 200 => 200, 500 => 500, 1000 => 1000),
+    '#options' => array(
+      '-1' => t('All'),
+      10 => 10,
+      20 => 20,
+      50 => 50,
+      100 => 100,
+      200 => 200,
+      500 => 500,
+      1000 => 1000,
+    ),
   );
 
   return system_settings_form($form);
@@ -44,4 +53,3 @@ function taxonomy_orphanage_settings() {
 function taxonomy_orphanage_admin_roundup($form, &$form_state) {
   taxonomy_orphanage_roundup();
 }
-
