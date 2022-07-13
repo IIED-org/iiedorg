@@ -6,9 +6,8 @@ package = Webform
 dependencies[] = webform
 dependencies[] = libraries
 
-; Information added by Drupal.org packaging script on 2017-07-21
-version = "7.x-2.0"
+; Information added by Drupal.org packaging script on 2019-12-02
+version = "7.x-2.1"
 core = "7.x"
 project = "webform_countdown"
-datestamp = "1500672247"
-
+datestamp = "1575306483"

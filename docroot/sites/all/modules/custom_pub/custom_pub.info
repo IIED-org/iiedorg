@@ -3,9 +3,8 @@ description = Adds the ability to add custom publishing options to the node Add/
 core = 7.x
 package = Other
 configure = admin/structure/custom_pub
-; Information added by Drupal.org packaging script on 2016-02-04
-version = "7.x-1.4"
+; Information added by Drupal.org packaging script on 2022-01-08
+version = "7.x-1.5"
 core = "7.x"
 project = "custom_pub"
-datestamp = "1454612856"
-
+datestamp = "1641638669"

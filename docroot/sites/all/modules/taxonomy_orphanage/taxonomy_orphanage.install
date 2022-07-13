@@ -12,4 +12,3 @@ function taxonomoy_orphanage_uninstall() {
   variable_del('taxonomy_orphanage_cron_roundup');
   variable_del('taxonomy_orphanage_cron_limit');
 }
-

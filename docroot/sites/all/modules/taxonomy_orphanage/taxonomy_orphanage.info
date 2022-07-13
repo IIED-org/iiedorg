@@ -1,11 +1,11 @@
 name = Taxonomy Orphanage
-description = I am the child catcher. Who likes candy?
+description = This module provides interfaces for removing orphaned taxonomy term references from entities.
 core = 7.x
 dependencies[] = taxonomy
+configure = admin/structure/taxonomy/orphanage
 
-; Information added by drupal.org packaging script on 2012-11-21
-version = "7.x-1.1"
+; Information added by Drupal.org packaging script on 2020-05-01
+version = "7.x-1.2"
 core = "7.x"
 project = "taxonomy_orphanage"
-datestamp = "1353467345"
-
+datestamp = "1588361737"

@@ -6,8 +6,8 @@ dependencies[] = acquia_agent
 dependencies[] = taxonomy
 files[] = tests/acquia_spi.test
 
-; Information added by Drupal.org packaging script on 2022-01-14
-version = "7.x-3.9"
+; Information added by Drupal.org packaging script on 2022-03-18
+version = "7.x-3.10"
 core = "7.x"
 project = "acquia_connector"
-datestamp = "1642186285"
+datestamp = "1647641926"

@@ -1023,10 +1023,10 @@ function acquia_search_acquia_subscription_status($active, $subscription = FALSE
   if ($active) {
     $available_cores = acquia_search_available_cores($subscription);
     if (!empty($available_cores)) {
-      acquia_search_enable_acquia_solr_environment(ACQUIA_SEARCH_V3_ENVIRONMENT_ID);
+      acquia_search_enable_acquia_solr_environment(ACQUIA_SEARCH_ENVIRONMENT_ID);
     }
     else {
-      acquia_search_enable_acquia_solr_environment(ACQUIA_SEARCH_ENVIRONMENT_ID);
+      acquia_search_enable_acquia_solr_environment(ACQUIA_SEARCH_V3_ENVIRONMENT_ID);
     }
     // Refresh the salt with the subscription data returned by the heartbeat
     // since it can change periodically.
