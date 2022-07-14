@@ -1,0 +1,16 @@
+diff --git a/picture.module b/picture.module
+index 38e6c2a..212a73e 100644
+--- a/picture.module
++++ b/picture.module
+@@ -1479,7 +1479,10 @@ function theme_picture(array $variables) {
+   if (!empty($sources)) {
+     $output[] = '<picture ' . drupal_attributes(array_diff_key($attributes, array('alt' => ''))) . '>';
+     $output[] = '<!--[if IE 9]><video style="display: none;"><![endif]-->';
+-    $output = array_merge($output, array_map('drupal_render', $sources));
++    foreach ($sources as $delta => $source) {
++      $sources[$delta] = drupal_render($source);
++    }
++    $output = array_merge($output, $sources);
+     $output[] = '<!--[if IE 9]></video><![endif]-->';
+     $src = _picture_image_style_url($variables['style_name'], $variables['uri'], $variables['timestamp']);
+ 
