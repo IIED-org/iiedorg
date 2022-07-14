@@ -1,0 +1,15 @@
+diff --git acquia_search/acquia_search.module acquia_search/acquia_search.module
+index 30523c9..3920be3 100644
+--- acquia_search/acquia_search.module
++++ acquia_search/acquia_search.module
+@@ -187,6 +187,9 @@ function acquia_search_available_cores(array $subscription) {
+   if (!empty($subscription['heartbeat_data']['search_cores'])) {
+     return $subscription['heartbeat_data']['search_cores'];
+   }
++  else {
++    return array();
++  }
+ }
+ 
+ /**
+--
