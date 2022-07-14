@@ -187,6 +187,9 @@ function acquia_search_available_cores(array $subscription) {
   if (!empty($subscription['heartbeat_data']['search_cores'])) {
     return $subscription['heartbeat_data']['search_cores'];
   }
+  else {
+    return array();
+  }
 }
 
 /**
