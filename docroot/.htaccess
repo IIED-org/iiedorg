@@ -112,10 +112,10 @@ DirectoryIndex index.php index.html index.htm
   # (http://example.com/... will be redirected to http://www.example.com/...)
   # uncomment the following:
 
-  RewriteCond %{HTTP_HOST} .
-  RewriteCond %{ENV:AH_SITE_ENVIRONMENT} prod
-  RewriteCond %{HTTP_HOST} !^www\. [NC]
-  RewriteRule ^ http%{ENV:protossl}://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  # RewriteCond %{HTTP_HOST} .
+  # RewriteCond %{ENV:AH_SITE_ENVIRONMENT} prod
+  # RewriteCond %{HTTP_HOST} !^www\. [NC]
+  # RewriteRule ^ http%{ENV:protossl}://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
    # Additional rewrite rules
    # In our world blogs to single tag page
