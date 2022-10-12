@@ -124,7 +124,7 @@ $update_free_access = FALSE;
 
 /* Uncomment next lines to add base_url after DNS update, cache purging */
 if (isset($_ENV['AH_SITE_ENVIRONMENT']) && $_ENV['AH_SITE_ENVIRONMENT'] === 'prod') {
-  $base_url = 'https://www.iied.org';
+  $base_url = 'https://ac.iied.org';
   $conf['acquia_purge_https'] = TRUE;
   $conf['acquia_purge_http'] = FALSE;
 }
